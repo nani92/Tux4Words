@@ -1,0 +1,22 @@
+{
+  "generator-m": {
+    "answers": {
+      "appName": "Tux4Words",
+      "appId": "com.tux4kids.tux4words",
+      "bowerPackages": [
+        "angular-dynamic-locale#~0.1.27",
+        "angular-translate#~2.6.1",
+        "angular-translate-loader-static-files#~2.6.1",
+        "angular-localForage#~1.2.2"
+      ],
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "plugins": [
+        "cordova-plugin-device"
+      ],
+      "appModule": "Tux4Words"
+    }
+  }
+}
