@@ -1,0 +1,17 @@
+<div id="container">
+    <div id="header">Tux4Words</div>
+    <div id="homeScreen_tux"></div>
+    <div id="homeScreen_menu">
+        <div id="basic" ng-model="basicOptions">
+            <div class="menuButton" ng-repeat="basicOption in basicOptions">
+                <span ng-model="basicOption">{{basicOption}}</span>
+            </div>
+        </div>
+        <hr id="homeScreen_menu_line"/>
+        <div id="exercisesMenu" ng-model="exerciseOptions">
+            <div class="menuButton" ng-repeat="exerciseOption in exerciseOptions">
+                <span ng-model="exerciseOption">{{exerciseOption}}</span>
+            </div>
+        </div>
+    </div>
+</div>

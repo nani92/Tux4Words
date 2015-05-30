@@ -15,7 +15,7 @@ angular.module('main', [
   $stateProvider
     .state('main', {
       url: '/main',
-      templateUrl: 'main/templates/start.html',
+      templateUrl: 'main/templates/homeScreen.html',
       controller: 'StartCtrl as start'
     });
   // TODO: do your thing

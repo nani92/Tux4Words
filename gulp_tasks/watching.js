@@ -57,7 +57,7 @@ gulp.task('watch', ['serve', 'linting'], function () {
   });
 
   // watch for changes in scss
-  gulp.watch('app/*/styles/**/*.scss', ['styles']);
+  gulp.watch('app/*/styles/**/*.less', ['styles']);
   // watch for changes in environment files
   gulp.watch('app/main/constants/env-*.json', ['environment']);
 });

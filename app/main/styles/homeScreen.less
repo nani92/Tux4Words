@@ -1,0 +1,77 @@
+@import "devices";
+@import "round";
+
+//Sizes of container children
+//********************
+@headerHeight: 15%;
+@tuxDivHeight: 45% - @headerHeight;
+@menuHeight: 100% - @tuxDivHeight - @headerHeight;
+@menuBasicHeight:30%;
+@menuExercisesHeight:64%;
+
+@fullWidth: 100%;
+@menuButtonWidth: 0.7 * @fullWidth;
+
+@buttonFontSize: unit(@menuHeight / 9, vh);
+//********************
+
+#header{
+    @media @allMobileDevices{
+        height: @headerHeight;
+        width: @fullWidth;
+    }
+}
+
+#homeScreen_tux{
+    background-image: url("../assets/images/tux.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+     @media @allMobileDevices{
+        width: @fullWidth;
+        height: @tuxDivHeight;
+     }
+}
+
+#homeScreen_menu{
+    @media @allMobileDevices{
+        height: @menuHeight;
+        width: @fullWidth;
+    }
+}
+
+#homeScreen_menu_line{
+    color: black;
+    width: @fullWidth * 0.8;
+}
+
+#homeScreen_menu > #basic{
+    height: @menuBasicHeight;
+    text-align: center;
+}
+
+#homeScreen_menu > #exercisesMenu{
+    height: @menuExercisesHeight; 
+    text-align: center;
+}
+
+.menuButton{
+    @media @allMobileDevices{
+        display: inline-block;
+        width: @menuButtonWidth;
+        height: auto;
+        text-align: center;
+        margin-top: unit(@buttonFontSize * 0.15,%); 
+        border:  unit(@buttonFontSize * 0.1,%); 
+        border-color: black;
+        border: solid;
+        .Round(5px);
+    }
+}
+
+.menuButton > span{
+    @media @allMobileDevices {
+        font-size: @buttonFontSize;
+    }
+}
+
