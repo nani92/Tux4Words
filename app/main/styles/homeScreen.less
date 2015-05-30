@@ -1,5 +1,6 @@
 @import "devices";
 @import "round";
+@import "rotate";
 
 //Sizes of container children
 //********************
@@ -10,16 +11,38 @@
 @menuExercisesHeight:64%;
 
 @fullWidth: 100%;
-@menuButtonWidth: 0.7 * @fullWidth;
 
+//menu sizes
+@menuButtonWidth: 0.7 * @fullWidth;
 @buttonFontSize: unit(@menuHeight / 9, vh);
+
+//header 
+@headerFontSize: unit(@headerHeight, vw);
+@headerFontColor:#1E90FF;
+@headerShadowColor: @headerFontColor - #333;
 //********************
 
 #header{
     @media @allMobileDevices{
         height: @headerHeight;
         width: @fullWidth;
+        text-align: center;
     }
+}
+
+#header>span{
+    font-size: @headerFontSize;
+    font-style: oblique;
+    font-weight: bolder;
+    vertical-align: middle;
+    color: @headerFontColor;
+    text-shadow: 2px 2px @headerShadowColor;
+}
+
+#header>#title_4{
+    font-size: @headerFontSize + 10;
+    .Rotate(20deg);
+    display: inline-block;
 }
 
 #homeScreen_tux{
