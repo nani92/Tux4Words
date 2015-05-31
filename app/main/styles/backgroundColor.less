@@ -1,8 +1,11 @@
-@theLightest:#FFFFFF;
-@middle:#85BEF7;
-@theDarkest:#4096ee;
+@backgroundTheLightest:#FFFFFF;
+@backgroundMiddle:#85BEF7;
+@backgroundTheDarkest:#4096ee;
+@buttonTheLightest:#ffdc10;
+@buttonMiddle:#fdc733;
+@buttonTheDarkest:#f5bb50;
 
-.BackgroundGradient{
+.Gradient(@theLightest, @middle, @theDarkest){
     background: #7abcff; /* Old browsers */
     background: -moz-linear-gradient(top,  @theLightest 0%, @middle 44%, #4096ee 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@theLightest), color-stop(44%,@theDarkest), color-stop(100%,#4096ee)); /* Chrome,Safari4+ */
@@ -10,5 +13,14 @@
     background: -o-linear-gradient(top,  @theLightest 0%,@middle 44%,@theDarkest 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top,  @theLightest 0%,@middle 44%,@theDarkest 100%); /* IE10+ */
     background: linear-gradient(to bottom,  @theLightest 0%,@middle 44%,@theDarkest 100%); /* W3C */
-
 }
+
+.BackgroundGradient{
+    .Gradient(@backgroundTheLightest, @backgroundMiddle, @backgroundTheDarkest);   
+}
+
+.ButtonGradient{
+    .Gradient(@buttonTheLightest, @buttonMiddle, @buttonTheDarkest);   
+}
+
+
