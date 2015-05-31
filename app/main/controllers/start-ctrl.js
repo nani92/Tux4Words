@@ -12,4 +12,8 @@ angular.module('main')
 
   $scope.basicOptions = ["Play", "Categories"];
   $scope.exerciseOptions = ["What is it?", "Connect", "Order the letters", "Type in"];
+    
+  $scope.MoveTo = function(option){
+      console.log("Move to " + option);
+  }
 });

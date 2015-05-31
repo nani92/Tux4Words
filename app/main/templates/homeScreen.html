@@ -12,13 +12,13 @@
     <div id="homeScreen_menu">
         <div id="basic" ng-model="basicOptions">
             <div class="menuButton" ng-repeat="basicOption in basicOptions">
-                <span ng-model="basicOption">{{basicOption}}</span>
+                <span ng-model="basicOption" ng-click="MoveTo(basicOption)">{{basicOption}}</span>
             </div>
         </div>
         <hr id="homeScreen_menu_line"/>
         <div id="exercisesMenu" ng-model="exerciseOptions">
             <div class="menuButton" ng-repeat="exerciseOption in exerciseOptions">
-                <span ng-model="exerciseOption">{{exerciseOption}}</span>
+                <span ng-model="exerciseOption" ng-click="MoveTo(exerciseOption)">{{exerciseOption}}</span>
             </div>
         </div>
     </div>
