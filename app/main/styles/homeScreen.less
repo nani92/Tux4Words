@@ -8,11 +8,18 @@
 @tuxDivHeight: 45% - @headerHeight;
 @menuHeight: 100% - @tuxDivHeight - @headerHeight;
 @menuBasicHeight:30%;
-@menuExercisesHeight:64%;
+@menuExercisesHeight:63%;
 
 @fullWidth: 100%;
 
-//menu
+//icons
+@iconFontSize: 5vh;
+@iconSettingsLeft: 65%;
+@iconHistoryLeft: 70%;
+@iconColor: @headerFontColor;
+@iconShadowColor: gray;
+
+//buttons
 @menuButtonWidth: 0.7 * @fullWidth;
 @buttonFontSize: unit(@menuHeight / 10, vh);
 @buttonBorderColor: #f2ac56;
@@ -38,6 +45,22 @@
         width: @fullWidth;
         height: @tuxDivHeight;
      }
+}
+
+#homeScreen_tux > span{
+    position: relative;
+    display: inline-block;
+    font-size: @iconFontSize;
+    color: @iconColor;
+    text-shadow: 1px 2px @iconShadowColor;
+}
+
+#homeScreen_tux > #settings{
+    left: @iconSettingsLeft;
+}
+
+#homeScreen_tux > #history{
+    left: @iconHistoryLeft;
 }
 
 #homeScreen_menu{

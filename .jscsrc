@@ -1,4 +1,5 @@
 {
+  "excludeFiles": ["app/main/assets/**"],
   "requireCurlyBraces": [
     "if",
     "else",

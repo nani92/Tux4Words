@@ -7,7 +7,8 @@ var gulp = require('gulp');
 gulp.paths = {
   dist: 'www',
   jsFiles: ['app/**/*.js', '!app/bower_components/**/*.js'],
-  jsonFiles: ['app/**/*.json', '!app/bower_components/**/*.json']
+  jsonFiles: ['app/**/*.json', '!app/bower_components/**/*.json'],
+  icoaticCss: 'app/main/assets/fonts/icons-master/font/icomatic.css'
 };
 // retrieve options
 var minimist = require('minimist');

@@ -8,3 +8,5 @@ platforms/ios/www/**
 **/xcuserdata/
 xcshareddata/
 .idea/*
+app/main/assets/**
+main/assets/**
