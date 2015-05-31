@@ -1,0 +1,22 @@
+@headerFontSize: unit(@headerHeight*0.6, vh);
+@headerFontColor:#1E90FF;
+@headerShadowColor: @headerFontColor - #333;
+
+#header{
+    @media @allMobileDevices{
+        height: @headerHeight;
+        width: @fullWidth;
+        text-align: center;
+    }
+}
+
+#header>span{
+    font-size: @headerFontSize;
+    font-style: oblique;
+    font-weight: bolder;
+    vertical-align: middle;
+    color: @headerFontColor;
+    text-shadow: 2px 2px @headerShadowColor;
+    position: relative;
+    top: -@headerHeight;
+}

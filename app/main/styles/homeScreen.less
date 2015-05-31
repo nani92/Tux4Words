@@ -1,6 +1,7 @@
 @import "devices";
 @import "round";
 @import "rotate";
+@import "header";
 //Sizes of container children
 //********************
 @headerHeight: 15%;
@@ -11,32 +12,16 @@
 
 @fullWidth: 100%;
 
-//menu sizes
+//menu
 @menuButtonWidth: 0.7 * @fullWidth;
-@buttonFontSize: unit(@menuHeight / 9, vh);
+@buttonFontSize: unit(@menuHeight / 10, vh);
+@buttonBorderColor: #f2ac56;
+@buttonMarginTop:unit(@buttonFontSize * 0.3,%);
+@buttonBorderWidth: unit(@buttonFontSize * 0.1,%);
 
-//header 
-@headerFontSize: unit(@headerHeight, vw);
-@headerFontColor:#1E90FF;
-@headerShadowColor: @headerFontColor - #333;
+@hrColor: @headerFontColor;
+
 //********************
-
-#header{
-    @media @allMobileDevices{
-        height: @headerHeight;
-        width: @fullWidth;
-        text-align: center;
-    }
-}
-
-#header>span{
-    font-size: @headerFontSize;
-    font-style: oblique;
-    font-weight: bolder;
-    vertical-align: middle;
-    color: @headerFontColor;
-    text-shadow: 2px 2px @headerShadowColor;
-}
 
 #header>#title_4{
     font-size: @headerFontSize + 10;
@@ -63,8 +48,11 @@
 }
 
 #homeScreen_menu_line{
-    color: black;
+    background-color: @hrColor;
+    height: 3px;
     width: @fullWidth * 0.8;
+    box-shadow: 1px 1px 1px gray;
+    border: 0;
 }
 
 #homeScreen_menu > #basic{
@@ -83,12 +71,12 @@
         width: @menuButtonWidth;
         height: auto;
         text-align: center;
-        margin-top: unit(@buttonFontSize * 0.15,%); 
-        border:  unit(@buttonFontSize * 0.1,%); 
-        border-color: black;
-        border: solid;
+        margin-top: @buttonMarginTop;
+        border-width: @buttonBorderWidth; 
+        border: solid @buttonBorderColor;
         .Round(5px);
         .ButtonGradient;
+        box-shadow: 2px 2px 2px gray;
     }
 }
 
