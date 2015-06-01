@@ -2,4 +2,6 @@
 @tabletPort: ~"only screen and (min-width:600px) and (orientation: portrait)";
 @smartPhoneLand: ~"only screen and (min-device-width: 480px) and (orientation: landscape)";
 @tabletLand: ~"screen and (min-width:801px) and (orientation: landscape)";
-@allMobileDevices: @smartPhonePort, @tabletPort, @smartPhoneLand, @tabletLand;
+@allMobileDevices: ~"all";//@smartPhonePort, @tabletPort, @smartPhoneLand, @tabletLand;
+@landscapeAndBig: @smartPhoneLand, @tabletLand;
+@iPhonePort: ~"only screen and (min-device-width: 320px) and (max-device-width: 320px) and (orientation: portrait)";

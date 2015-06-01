@@ -1,4 +1,4 @@
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   #header {
     height: 15%;
     width: 100%;
@@ -54,7 +54,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   #homeScreen_tux {
     width: 100%;
     height: 30%;
@@ -73,10 +73,11 @@
 #homeScreen_tux > #history {
   left: 70%;
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   #homeScreen_menu {
     height: 55%;
     width: 100%;
+    text-align: center;
   }
 }
 #homeScreen_menu_line {
@@ -94,7 +95,7 @@
   height: 63%;
   text-align: center;
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   .menuButton {
     display: inline-block;
     width: 70%;
@@ -123,10 +124,33 @@
     border: solid #f2ac56;
   }
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+  .menuButton {
+    margin-top: 0.495%;
+  }
+}
+@media all {
   .menuButton > span {
     font-size: 5.5vh;
   }
+}
+#container {
+  background-color: aquamarine;
+}
+#header {
+  background-color: red;
+}
+#homeScreen_menu {
+  background-color: yellow;
+}
+#homeScreen_tux {
+  background-color: green;
+}
+.menuButton {
+  background-color: pink;
+}
+#exercisesMenu {
+  background-color: fuchsia;
 }
 .BackgroundGradient {
   background: #7abcff;
@@ -160,14 +184,14 @@
   background: linear-gradient(to bottom, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
   /* W3C */
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   #photoBox {
     width: 100%;
     height: 70%;
     text-align: center;
   }
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   #photoFrame {
     background-color: white;
     height: 95%;
@@ -176,7 +200,7 @@
     box-shadow: 4px 4px 10px gray;
   }
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   #boardFooter {
     width: 100%;
     height: 15%;
@@ -189,7 +213,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   #boardFooter > #tuxDiv {
     width: 30%;
     height: 100%;
@@ -199,7 +223,7 @@
 #boardFooter > #nextContainer {
   display: inline-block;
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   #boardFooter > #nextContainer {
     width: 70%;
     height: 100%;
@@ -228,7 +252,7 @@
   border: solid #f2ac56;
   display: inline-block;
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   #nextContainer > #buttonNext {
     height: 50%;
     width: 70%;
@@ -240,7 +264,7 @@
 #buttonNext > span {
   display: inline-block;
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+@media all {
   #buttonNext > span {
     float: left;
     font-size: 7.5vh;
@@ -289,3 +313,9 @@ body,
     height: 100%;
   }
 }
+/*@media @smartPhonePort{
+  @viewport {
+  	width: 360px;
+	height: 640px;
+  }
+}*/

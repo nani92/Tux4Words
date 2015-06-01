@@ -65,6 +65,7 @@
     @media @allMobileDevices{
         height: @menuHeight;
         width: @fullWidth;
+        text-align: center;
     }
 }
 
@@ -95,6 +96,9 @@
         margin-top: @buttonMarginTop;
         border-width: @buttonBorderWidth; 
         .Button;
+    }
+    @media @landscapeAndBig{
+        margin-top: @buttonMarginTop * 0.3;
     }
 }
 
