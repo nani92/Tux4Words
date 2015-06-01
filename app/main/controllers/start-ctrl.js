@@ -10,10 +10,10 @@ angular.module('main')
   console.log('Hello from your Controller: StartCtrl in module main:. This is your controller:', this);
   // TODO: do your controller thing
 
-  $scope.basicOptions = ["Play", "Categories"];
-  $scope.exerciseOptions = ["What is it?", "Connect", "Order the letters", "Type in"];
+  $scope.basicOptions = ['Play', 'Categories'];
+  $scope.exerciseOptions = ['What is it?', 'Connect', 'Order the letters', 'Type in'];
   $scope.MoveTo = function (option) {
-    console.log("Move to " + option);
+    console.log('Move to ' + option);
     $state.go(option);
-  }
+  };
 });

@@ -27,7 +27,7 @@ gulp.task('inject-all', ['styles', 'wiredep', 'bower-fonts', 'environment', 'bui
         {relative: true}))
     .pipe(
       $.inject( // inject compiled css
-        gulp.src(['.tmp/*/styles/main.css', '.tmp/font/icomatic.css'], {read: false}),
+        gulp.src(['.tmp/*/styles/main.css', 'app/main/styles/icomatic.css'], {read: false}),
         {
           ignorePath: '../.tmp',
           relative: true,

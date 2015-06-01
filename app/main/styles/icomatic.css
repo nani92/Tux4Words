@@ -1,10 +1,10 @@
 @font-face {
 font-family: 'Icomatic';
-src: url('icomatic.eot');
-src: url('icomatic.eot?#iefix') format("embedded-opentype"),
-     url('icomatic.woff') format("woff"),
-     url('icomatic.ttf') format("truetype"),
-     url('icomatic.svg#icomatic') format('svg');
+src: url('../assets/icons/icomatic.eot');
+src: url('../assets/icons/icomatic.eot?#iefix') format("embedded-opentype"),
+     url('../assets/icons/icomatic.woff') format("woff"),
+     url('../assets/icons/icomatic.ttf') format("truetype"), 
+     url('../assets/icons/icomatic.svg#icomatic') format('svg'); 
 }
 .icomatic {
     font-family: 'Icomatic','sans-serif';
