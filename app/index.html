@@ -29,8 +29,7 @@
     <![endif]-->
 
     <ion-nav-bar class="bar-energized"></ion-nav-bar>
-    <ion-nav-view></ion-nav-view>
-
+    <div ui-view id="uiView"></div>
     <script src="cordova.js"></script> <!-- will be a 404 during development -->
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -54,6 +53,7 @@
     <script src="main/main.js"></script>
     <script src="main/services/start-serv.js"></script>
     <script src="main/controllers/start-ctrl.js"></script>
+    <script src="main/controllers/board-ctrl.js"></script>
     <script src="main/constants/config-const.js"></script>
     <script src="main/assets/fonts/icons-master/font/js/dat.gui.js"></script>
     <script src="main/assets/fonts/icons-master/font/js/dat.color.js"></script>

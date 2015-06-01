@@ -1,6 +1,6 @@
 'use strict';
 angular.module('main')
-.controller('StartCtrl', function (Start, Config, $scope) {
+.controller('StartCtrl', function (Start, Config, $scope, $state) {
 
   // bind data from service
   this.someData = Start.someData;
@@ -12,8 +12,8 @@ angular.module('main')
 
   $scope.basicOptions = ["Play", "Categories"];
   $scope.exerciseOptions = ["What is it?", "Connect", "Order the letters", "Type in"];
-    
-  $scope.MoveTo = function(option){
-      console.log("Move to " + option);
+  $scope.MoveTo = function (option) {
+    console.log("Move to " + option);
+    $state.go(option);
   }
 });

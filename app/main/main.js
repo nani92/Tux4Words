@@ -15,8 +15,15 @@ angular.module('main', [
   $stateProvider
     .state('main', {
       url: '/main',
+      replace: true,
       templateUrl: 'main/templates/homeScreen.html',
       controller: 'StartCtrl as start'
+    })
+    .state('Play', {
+      url: '/play',
+      replace: true,
+      templateUrl: 'main/templates/board.html',
+      controller: 'BoardCtrl'
     });
   // TODO: do your thing
 });

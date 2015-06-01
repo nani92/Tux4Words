@@ -1,6 +1,5 @@
 # temp files
 .DS_Store
-.tmp
 .sass-cache
 
 # npm & bower
