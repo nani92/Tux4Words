@@ -2,6 +2,8 @@
 @import "round";
 @import "rotate";
 @import "header";
+@import "button";
+@import "tuxBackg";
 //Sizes of container children
 //********************
 @headerHeight: 15%;
@@ -22,7 +24,6 @@
 //buttons
 @menuButtonWidth: 0.7 * @fullWidth;
 @buttonFontSize: unit(@menuHeight / 10, vh);
-@buttonBorderColor: #f2ac56;
 @buttonMarginTop:unit(@buttonFontSize * 0.3,%);
 @buttonBorderWidth: unit(@buttonFontSize * 0.1,%);
 
@@ -37,10 +38,7 @@
 }
 
 #homeScreen_tux{
-    background-image: url("../assets/images/tux.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    .TuxBackg;
      @media @allMobileDevices{
         width: @fullWidth;
         height: @tuxDivHeight;
@@ -96,10 +94,7 @@
         text-align: center;
         margin-top: @buttonMarginTop;
         border-width: @buttonBorderWidth; 
-        border: solid @buttonBorderColor;
-        .Round(5px);
-        .ButtonGradient;
-        box-shadow: 2px 2px 2px gray;
+        .Button;
     }
 }
 
