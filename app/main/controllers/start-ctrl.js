@@ -1,6 +1,30 @@
 'use strict';
+var rootPath = 'main/assets/json/categories/';
+
+function ReadJSONPaths(categories) {
+  var jsonURL =  rootPath + 'files.json';
+  $.getJSON(jsonURL, function (json) {
+    $.each(json.paths, function (i, path) {
+      ReadWords(path, categories);
+    });
+  });
+}
+
+function ReadWords(path, categories) {
+  var jsonURL = rootPath + path;
+  $.getJSON(jsonURL, function (json) {
+    var id = categories.getCategoryId(json.category);
+    if (id == -1) {
+      id = categories.addCategory(json.category);
+    }
+    console.log(id);
+    categories.addWordsToCategoryById(id, json.words);
+    console.log(categories.getAllWords());
+  });
+}
+
 angular.module('main')
-.controller('StartCtrl', function (Start, Config, $scope, $state, sharedData) {
+.controller('StartCtrl', function (Start, Config, $scope, $state, categories) {
 
   // bind data from service
   this.someData = Start.someData;
@@ -9,7 +33,7 @@ angular.module('main')
 
   console.log('Hello from your Controller: StartCtrl in module main:. This is your controller:', this);
   // TODO: do your controller thing
-  //ReadJsonFiles();
+  ReadJSONPaths(categories);
   $scope.basicOptions = ['Play', 'Categories'];
   $scope.exerciseOptions = ['What is it?', 'Connect', 'Order the letters', 'Type in'];
   $scope.MoveTo = function (option) {
@@ -18,24 +42,3 @@ angular.module('main')
   };
 });
 
-function ReadJsonFiles() {
-  var fs = require ('fs');
-  var dir = 'app/main/assets/json';
-  var data = {};
-  fs.readdir (dir, function (err, files) {
-    if (err) { throw err };
-    console.log ("dir exists");
-    var c = 0;
-    files.forEach (function (file) {
-      c++;
-      fs.readFile (dir + file, 'utf-8', function (err, html) {
-        if (err) { throw err };
-        data[file] = html;
-        c--;
-        if (0 === c) {
-          console.log(data);  //socket.emit('init', {data: data});
-        }
-      });
-    });
-  });
-}

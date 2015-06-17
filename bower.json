@@ -9,7 +9,8 @@
     "angular-dynamic-locale": "~0.1.27",
     "angular-translate": "~2.6.1",
     "angular-translate-loader-static-files": "~2.6.1",
-    "angular-localForage": "~1.2.2"
+    "angular-localForage": "~1.2.2",
+    "jquery": "~2.1.4"
   },
   "devDependencies": {},
   "resolutions": {

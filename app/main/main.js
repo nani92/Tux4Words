@@ -27,8 +27,9 @@ angular.module('main', [
     });
   // TODO: do your thing
 })
-.service('sharedData', function () {
+.service('categories', function () {
   var categories = [];
+  
   return {
     getCategories: function () {
       return categories;
@@ -36,12 +37,37 @@ angular.module('main', [
     setCategories: function (value) {
       categories = value;
     },
-    addCategory: function (category) {
-      categories.push(category);
-      console.log(category);
+    addCategory: function (inCategory) {
+      categories.push({name: inCategory,
+                      words: []});
+      return categories.length - 1;
     },
-    isCategory: function (category) {
-      //TODO
+    getCategoryId: function (inCategory) {
+      if (categories.length == 0)
+        return -1;
+      return $.grep(categories, function(i, category) {
+        if (category.name == inCategory) 
+          return i;
+        else
+          return -1;
+      })
+    },
+    setWordsToCategoryById: function (inId, inWords) {
+      categories[inId].words = inWords;
+    },
+    addWordsToCategoryById: function (inId, inWords) {
+      console.log(inId);
+      $.merge(categories[inId].words, inWords);
+    },
+    getWordsFromCategoryById: function (inId) {
+      return categories[inId].words;
+    },
+    getAllWords: function () {
+      var words = [];
+      $.each(categories, function (i, category) {
+        $.merge(words, category.words);
+      });
+      return words;
     }
   };
 });

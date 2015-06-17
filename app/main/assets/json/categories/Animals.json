@@ -1,0 +1,13 @@
+{
+    "category": "Animals",
+    "words": [
+        {
+            "word": "cat",
+            "imgPath": "img/cat.jpg"
+        },
+        {
+            "word": "dog",
+            "imgPath": "img/dog.jpg"
+        }
+    ]
+}
