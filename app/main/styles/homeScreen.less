@@ -6,11 +6,11 @@
 @import "tuxBackg";
 //Sizes of container children
 //********************
-@headerHeight: 15%;
-@tuxDivHeight: 45% - @headerHeight;
-@menuHeight: 100% - @tuxDivHeight - @headerHeight;
-@menuBasicHeight:30%;
-@menuExercisesHeight:63%;
+@headerHeight: 15vh;
+@tuxDivHeight: 45vh - @headerHeight;
+@menuHeight: 100vh - @tuxDivHeight - @headerHeight;
+@menuBasicHeight:30vh;
+@menuExercisesHeight:63vh;
 
 @fullWidth: 100%;
 
@@ -24,7 +24,7 @@
 //buttons
 @menuButtonWidth: 0.7 * @fullWidth;
 @buttonFontSize: unit(@menuHeight / 10, vh);
-@buttonMarginTop:unit(@buttonFontSize * 0.3,%);
+@buttonMarginTop:unit(@buttonFontSize * 0.2,vh);
 @buttonBorderWidth: unit(@buttonFontSize * 0.1,%);
 
 @hrColor: @headerFontColor;
@@ -98,7 +98,7 @@
         .Button;
     }
     @media @landscapeAndBig{
-        margin-top: @buttonMarginTop * 0.3;
+        //margin-top: @buttonMarginTop * 0.3;
     }
 }
 

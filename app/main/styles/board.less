@@ -3,16 +3,16 @@
 @import "tuxBackg";
 @import "scale";
 
-@photoBoxHeight:100% - @footerHeight - @headerHeight;
+@photoBoxHeight:100vh - @footerHeight - @headerHeight;
 @footerHeight:@headerHeight;
 
-@photoFrameHeight: 95%;
+@photoFrameHeight: @photoBoxHeight * 0.95;
 @photoFrameWidth: @fullWidth * 0.9;
 @tuxDivWidth: 30%;
 
 @btnNextWidth: 70%;
-@btnNextHeight: 50%;
-@btnNextFont: unit(@footerHeight*@btnNextHeight/100, vh);
+@btnNextHeight: @footerHeight * 0.5;
+@btnNextFont: unit(@btnNextHeight, vh);
 
 
 #photoBox{
@@ -54,7 +54,7 @@
     display: inline-block;
     @media @allMobileDevices{
         width: 100% - @tuxDivWidth;
-        height: 100%;
+        height: @footerHeight;
         text-align: right;
     }
 }
@@ -67,7 +67,7 @@
         width: @btnNextWidth;
         text-align: right;
         margin-right: @btnNextWidth*0.05;
-        margin-top: (100% - @btnNextHeight) * 0.15;
+        margin-top: @footerHeight * 0.15;
     }
 }
 
@@ -76,13 +76,18 @@
     @media @allMobileDevices{
         float: left;
         font-size: @btnNextFont;
+        
+    }
+    
+    @media @landscapeAndBig{
+        margin-left: 30%;
     }
 }
 
 #nextIconDiv > span{
     float: right;
-    margin-right: 15%;
-    margin-top: 3%;
+    margin-right: 20%;
+    margin-top: 1vh;
     font-size: @btnNextFont*0.8;
     .Scale(1.5, 0.7);
     text-shadow: 0px 3px 0px rgba(255, 255, 255, .7);

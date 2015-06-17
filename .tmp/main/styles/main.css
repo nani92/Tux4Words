@@ -1,6 +1,6 @@
 @media all {
   #header {
-    height: 15%;
+    height: 15vh;
     width: 100%;
     text-align: center;
   }
@@ -13,7 +13,7 @@
   color: #1e90ff;
   text-shadow: 2px 2px gray;
   position: relative;
-  top: -15%;
+  top: -3vh;
 }
 .Button {
   -webkit-border-radius: 5px;
@@ -57,7 +57,7 @@
 @media all {
   #homeScreen_tux {
     width: 100%;
-    height: 30%;
+    height: 30vh;
   }
 }
 #homeScreen_tux > span {
@@ -75,7 +75,7 @@
 }
 @media all {
   #homeScreen_menu {
-    height: 55%;
+    height: 55vh;
     width: 100%;
     text-align: center;
   }
@@ -88,11 +88,11 @@
   border: 0;
 }
 #homeScreen_menu > #basic {
-  height: 30%;
+  height: 30vh;
   text-align: center;
 }
 #homeScreen_menu > #exercisesMenu {
-  height: 63%;
+  height: 63vh;
   text-align: center;
 }
 @media all {
@@ -101,7 +101,7 @@
     width: 70%;
     height: auto;
     text-align: center;
-    margin-top: 1.65%;
+    margin-top: 1.1vh;
     border-width: 0.55%;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -124,33 +124,10 @@
     border: solid #f2ac56;
   }
 }
-@media only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
-  .menuButton {
-    margin-top: 0.495%;
-  }
-}
 @media all {
   .menuButton > span {
     font-size: 5.5vh;
   }
-}
-#container {
-  background-color: aquamarine;
-}
-#header {
-  background-color: red;
-}
-#homeScreen_menu {
-  background-color: yellow;
-}
-#homeScreen_tux {
-  background-color: green;
-}
-.menuButton {
-  background-color: pink;
-}
-#exercisesMenu {
-  background-color: fuchsia;
 }
 .BackgroundGradient {
   background: #7abcff;
@@ -187,14 +164,14 @@
 @media all {
   #photoBox {
     width: 100%;
-    height: 70%;
+    height: 70vh;
     text-align: center;
   }
 }
 @media all {
   #photoFrame {
     background-color: white;
-    height: 95%;
+    height: 66.5vh;
     width: 90%;
     display: inline-block;
     box-shadow: 4px 4px 10px gray;
@@ -203,7 +180,7 @@
 @media all {
   #boardFooter {
     width: 100%;
-    height: 15%;
+    height: 15vh;
   }
 }
 #boardFooter > #tuxDiv {
@@ -226,7 +203,7 @@
 @media all {
   #boardFooter > #nextContainer {
     width: 70%;
-    height: 100%;
+    height: 15vh;
     text-align: right;
   }
 }
@@ -254,11 +231,11 @@
 }
 @media all {
   #nextContainer > #buttonNext {
-    height: 50%;
+    height: 7.5vh;
     width: 70%;
     text-align: right;
     margin-right: 3.5%;
-    margin-top: 7.5%;
+    margin-top: 2.25vh;
   }
 }
 #buttonNext > span {
@@ -270,10 +247,15 @@
     font-size: 7.5vh;
   }
 }
+@media only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
+  #buttonNext > span {
+    margin-left: 30%;
+  }
+}
 #nextIconDiv > span {
   float: right;
-  margin-right: 15%;
-  margin-top: 3%;
+  margin-right: 20%;
+  margin-top: 1vh;
   font-size: 6vh;
   -webkit-transform: scale(1.5, 0.7);
   -moz-transform: scale(1.5, 0.7);
@@ -286,7 +268,7 @@ html,
 body,
 #uiView {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -310,7 +292,7 @@ body,
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait), only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
   #container {
     width: 100%;
-    height: 100%;
+    height: 100vh%;
   }
 }
 /*@media @smartPhonePort{

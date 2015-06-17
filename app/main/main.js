@@ -26,4 +26,22 @@ angular.module('main', [
       controller: 'BoardCtrl'
     });
   // TODO: do your thing
+})
+.service('sharedData', function () {
+  var categories = [];
+  return {
+    getCategories: function () {
+      return categories;
+    },
+    setCategories: function (value) {
+      categories = value;
+    },
+    addCategory: function (category) {
+      categories.push(category);
+      console.log(category);
+    },
+    isCategory: function (category) {
+      //TODO
+    }
+  };
 });
