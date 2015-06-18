@@ -28,25 +28,31 @@ angular.module('main', [
     .state('What is it?', {
       url: '/exercise/whatIsIt',
       replace: true,
-      templateUrl: 'main/templates/exercise.whatisit.main.html',
+      templateUrl: 'main/templates/exercises.mainScreen.html',
+      controller: 'ExerciseCtrl'
+    })
+    .state('What is it?.play', {
+      url: '/exercise/whatIsIt',
+      replace: true,
+      templateUrl: 'main/templates/exercise.whatisit.play.html',
       controller: 'ExerciseCtrl'
     })
     .state('Connect', {
       url: '/exercise/connect',
       replace: true,
-      templateUrl: 'main/templates/exercise.connect.main.html',
+      templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     })
     .state('Order the letters', {
       url: '/exercise/orderTheLetters',
       replace: true,
-      templateUrl: 'main/templates/exercise.order.main.html',
+      templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     })
     .state('Type in', {
       url: '/exercise/typeIn',
       replace: true,
-      templateUrl: 'main/templates/exercise.typein.main.html',
+      templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     });
 })

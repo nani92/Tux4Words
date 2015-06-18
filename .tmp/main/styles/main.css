@@ -265,8 +265,13 @@
   transform: scale(1.5, 0.7);
   text-shadow: 0px 3px 0px rgba(255, 255, 255, 0.7);
 }
-#header > #title_ex {
+#header > .title_ex {
   top: 0;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait) {
+  #header > #ex_orderTheLetters {
+    font-size: 13vw;
+  }
 }
 #exerciseMainScreen_tux {
   height: 50vh;

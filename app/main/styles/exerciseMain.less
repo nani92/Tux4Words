@@ -8,8 +8,14 @@
 @exercise_menuContainerHeight: 100vh - @exercise_tuxContainerHeight - @exercise_headerHeight;
 @exercise_menuContainerWidth: @exercise_tuxContainerWidth;
 
-#header>#title_ex{
+#header>.title_ex{
     top: 0;
+}
+
+#header>#ex_orderTheLetters{
+    @media @smartPhonePort, @tabletPort{
+        font-size: 13vw;
+    }
 }
 
 #exerciseMainScreen_tux{

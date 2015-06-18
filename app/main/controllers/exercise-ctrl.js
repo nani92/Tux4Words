@@ -12,8 +12,12 @@ angular.module('main')
   // TODO: do your controller thing
   ReadJSONPaths(categories);
   $scope.basicOptions = ['Play', 'Categories', 'Play Test', 'Leaderboards'];
-  $scope.MoveTo = function (option, name) {
+  $scope.MoveTo = function (name) {
     $state.go(name);
     console.log(name);
   };
+  $scope.title = $state.current.name;
+  var id = ($state.current.url).substring(1);
+  id = id.substring($.inArray('/', id) + 1);
+  $scope.id = id;
 });
