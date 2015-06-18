@@ -3,11 +3,19 @@
     "words": [
         {
             "word": "cat",
-            "imgPath": "img/cat.jpg"
+            "imgPath": "main/assets/images/words/cat.jpg"
         },
         {
             "word": "dog",
-            "imgPath": "img/dog.jpg"
+            "imgPath": "main/assets/images/words/dog.jpg"
+        },
+        {
+            "word": "sun",
+            "imgPath": "main/assets/images/words/sun.jpg"
+        },
+        {
+            "word": "cow",
+            "imgPath": "main/assets/images/words/cow.jpg"
         }
     ]
 }

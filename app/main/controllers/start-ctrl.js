@@ -13,11 +13,15 @@ function ReadJSONPaths(categories) {
 function ReadWords(path, categories) {
   var jsonURL = rootPath + path;
   $.getJSON(jsonURL, function (json) {
+    console.log(json.category);
     var id = categories.getCategoryId(json.category);
+    console.log("ID");
+    console.log(id);
     if (id == -1) {
+      
       id = categories.addCategory(json.category);
     }
-    console.log(id);
+    console.log("ID2" + id);
     categories.addWordsToCategoryById(id, json.words);
     console.log(categories.getAllWords());
   });

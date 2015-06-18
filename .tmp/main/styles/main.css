@@ -161,27 +161,31 @@
   background: linear-gradient(to bottom, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
   /* W3C */
 }
-@media all {
-  #photoBox {
-    width: 100%;
-    height: 70vh;
-    text-align: center;
-  }
+#photoBox {
+  width: 100%;
+  height: 70vh;
+  text-align: center;
 }
-@media all {
-  #photoFrame {
-    background-color: white;
-    height: 66.5vh;
-    width: 90%;
-    display: inline-block;
-    box-shadow: 4px 4px 10px gray;
-  }
+#photoFrame {
+  background-color: white;
+  height: 66.5vh;
+  width: 90%;
+  display: inline-block;
+  box-shadow: 4px 4px 10px gray;
 }
-@media all {
-  #boardFooter {
-    width: 100%;
-    height: 15vh;
-  }
+#photoFrame > img {
+  max-height: 52.5vh;
+  max-width: 81%;
+}
+#photoFrame > span {
+  display: block;
+  font-size: 15.5vh;
+  position: relative;
+  top: -5vh;
+}
+#boardFooter {
+  width: 100%;
+  height: 15vh;
 }
 #boardFooter > #tuxDiv {
   display: inline-block;
@@ -240,17 +244,16 @@
 }
 #buttonNext > span {
   display: inline-block;
-}
-@media all {
-  #buttonNext > span {
-    float: left;
-    font-size: 7.5vh;
-  }
+  float: left;
+  font-size: 7.5vh;
 }
 @media only screen and (min-device-width: 480px) and (orientation: landscape), screen and (min-width:801px) and (orientation: landscape) {
   #buttonNext > span {
     margin-left: 30%;
   }
+}
+#buttonNext > #finish {
+  margin-left: 15%;
 }
 #nextIconDiv > span {
   float: right;

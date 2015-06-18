@@ -25,14 +25,16 @@ angular.module('main', [
       templateUrl: 'main/templates/board.html',
       controller: 'BoardCtrl'
     });
-  // TODO: do your thing
 })
 .service('categories', function () {
   var categories = [];
-  
   return {
     getCategories: function () {
-      return categories;
+      var names = [];
+      $.each(categories, function (i, category) {
+        names.push(category.name)
+      });
+      return names;
     },
     setCategories: function (value) {
       categories = value;
@@ -43,14 +45,21 @@ angular.module('main', [
       return categories.length - 1;
     },
     getCategoryId: function (inCategory) {
-      if (categories.length == 0)
+      if (categories.length == 0) {
         return -1;
-      return $.grep(categories, function(i, category) {
-        if (category.name == inCategory) 
+      }
+      var findCategory = $.grep(categories, function (category, i) {
+        console.log(category.name);
+        if (category.name == inCategory) {
           return i;
-        else
-          return -1;
-      })
+        }
+      });
+      if (findCategory.length == 0) {
+        return -1;
+      }
+      else {
+        return categories.indexOf(findCategory[0]); 
+      }
     },
     setWordsToCategoryById: function (inId, inWords) {
       categories[inId].words = inWords;

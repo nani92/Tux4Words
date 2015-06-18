@@ -1,0 +1,13 @@
+{
+    "category": "Numbers",
+    "words": [
+        {
+            "word": "one",
+            "imgPath": "main/assets/images/words/one.png"
+        },
+        {
+            "word": "two",
+            "imgPath": "main/assets/images/words/two.gif"
+        }
+    ]
+}

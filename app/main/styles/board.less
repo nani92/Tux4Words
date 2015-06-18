@@ -8,6 +8,7 @@
 
 @photoFrameHeight: @photoBoxHeight * 0.95;
 @photoFrameWidth: @fullWidth * 0.9;
+@photoImgHeight: @photoBoxHeight * 0.75;
 @tuxDivWidth: 30%;
 
 @btnNextWidth: 70%;
@@ -16,28 +17,34 @@
 
 
 #photoBox{
-    @media @allMobileDevices{
-        width:@fullWidth;
-        height: @photoBoxHeight;
-        text-align: center;
-    }
+    width:@fullWidth;
+    height: @photoBoxHeight;
+    text-align: center;
 }
 
 #photoFrame{
-    @media @allMobileDevices{
-        background-color: white;
-        height: @photoFrameHeight;
-        width: @photoFrameWidth;
-        display: inline-block;
-        box-shadow: 4px 4px 10px gray;
-    }
+    background-color: white;
+    height: @photoFrameHeight;
+    width: @photoFrameWidth;
+    display: inline-block;
+    box-shadow: 4px 4px 10px gray;
+}
+
+#photoFrame > img {
+    max-height: @photoImgHeight;
+    max-width: @photoFrameWidth * 0.9;
+}
+
+#photoFrame > span{
+    display: block;
+    font-size: unit(@photoBoxHeight - @photoImgHeight - 2, vh);
+    position: relative;
+    top: -5vh;
 }
 
 #boardFooter{
-    @media @allMobileDevices{
-        width:@fullWidth;
-        height: @footerHeight;
-    } 
+    width:@fullWidth;
+    height: @footerHeight; 
 }
 
 #boardFooter > #tuxDiv{
@@ -73,15 +80,16 @@
 
 #buttonNext > span{
     display: inline-block;
-    @media @allMobileDevices{
-        float: left;
-        font-size: @btnNextFont;
-        
-    }
+    float: left;
+    font-size: @btnNextFont;
     
     @media @landscapeAndBig{
         margin-left: 30%;
     }
+}
+
+#buttonNext > #finish{
+    margin-left: 15%;  
 }
 
 #nextIconDiv > span{
