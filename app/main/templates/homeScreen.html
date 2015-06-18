@@ -1,4 +1,4 @@
-<ion-view><div id="container">
+<div id="container">
     <div id="header">
         <span id="title_Tux">Tux</span>
         <span id="title_4">4</span>
@@ -11,15 +11,15 @@
     </div>
     <div id="homeScreen_menu" ng-model="basicOptions">
         <!--<div id="basic" ng-model="basicOptions">-->
-            <div class="menuButton" ng-repeat="basicOption in basicOptions" ng-click="MoveTo(basicOption)">
+            <div class="menuButton" ng-repeat="basicOption in basicOptions" ng-click="MoveTo('basic', basicOption)">
                 <span ng-model="basicOption" >{{basicOption}}</span>
             </div>
         <!--</div>-->
         <hr id="homeScreen_menu_line"/>
         <!--<div id="exercisesMenu" ng-model="exerciseOptions">-->
-            <div class="menuButton" ng-repeat="exerciseOption in exerciseOptions">
-                <span ng-model="exerciseOption" ng-click="MoveTo(exerciseOption)">{{exerciseOption}}</span>
+            <div class="menuButton" ng-repeat="exerciseOption in exerciseOptions" ng-click="MoveTo('Exercise', exerciseOption)" >
+                <span ng-model="exerciseOption" >{{exerciseOption}}</span>
             </div>
         <!--</div>-->
     </div>
-    </div></ion-view>
+</div>

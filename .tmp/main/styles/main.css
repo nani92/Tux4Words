@@ -1,9 +1,7 @@
-@media all {
-  #header {
-    height: 15vh;
-    width: 100%;
-    text-align: center;
-  }
+#header {
+  height: 15vh;
+  width: 100%;
+  text-align: center;
 }
 #header > span {
   font-size: 9vh;
@@ -266,6 +264,22 @@
   -o-transform: scale(1.5, 0.7);
   transform: scale(1.5, 0.7);
   text-shadow: 0px 3px 0px rgba(255, 255, 255, 0.7);
+}
+#header > #title_ex {
+  top: 0;
+}
+#exerciseMainScreen_tux {
+  height: 50vh;
+  width: 100vw;
+  background-image: url("../assets/images/tux.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#exerciseScreen_menu {
+  height: 35vh;
+  width: 100vw;
+  text-align: center;
 }
 html,
 body,

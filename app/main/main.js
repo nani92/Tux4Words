@@ -24,6 +24,30 @@ angular.module('main', [
       replace: true,
       templateUrl: 'main/templates/board.html',
       controller: 'BoardCtrl'
+    })
+    .state('What is it?', {
+      url: '/exercise/whatIsIt',
+      replace: true,
+      templateUrl: 'main/templates/exercise.whatisit.main.html',
+      controller: 'ExerciseCtrl'
+    })
+    .state('Connect', {
+      url: '/exercise/connect',
+      replace: true,
+      templateUrl: 'main/templates/exercise.connect.main.html',
+      controller: 'ExerciseCtrl'
+    })
+    .state('Order the letters', {
+      url: '/exercise/orderTheLetters',
+      replace: true,
+      templateUrl: 'main/templates/exercise.order.main.html',
+      controller: 'ExerciseCtrl'
+    })
+    .state('Type in', {
+      url: '/exercise/typeIn',
+      replace: true,
+      templateUrl: 'main/templates/exercise.typein.main.html',
+      controller: 'ExerciseCtrl'
     });
 })
 .service('categories', function () {
@@ -58,7 +82,7 @@ angular.module('main', [
         return -1;
       }
       else {
-        return categories.indexOf(findCategory[0]); 
+        return categories.indexOf(findCategory[0]);
       }
     },
     setWordsToCategoryById: function (inId, inWords) {

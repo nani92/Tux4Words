@@ -13,22 +13,16 @@ function ReadJSONPaths(categories) {
 function ReadWords(path, categories) {
   var jsonURL = rootPath + path;
   $.getJSON(jsonURL, function (json) {
-    console.log(json.category);
     var id = categories.getCategoryId(json.category);
-    console.log("ID");
-    console.log(id);
     if (id == -1) {
-      
       id = categories.addCategory(json.category);
     }
-    console.log("ID2" + id);
     categories.addWordsToCategoryById(id, json.words);
-    console.log(categories.getAllWords());
   });
 }
 
 angular.module('main')
-.controller('StartCtrl', function (Start, Config, $scope, $state, categories) {
+.controller('StartCtrl', function (Start, Config, $scope, $state, categories, $location, $window) {
 
   // bind data from service
   this.someData = Start.someData;
@@ -40,9 +34,8 @@ angular.module('main')
   ReadJSONPaths(categories);
   $scope.basicOptions = ['Play', 'Categories'];
   $scope.exerciseOptions = ['What is it?', 'Connect', 'Order the letters', 'Type in'];
-  $scope.MoveTo = function (option) {
-    console.log('Move to ' + option);
-    $state.go(option);
+  $scope.MoveTo = function (option, name) {
+    $state.go(name);
+    console.log(name);
   };
 });
-

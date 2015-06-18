@@ -1,0 +1,25 @@
+@import "devices";
+@import "button";
+@import "tuxBackg";
+
+@exercise_headerHeight: @headerHeight;
+@exercise_tuxContainerHeight: 50vh;
+@exercise_tuxContainerWidth: 100vw;
+@exercise_menuContainerHeight: 100vh - @exercise_tuxContainerHeight - @exercise_headerHeight;
+@exercise_menuContainerWidth: @exercise_tuxContainerWidth;
+
+#header>#title_ex{
+    top: 0;
+}
+
+#exerciseMainScreen_tux{
+    height: @exercise_tuxContainerHeight;
+    width: @exercise_tuxContainerWidth;
+    .TuxBackg;
+}
+
+#exerciseScreen_menu{
+    height: @exercise_menuContainerHeight;
+    width: @exercise_menuContainerWidth;
+    text-align: center;
+}
