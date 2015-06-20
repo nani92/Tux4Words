@@ -12,10 +12,10 @@ angular.module('main')
   // TODO: do your controller thing
   $scope.basicOptions = ['Play', 'Categories', 'Play Test', 'Leaderboards'];
   $scope.MoveTo = function (name) {
-    $state.go($scope.title + "." + name);
+    $state.go($scope.title + "-" + name);
     console.log(name);
   };
-  $scope.title = $state.current.name;
+  $scope.title = $state.current.displayName;
   var id = ($state.current.url).substring(1);
   id = id.substring($.inArray('/', id) + 1);
   $scope.id = id;

@@ -31,30 +31,35 @@ angular.module('main', [
       controller: 'BoardCtrl'
     })
     .state('root.What is it?', {
+      displayName: 'What is it?',
       url: 'whatIsIt/',
       replace: true,
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     })
-    .state('root.What is it?.play', {
-      url: 'play/',
+    .state('root.What is it?-Play', {
+      displayName: 'What is it?',
+      url: 'whatIsIt/play/',
       replace: true,
       templateUrl: 'main/templates/exercise.whatisit.play.html',
       controller: 'ExerciseCtrl'
     })
     .state('root.Connect', {
+      displayName: 'Connect',
       url: 'connect/',
       replace: true,
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     })
     .state('root.Order the letters', {
+      displayName: 'Ordrer the letters',
       url: 'orderTheLetters/',
       replace: true,
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     })
     .state('root.Type in', {
+      displayName: 'Type in',
       url: 'typeIn/',
       replace: true,
       templateUrl: 'main/templates/exercises.mainScreen.html',
