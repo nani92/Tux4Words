@@ -10,3 +10,6 @@ xcshareddata/
 .idea/*
 app/main/assets/**
 main/assets/**
+plugins/**
+platforms/**
+app/**

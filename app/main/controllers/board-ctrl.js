@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 var taskNumbers = 12;
 angular.module('main')
@@ -23,7 +23,7 @@ angular.module('main')
         imgId ++;
       }
       else {
-        $state.go('main');
+        $state.go('root.main');
       }
     }
   });

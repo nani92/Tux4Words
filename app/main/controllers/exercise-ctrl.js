@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('main')
 .controller('ExerciseCtrl', function (Start, Config, $scope, $state, categories, $location, $window) {
@@ -10,10 +10,9 @@ angular.module('main')
 
   console.log('Hello from your Controller: StartCtrl in module main:. This is your controller:', this);
   // TODO: do your controller thing
-  ReadJSONPaths(categories);
   $scope.basicOptions = ['Play', 'Categories', 'Play Test', 'Leaderboards'];
   $scope.MoveTo = function (name) {
-    $state.go(name);
+    $state.go($scope.title + "." + name);
     console.log(name);
   };
   $scope.title = $state.current.name;

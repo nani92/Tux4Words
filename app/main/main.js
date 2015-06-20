@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 angular.module('main', [
   'ionic',
   'ngCordova',
@@ -9,48 +9,53 @@ angular.module('main', [
 
   console.log('Allo! Allo from your module: ' + 'main');
 
-  $urlRouterProvider.otherwise('/main');
+  $urlRouterProvider.otherwise('/main/');
 
   // some basic routing
   $stateProvider
-    .state('main', {
-      url: '/main',
+    .state('root', {
+      url: '/',
+      controller: "RootCtrl",
+      template: "<div ui-view></div>"
+    })
+    .state('root.main', {
+      url: 'main/',
       replace: true,
       templateUrl: 'main/templates/homeScreen.html',
       controller: 'StartCtrl as start'
     })
-    .state('Play', {
-      url: '/play',
+    .state('root.Play', {
+      url: 'play/',
       replace: true,
       templateUrl: 'main/templates/board.html',
       controller: 'BoardCtrl'
     })
-    .state('What is it?', {
-      url: '/exercise/whatIsIt',
+    .state('root.What is it?', {
+      url: 'whatIsIt/',
       replace: true,
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     })
-    .state('What is it?.play', {
-      url: '/exercise/whatIsIt',
+    .state('root.What is it?.play', {
+      url: 'play/',
       replace: true,
       templateUrl: 'main/templates/exercise.whatisit.play.html',
       controller: 'ExerciseCtrl'
     })
-    .state('Connect', {
-      url: '/exercise/connect',
+    .state('root.Connect', {
+      url: 'connect/',
       replace: true,
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     })
-    .state('Order the letters', {
-      url: '/exercise/orderTheLetters',
+    .state('root.Order the letters', {
+      url: 'orderTheLetters/',
       replace: true,
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     })
-    .state('Type in', {
-      url: '/exercise/typeIn',
+    .state('root.Type in', {
+      url: 'typeIn/',
       replace: true,
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
