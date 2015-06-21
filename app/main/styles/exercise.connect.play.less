@@ -1,0 +1,79 @@
+@exercise_connect_photoBoxHeight: 100vh - @headerHeight - @footerHeight - 2vh;
+@exercise_connect_labelsBoxHeight: @exercise_connect_photoBoxHeight;
+@exercise_connect_labelFontSize: ( @exercise_connect_labelsBoxHeight - 30vh ) / 5;
+@exercise_connect_verticalMargin: 2vh;
+@exercise_connect_labelWidth: 38vw;
+@exercise_connect_photoFrameWidth: @exercise_connect_labelWidth;
+@exercise_connect_photoFrameHeight: ( @exercise_connect_photoBoxHeight - 15vh ) / 3;
+
+#connect_photoBox {
+    height: @exercise_connect_photoBoxHeight;
+    width: 50vw;
+    text-align: center;
+    background-color: yellow;
+    display: inline-block;
+}
+
+#connect_photoBox > .photoFrame{
+    height: @exercise_connect_photoFrameHeight;
+    width: @exercise_connect_photoFrameWidth;
+    display: inline-block;
+    background-color: white;
+    box-shadow: 4px 4px 10px gray;
+    margin-top: @exercise_connect_verticalMargin;
+    margin-bottom: @exercise_connect_verticalMargin;
+}
+
+#connect_labels {
+    height: @exercise_connect_labelsBoxHeight;
+    background-color: red;
+    width: 50vw;
+    display: inline-block;
+    float: left;
+    text-align: center;
+}
+
+#connect_labels > .label_button {
+    height: auto;
+    width: @exercise_connect_labelWidth;
+    .Button;
+    display: inline-block;
+    text-align: center;
+    margin-top: @exercise_connect_verticalMargin;
+    margin-bottom: @exercise_connect_verticalMargin;
+}
+
+#connect_labels > .label_button > span {
+    font-size: @exercise_connect_labelFontSize; 
+}
+
+/*#whatisit_footer > #lifes_container {
+    height: @footerHeight;
+    display: inline-block;
+    float: left;
+}
+
+#whatisit_footer > #lifes_container > .dead{
+    opacity: 0.3;   
+}
+
+#whatisit_footer > #lifes_container > div{
+    .TuxBackg;
+    height: @footerHeight;
+    width: @exercise_whatIsIt_tuxDivWidth;
+    display: inline-block;
+    float: left;
+}
+
+
+#whatisit_footer > #points_container {
+    margin-right: 1vw;
+    height: @footerHeight;
+    text-align: right;
+}
+#whatisit_footer > #points_container > span {
+    font-size: @footerHeight - 2vh;   
+    width: 100vw - @exercise_whatIsIt_tuxDivWidth;
+    color: @exercise_whatIsIt_pointColor;
+    text-shadow: 3px 3px 1px @exercise_whatIsIt_pointShadowColor;
+}*/

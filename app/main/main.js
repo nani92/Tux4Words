@@ -51,6 +51,13 @@ angular.module('main', [
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     })
+    .state('root.Connect-Play:num', {
+      displayName: 'Connect',
+      url: 'connect/play/:num',
+      replace: true,
+      templateUrl: 'main/templates/exercise.connect.play.html',
+      controller: 'ConnectCtrl'
+    })
     .state('root.Order the letters', {
       displayName: 'Ordrer the letters',
       url: 'orderTheLetters/',

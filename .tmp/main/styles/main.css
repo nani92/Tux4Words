@@ -330,18 +330,18 @@
   margin-right: 3vw;
   text-align: center;
 }
-.label_button > span {
+#whatisit_labels > .label_button > span {
   font-size: 8vh;
 }
-#whatisit_footer > #lifes_container {
+#exercise_footer > #lifes_container {
   height: 15vh;
   display: inline-block;
   float: left;
 }
-#whatisit_footer > #lifes_container > .dead {
+#exercise_footer > #lifes_container > .dead {
   opacity: 0.3;
 }
-#whatisit_footer > #lifes_container > div {
+#exercise_footer > #lifes_container > div {
   background-image: url("../assets/images/tux.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -351,17 +351,101 @@
   display: inline-block;
   float: left;
 }
-#whatisit_footer > #points_container {
+#exercise_footer > #points_container {
   margin-right: 1vw;
   height: 15vh;
   text-align: right;
 }
-#whatisit_footer > #points_container > span {
+#exercise_footer > #points_container > span {
   font-size: 13vh;
   width: 80vw;
   color: #fdc733;
   text-shadow: 3px 3px 1px #f2ac56;
 }
+#connect_photoBox {
+  height: 68vh;
+  width: 50vw;
+  text-align: center;
+  background-color: yellow;
+  display: inline-block;
+}
+#connect_photoBox > .photoFrame {
+  height: 17.66666667vh;
+  width: 38vw;
+  display: inline-block;
+  background-color: white;
+  box-shadow: 4px 4px 10px gray;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+#connect_labels {
+  height: 68vh;
+  background-color: red;
+  width: 50vw;
+  display: inline-block;
+  float: left;
+  text-align: center;
+}
+#connect_labels > .label_button {
+  height: auto;
+  width: 38vw;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: #7abcff;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #4096ee 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffdc10), color-stop(44%, #f5bb50), color-stop(100%, #4096ee));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* W3C */
+  box-shadow: 2px 2px 2px gray;
+  border: solid #f2ac56;
+  display: inline-block;
+  text-align: center;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+#connect_labels > .label_button > span {
+  font-size: 7.6vh;
+}
+/*#whatisit_footer > #lifes_container {
+    height: @footerHeight;
+    display: inline-block;
+    float: left;
+}
+
+#whatisit_footer > #lifes_container > .dead{
+    opacity: 0.3;   
+}
+
+#whatisit_footer > #lifes_container > div{
+    .TuxBackg;
+    height: @footerHeight;
+    width: @exercise_whatIsIt_tuxDivWidth;
+    display: inline-block;
+    float: left;
+}
+
+
+#whatisit_footer > #points_container {
+    margin-right: 1vw;
+    height: @footerHeight;
+    text-align: right;
+}
+#whatisit_footer > #points_container > span {
+    font-size: @footerHeight - 2vh;   
+    width: 100vw - @exercise_whatIsIt_tuxDivWidth;
+    color: @exercise_whatIsIt_pointColor;
+    text-shadow: 3px 3px 1px @exercise_whatIsIt_pointShadowColor;
+}*/
 html,
 body,
 #uiView {

@@ -105,6 +105,9 @@ angular.module('main')
     if (exercise === "What is it?") {
       WhatIsIt_Start($scope, $state, categories);
     }
+    if (exercise === "Connect") {
+      $state.go('root.Connect-Play:num');
+    }
   }
   $scope.WhatIsIt_Next = function () {
     if ($scope.lifes >= 0) {
