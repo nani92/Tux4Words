@@ -6,7 +6,9 @@ angular.module('main')
     $('#photoFrame').append($scope.currentImage);
     $('#photoFrame').append('<span id=d' + $scope.currentImage.attr('id').length + ' >' + $scope.currentImage.attr('id'));
     if ($scope.isLastWord) {
+      console.log("LAST");
       if ($scope.isSessionStarted) {
+        console.log("STARTED?");
         $('#nextContainer').children('div:first').detach();
         $('#nextContainer').append($compile('<div id="buttonNext" ng-click="BackToMenu()"></div>')($scope));
         $('#buttonNext').append('<span id="finish"> Finish</span>');

@@ -378,6 +378,10 @@
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
+#connect_photoBox > .photoFrame > img {
+  max-height: 15.66666667vh;
+  max-width: 36vw;
+}
 #connect_labels {
   height: 68vh;
   background-color: red;
@@ -416,36 +420,6 @@
 #connect_labels > .label_button > span {
   font-size: 7.6vh;
 }
-/*#whatisit_footer > #lifes_container {
-    height: @footerHeight;
-    display: inline-block;
-    float: left;
-}
-
-#whatisit_footer > #lifes_container > .dead{
-    opacity: 0.3;   
-}
-
-#whatisit_footer > #lifes_container > div{
-    .TuxBackg;
-    height: @footerHeight;
-    width: @exercise_whatIsIt_tuxDivWidth;
-    display: inline-block;
-    float: left;
-}
-
-
-#whatisit_footer > #points_container {
-    margin-right: 1vw;
-    height: @footerHeight;
-    text-align: right;
-}
-#whatisit_footer > #points_container > span {
-    font-size: @footerHeight - 2vh;   
-    width: 100vw - @exercise_whatIsIt_tuxDivWidth;
-    color: @exercise_whatIsIt_pointColor;
-    text-shadow: 3px 3px 1px @exercise_whatIsIt_pointShadowColor;
-}*/
 html,
 body,
 #uiView {

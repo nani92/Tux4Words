@@ -1,7 +1,9 @@
 angular.module('main')
 .controller('ConnectCtrl', function (categories, $scope, $state) {
   $scope.title = $state.current.displayName;
-  $('#photoFrame').append($scope.currentImage);
+  for ( i = 1 ; i <= 3 ; i++) {
+    $('#PhotoFrame' + i.toString()).append($scope.connectImages[i - 1]);
+  }
   for (i = 3; i > 0; i--) {
     if ($scope.lifes < i ) {
       $('#' + i.toString() + 'life').attr('class', 'dead');

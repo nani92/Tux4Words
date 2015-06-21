@@ -22,6 +22,7 @@ function ReadWords(path, categories) {
 
 function RandomWords(words, number) {
   console.log("Random Words");
+  images = [];
   var n = number;
   while (n > 0) {
     var i = Math.floor(Math.random() * words.length);
@@ -34,9 +35,8 @@ $.preloadImage = function () {
   images.push( $("<img />").attr("src", arguments[0]).attr("id", arguments[1]));
 }
 
-function GetLabels (label, words, number) {
-  var labels = [];
-  labels.push(label);
+function GetLabels (inLabels, words, number) {
+  var labels = inLabels;
   while (number > 0) {
     number--;
     var i = Math.floor(Math.random() * words.length);
@@ -93,7 +93,7 @@ angular.module('main')
   $scope.ShowNextBoard = function () {
     wordIndex++;
     $scope.currentImage = images[wordIndex];
-    if (isSessionStarted && wordIndex == wordsPerSession - 1) {
+    if (wordIndex == wordsPerSession - 1) {
       $scope.isLastWord = true;
     }
     $state.go('root.Play:num', {num: wordIndex});
@@ -106,7 +106,8 @@ angular.module('main')
       WhatIsIt_Start($scope, $state, categories);
     }
     if (exercise === "Connect") {
-      $state.go('root.Connect-Play:num');
+      $scope.connectImages = [];
+      Connect_Start($scope, $state, categories);
     }
   }
   $scope.WhatIsIt_Next = function () {
@@ -144,7 +145,21 @@ function WhatIsIt_Start ($scope, $state, categories) {
 }
 function WhatIsIt ($scope, $state, categories) {
   RandomWords(categories.getAllWords(), 1);
-  $scope.currentImage = images[wordIndex];
-  $scope.labels = shuffle(GetLabels(images[wordIndex].attr('id'), categories.getAllWords(), 2));
+  $scope.currentImage = images[0];
+  $scope.labels = shuffle(GetLabels([images[0].attr('id')], categories.getAllWords(), 2));
   $state.go('root.What is it?-Play:num', {num: wordIndex});
+}
+function Connect_Start ($scope, $state, categories) {
+  $scope.lifes = 3;
+  wordIndex = 0;
+  $scope.points = 0;
+  Connect($scope, $state, categories);
+}
+function Connect ($scope, $state, categories) {
+  RandomWords(categories.getAllWords(), 3);
+  $scope.connectImages = images;
+  $scope.labels = shuffle(GetLabels(
+     [images[0].attr('id'), images[1].attr('id'), images[2].attr('id')],
+     categories.getAllWords(), 2));
+  $state.go('root.Connect-Play:num', {num: wordIndex});
 }
