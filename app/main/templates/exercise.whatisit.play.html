@@ -5,6 +5,19 @@
     <div id="whatisit_photoBox">
         <div id="photoFrame"></div>
     </div>
-    <div id="whatisit_labels"></div>
-    <div id="whatisit_footer"></div>
+    <div id="whatisit_labels" ng-model="labels">
+        <div class="label_button" ng-repeat="label in labels" ng-click="Chosen(label)">
+            <span>{{label}}</span>
+        </div>
+    </div>
+    <div id="whatisit_footer">
+        <div id="lifes_container">
+            <div id="1life"></div>
+            <div id="2life"></div>
+            <div id="3life"></div>
+        </div>
+        <div id="points_container">
+            <span>{{points}}</span>
+        </div>
+    </div>
 </div>

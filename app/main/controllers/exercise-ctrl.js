@@ -12,8 +12,9 @@ angular.module('main')
   // TODO: do your controller thing
   $scope.basicOptions = ['Play', 'Categories', 'Play Test', 'Leaderboards'];
   $scope.MoveTo = function (name) {
-    $state.go($state.current.name + "-" + name);
-    console.log(name);
+    if (name === 'Play') {
+      $scope.StartExercise($scope.title);
+    }
   };
   $scope.title = $state.current.displayName;
   var id = ($state.current.url).substring(1);

@@ -1,9 +1,12 @@
 @exercise_whatIsIt_labelsHeight: 15vh;
-@exercise_whatIsIt_photoBoxHeight: 100vh - @footerHeight - @headerHeight - @exercise_whatIsIt_labelsHeight;
+@exercise_whatIsIt_photoBoxHeight: 100vh - @footerHeight - @headerHeight - @exercise_whatIsIt_labelsHeight - 2vh;
 @exercise_whatIsIt_photoFrameHeight: @exercise_whatIsIt_photoBoxHeight - 5vh;
 @exercise_whatIsIt_labelWidth: 25vw;
+@exercise_whatIsIt_labelMarginHorizontal: 3vw;
 @exercise_whatIsIt_photoFrameWidth: 80vw;
-@exercise_tuxDivWidth: 20vw;
+@exercise_whatIsIt_tuxDivWidth: 20vw;
+@exercise_whatIsIt_pointColor: #fdc733;
+@exercise_whatIsIt_pointShadowColor: @buttonBorderColor;
 
 #whatisit_photoBox {
     height: @exercise_whatIsIt_photoBoxHeight;
@@ -21,11 +24,51 @@
 
 #whatisit_labels {
     height: @exercise_whatIsIt_labelsHeight;
-    background-color: aqua;
 }
 
-#whatisit_labels > .label {
-    height: @exercise_whatIsIt_labelsHeight - 5vh;
+#whatisit_labels > .label_button {
+    height: auto;
     width: @exercise_whatIsIt_labelWidth;
     .Button;
+    display: inline-block;
+    float: left;
+    margin-top: 3vh;
+    margin-left: @exercise_whatIsIt_labelMarginHorizontal;
+    margin-right: @exercise_whatIsIt_labelMarginHorizontal;
+    text-align: center;
+}
+
+.label_button > span {
+    font-size: @exercise_whatIsIt_labelsHeight - 7vh;   
+}
+
+#whatisit_footer > #lifes_container {
+    height: @footerHeight;
+    display: inline-block;
+    float: left;
+}
+
+#whatisit_footer > #lifes_container > .dead{
+    opacity: 0.3;   
+}
+
+#whatisit_footer > #lifes_container > div{
+    .TuxBackg;
+    height: @footerHeight;
+    width: @exercise_whatIsIt_tuxDivWidth;
+    display: inline-block;
+    float: left;
+}
+
+
+#whatisit_footer > #points_container {
+    margin-right: 1vw;
+    height: @footerHeight;
+    text-align: right;
+}
+#whatisit_footer > #points_container > span {
+    font-size: @footerHeight - 2vh;   
+    width: 100vw - @exercise_whatIsIt_tuxDivWidth;
+    color: @exercise_whatIsIt_pointColor;
+    text-shadow: 3px 3px 1px @exercise_whatIsIt_pointShadowColor;
 }

@@ -37,12 +37,12 @@ angular.module('main', [
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
     })
-    .state('root.What is it?-Play', {
+    .state('root.What is it?-Play:num', {
       displayName: 'What is it?',
-      url: 'whatIsIt/play/',
+      url: 'whatIsIt/play/:num',
       replace: true,
       templateUrl: 'main/templates/exercise.whatisit.play.html',
-      controller: 'ExerciseCtrl'
+      controller: 'WhatIsItCtrl'
     })
     .state('root.Connect', {
       displayName: 'Connect',
