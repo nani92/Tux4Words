@@ -24,8 +24,8 @@ angular.module('main', [
       templateUrl: 'main/templates/homeScreen.html',
       controller: 'StartCtrl as start'
     })
-    .state('root.Play', {
-      url: 'play/',
+    .state('root.Play:num', {
+      url: 'play/:num',
       replace: true,
       templateUrl: 'main/templates/board.html',
       controller: 'BoardCtrl'
