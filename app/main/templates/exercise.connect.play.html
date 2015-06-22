@@ -6,11 +6,9 @@
         <!--<div class="label_button" ng-repeat="label in labels" ng-click="Chosen(label)">
             <span>{{label}}</span>
         </div>-->
-        <div class="label_button"><span>cat</span></div>
-        <div class="label_button"><span>cat</span></div>
-        <div class="label_button"><span>cat</span></div>
-        <div class="label_button"><span>cat</span></div>
-        <div class="label_button"><span>cat</span></div>
+        <div id="label_{{label}}" class="label_button" ng-repeat="label in labels" on-last-repeat>
+            <span>{{label}}</span>
+        </div>
     </div>
     <div id="connect_photoBox">
         <div id="PhotoFrame1" class="photoFrame"></div>

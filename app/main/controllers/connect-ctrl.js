@@ -1,27 +1,41 @@
 angular.module('main')
+.directive('onLastRepeat', function() {
+  return function(scope, element, attrs) {
+    if (scope.$last) setTimeout(function(){
+      scope.$emit('onRepeatLast', element, attrs);
+    }, 1);
+  };
+})
 .controller('ConnectCtrl', function (categories, $scope, $state) {
   $scope.title = $state.current.displayName;
-  for ( i = 1 ; i <= 3 ; i++) {
-    $('#PhotoFrame' + i.toString()).append($scope.connectImages[i - 1]);
-  }
+  AppendImages($scope);
+  ShowLifes($scope);
+  $scope.$on('onRepeatLast', function(scope, element, attrs){
+    $('.label_button').each(function () {
+      console.log("d");
+      console.log(this);
+      $(this).draggable({
+        start: function () {},
+        drag: function () {
+          console.log("drag");
+        },
+        revert: function () {
+          console.log("rev");
+        },
+        stop: function () {}
+      });
+    });
+  }); 
+});
+function ShowLifes($scope) {
   for (i = 3; i > 0; i--) {
     if ($scope.lifes < i ) {
       $('#' + i.toString() + 'life').attr('class', 'dead');
     }
   }
-  $scope.Chosen = function (label) {
-    if (label === $scope.currentImage.attr('id')) {
-      $scope.SetPoints($scope.points + 10);
-      $scope.WhatIsIt_Next();
-    }
-    else {
-      //TO DO
-      //ShowBoard
-      //kill tux
-      //ShowNext -> after finish in board?
-      $scope.SetLifes($scope.lifes - 1);
-      $scope.ShowProperBoard();
-      //$scope.WhatIsIt_Next();
-    }
+}
+function AppendImages($scope) {
+  for ( i = 1 ; i <= 3 ; i++) {
+    $('#PhotoFrame' + i.toString()).append($scope.connectImages[i - 1]);
   }
-});
+}

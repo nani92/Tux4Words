@@ -366,7 +366,6 @@
   height: 68vh;
   width: 50vw;
   text-align: center;
-  background-color: yellow;
   display: inline-block;
 }
 #connect_photoBox > .photoFrame {
@@ -384,7 +383,6 @@
 }
 #connect_labels {
   height: 68vh;
-  background-color: red;
   width: 50vw;
   display: inline-block;
   float: left;
