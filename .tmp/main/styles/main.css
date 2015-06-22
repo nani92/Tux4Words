@@ -377,6 +377,9 @@
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
+#connect_photoBox > .active {
+  box-shadow: 0px 0px 25px #fdc733;
+}
 #connect_photoBox > .photoFrame > img {
   max-height: 15.66666667vh;
   max-width: 36vw;
