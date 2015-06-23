@@ -74,11 +74,11 @@ function IsWordLeftEdgeBeforeImageRightEdge(word, pic) {
 }
 
 function IsWordTopEdgeAboveImageBottomEdge(word, pic) {
-  return word.offset().top < (pic.offset().top + (pic.height() / 2));
+  return (word.offset().top + word.height() / 3) < (pic.offset().top + (pic.height()));
 }
 
 function IsWordBottomEdgeBelowImageTopEdge(word, pic) {
-  return (word.offset().top + word.height()) > pic.offset().top;
+  return (word.offset().top + word.height() * 2 / 3) > pic.offset().top;
 }
 
 function HighlightImageDiv(pic) {
