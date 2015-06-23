@@ -51,10 +51,10 @@ function AddDroppable () {
 function IsOnImage(word) {
   droppedOnImage = false;
   $('.photoFrame').each(function () {
-    if (IsRightEdgeOnImage(word, $(this)) &&
-					IsLeftEdgeOnImage(word, $(this)) &&
-					IsTopEdgeOnImage(word, $(this)) &&
-					IsBottomEdgeOnImage(word, $(this))) {
+    if (IsWordRightEdgeAfterImageLeftEdge(word, $(this)) &&
+					IsWordLeftEdgeBeforeImageRightEdge(word, $(this)) &&
+					IsWordTopEdgeAboveImageBottomEdge(word, $(this)) &&
+					IsWordBottomEdgeBelowImageTopEdge(word, $(this))) {
       droppedOnImage = true;
       HighlightImageDiv($(this));
     }
@@ -65,25 +65,24 @@ function IsOnImage(word) {
   return droppedOnImage;
 }
 
-function IsRightEdgeOnImage(word, pic) {
+function IsWordRightEdgeAfterImageLeftEdge(word, pic) {
   return (word.offset().left + word.width()) > pic.offset().left;
 }
 
-function IsLeftEdgeOnImage(word, pic) {
+function IsWordLeftEdgeBeforeImageRightEdge(word, pic) {
   return word.offset().left < (pic.offset().left + pic.width());
 }
 
-function IsTopEdgeOnImage(word, pic) {
-  return word.offset().top < (pic.offset().top + pic.height());
+function IsWordTopEdgeAboveImageBottomEdge(word, pic) {
+  return word.offset().top < (pic.offset().top + (pic.height() / 2));
 }
 
-function IsBottomEdgeOnImage(word, pic) {
+function IsWordBottomEdgeBelowImageTopEdge(word, pic) {
   return (word.offset().top + word.height()) > pic.offset().top;
 }
 
 function HighlightImageDiv(pic) {
   pic.addClass('active');
-  //pic.attr('class', 'active');
 }
 
 function UnHighlightImageDiv(pic) {

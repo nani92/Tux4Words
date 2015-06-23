@@ -380,6 +380,12 @@
 #connect_photoBox > .active {
   box-shadow: 0px 0px 25px #fdc733;
 }
+#connect_photoBox > .wrong {
+  box-shadow: 0px 0px 25px red;
+}
+#connect_photoBox > .solved {
+  box-shadow: 0px 0px 25px green;
+}
 #connect_photoBox > .photoFrame > img {
   max-height: 15.66666667vh;
   max-width: 36vw;
