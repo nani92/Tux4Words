@@ -19,8 +19,6 @@ angular.module('main')
   $scope.CorrectAnswer = function CorrectAnswer (imageId) {
     DisplayFrameAsSolved($('#' + imageId).parent());
     DisplayLabelAsSolved(imageId);
-    //ChangeStyleOfSolvedWordDiv($("#"+imageId).closest("div"), word);
-    //ChangeDraggingOptionsForWordDiv(word);
     $scope.SetPoints($scope.points + 10);
   }
 });
@@ -44,12 +42,15 @@ function AddDraggable ($scope) {
         IsOnImage($(this));
       },
       revert: function () {
-        if ( IsOnImage($(this)) && IsOnCorrectImage($(this), $scope) ) {
+        if (IsOnImage($(this)) && IsOnCorrectImage($(this), $scope) ) {
           return false;
         }
+        
         return true;
       },
-      stop: function () {}
+      stop: function () {
+        ClearDisplayingAsWrongOrActive();
+      }
     });
   });
 }
@@ -106,13 +107,16 @@ function IsOnCorrectImage(word, $scope) {
 					IsWordLeftEdgeBeforeImageRightEdge(word, $(this)) &&
 					IsWordTopEdgeAboveImageBottomEdge(word, $(this)) &&
 					IsWordBottomEdgeBelowImageTopEdge(word, $(this))) {
-      console.log($(this).children()[0].id);
       imageId = $(this).children()[0].id;
     }
   });
   if ( imageId == word.children('span:first').html() ) {
     $scope.CorrectAnswer(imageId);
     return true;
+  }
+  else {
+    WrongAnswer(imageId, word);
+    return false;
   }
 }
 
@@ -130,4 +134,23 @@ function DisplayLabelAsSolved (imageId) {
   label_button.css("left", $("#" + imageId).parent().offset().left);
   $("#label_" + imageId).detach();
   $("#" + imageId).parent().append(label_button);
+}
+
+function WrongAnswer (imageId, word) {
+  DisplayFrameAsWrong($("#" + imageId).parent());
+}
+  
+function DisplayFrameAsWrong (photoFrame) {
+  photoFrame.addClass("wrong");
+}
+
+function ClearDisplayingAsWrongOrActive() {
+  $(".photoFrame").each ( function () {
+    if ($(this).hasClass('wrong')) {
+      $(this).removeClass('wrong');
+    }
+    if ($(this).hasClass('active')) {
+      $(this).removeClass('active');
+    }
+  });
 }
