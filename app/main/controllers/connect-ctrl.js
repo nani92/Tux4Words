@@ -19,7 +19,12 @@ angular.module('main')
   $scope.CorrectAnswer = function CorrectAnswer (imageId) {
     DisplayFrameAsSolved($('#' + imageId).parent());
     DisplayLabelAsSolved(imageId);
-    $scope.SetPoints($scope.points + 10);
+    $scope.$apply ( function () {
+      $scope.SetPoints($scope.points + 10);
+    });
+  }
+  $scope.LostGame = function LostGame () {
+    $state.go('root.Connect');
   }
 });
 function ShowLifes($scope) {
@@ -114,7 +119,7 @@ function IsOnCorrectImage(word, $scope) {
     return true;
   }
   else {
-    WrongAnswer(imageId, word);
+    WrongAnswer(imageId, word, $scope);
     return false;
   }
 }
@@ -135,8 +140,15 @@ function DisplayLabelAsSolved (imageId) {
   $("#" + imageId).parent().append(label_button);
 }
 
-function WrongAnswer (imageId, word) {
-  DisplayFrameAsWrong($("#" + imageId).parent());
+function WrongAnswer (imageId, word, $scope) {
+  DisplayFrameAsWrong($("#" + imageId).parent()); 
+  $scope.SetLifes( $scope.lifes - 1);
+  if ($scope.lifes >= 0 ) {
+    ShowLifes($scope);
+  }
+  else {
+     $scope.LostGame();
+  }
 }
 function DisplayFrameAsWrong (photoFrame) {
   photoFrame.addClass("wrong");

@@ -135,13 +135,12 @@ angular.module('main')
     $scope.WhatIsIt_Next();
   }
   $scope.SetPoints = function (inPoints) {
-    $scope.$apply( function () {
-      $scope.points = inPoints;
-    });
+    $scope.points = inPoints;
   }
   $scope.SetLifes = function (inLifes) {
+    console.log("Less lifes with " + inLifes);
     $scope.lifes = inLifes;
-  }
+  }                 
 });
 function WhatIsIt_Start ($scope, $state, categories) {
   $scope.lifes = 3;
