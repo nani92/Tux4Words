@@ -21,11 +21,15 @@ function ReadWords(path, categories) {
 }
 
 function RandomWords(words, number) {
-  console.log("Random Words");
   images = [];
+  tmpWords = [];
   var n = number;
   while (n > 0) {
     var i = Math.floor(Math.random() * words.length);
+    while (DoesLabelExists(words[i].word, tmpWords )) {
+      i = Math.floor(Math.random() * words.length);
+    }
+    tmpWords.push(words[i].word);
     $.preloadImage(words[i].imgPath, words[i].word);
     n--;
   }

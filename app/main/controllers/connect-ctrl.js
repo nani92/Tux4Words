@@ -45,7 +45,6 @@ function AddDraggable ($scope) {
         if (IsOnImage($(this)) && IsOnCorrectImage($(this), $scope) ) {
           return false;
         }
-        
         return true;
       },
       stop: function () {
@@ -139,7 +138,6 @@ function DisplayLabelAsSolved (imageId) {
 function WrongAnswer (imageId, word) {
   DisplayFrameAsWrong($("#" + imageId).parent());
 }
-  
 function DisplayFrameAsWrong (photoFrame) {
   photoFrame.addClass("wrong");
 }
