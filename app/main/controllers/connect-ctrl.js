@@ -22,6 +22,9 @@ angular.module('main')
     $scope.$apply ( function () {
       $scope.SetPoints($scope.points + 10);
     });
+    if (HowManySolved() == 3) {
+      $scope.Connect_Next();
+    }
   }
   $scope.LostGame = function LostGame () {
     $state.go('root.Connect');
@@ -163,4 +166,14 @@ function ClearDisplayingAsWrongOrActive() {
       $(this).removeClass('active');
     }
   });
+}
+
+function HowManySolved () {
+  i = 0;
+  $(".photoFrame").each (function () {
+    if ($(this).hasClass('solved')) {
+      i++;
+    }
+  });
+  return i;
 }

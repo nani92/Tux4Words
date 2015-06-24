@@ -140,7 +140,11 @@ angular.module('main')
   $scope.SetLifes = function (inLifes) {
     console.log("Less lifes with " + inLifes);
     $scope.lifes = inLifes;
-  }                 
+  }
+  $scope.Connect_Next = function () {
+    wordIndex++;
+    Connect($scope, $state, categories); 
+  }
 });
 function WhatIsIt_Start ($scope, $state, categories) {
   $scope.lifes = 3;
