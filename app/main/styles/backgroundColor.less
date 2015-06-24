@@ -19,6 +19,12 @@
     .Gradient(@backgroundTheLightest, @backgroundMiddle, @backgroundTheDarkest);   
 }
 
+.ButtonTransparentGradient (@transparency) {
+    .Gradient(rgba(255, 220, 16, @transparency), 
+              rgba(253, 199, 51, @transparency),
+              rgba(245, 187, 80, @transparency));
+}
+
 .ButtonGradient{
     .Gradient(@buttonTheLightest, @buttonMiddle, @buttonTheDarkest);   
 }

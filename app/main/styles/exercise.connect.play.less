@@ -53,15 +53,31 @@
 }
 
 #connect_labels > .label_button {
-    height: auto;
-    width: @exercise_connect_labelWidth;
-    .Button;
-    display: inline-block;
-    text-align: center;
     margin-top: @exercise_connect_verticalMargin;
     margin-bottom: @exercise_connect_verticalMargin;
 }
 
-#connect_labels > .label_button > span {
-    font-size: @exercise_connect_labelFontSize; 
+#connect_labels, #connect_photoBox > .photoFrame {
+    .label_button {
+        height: auto;
+        width: @exercise_connect_labelWidth;
+        .Button;
+        display: inline-block;
+        text-align: center;
+    }
+}
+
+#connect_photoBox > .photoFrame > .label_button {
+    //position: absolute !important;
+    //top: -@exercise_connect_labelFontSize !important;
+    //left: 0 !important;
+    .ButtonTransparentGradient (0.6);
+    border-width: 0px;
+}
+
+
+#connect_labels, #connect_photoBox > .photoFrame {
+    .label_button > span {
+        font-size: @exercise_connect_labelFontSize; 
+    }
 }

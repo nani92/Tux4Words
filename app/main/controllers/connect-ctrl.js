@@ -16,9 +16,9 @@ angular.module('main')
     AddDraggable($scope);
     AddDroppable();
   });
- 
   $scope.CorrectAnswer = function CorrectAnswer (imageId) {
     DisplayFrameAsSolved($('#' + imageId).parent());
+    DisplayLabelAsSolved(imageId);
     //ChangeStyleOfSolvedWordDiv($("#"+imageId).closest("div"), word);
     //ChangeDraggingOptionsForWordDiv(word);
     $scope.SetPoints($scope.points + 10);
@@ -45,9 +45,9 @@ function AddDraggable ($scope) {
       },
       revert: function () {
         if ( IsOnImage($(this)) && IsOnCorrectImage($(this), $scope) ) {
-          return true;
+          return false;
         }
-        return false;
+        return true;
       },
       stop: function () {}
     });
@@ -118,4 +118,16 @@ function IsOnCorrectImage(word, $scope) {
 
 function DisplayFrameAsSolved (photoFrame) {
   photoFrame.addClass('solved');
+}
+function DisplayLabelAsSolved (imageId) {
+  label_button = $("#label_" + imageId);
+  label_button.draggable( 'destroy' );
+  label_button.css("position", "absolute");
+  topPlaceOfWord =  $("#" + imageId).parent().offset().top +
+                    $("#" + imageId).parent().height() -
+                    label_button.height();
+  label_button.css("top", topPlaceOfWord);
+  label_button.css("left", $("#" + imageId).parent().offset().left);
+  $("#label_" + imageId).detach();
+  $("#" + imageId).parent().append(label_button);
 }
