@@ -131,7 +131,9 @@ angular.module('main')
     $scope.WhatIsIt_Next();
   }
   $scope.SetPoints = function (inPoints) {
-    $scope.points = inPoints;
+    $scope.$apply( function () {
+      $scope.points = inPoints;
+    });
   }
   $scope.SetLifes = function (inLifes) {
     $scope.lifes = inLifes;

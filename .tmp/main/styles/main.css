@@ -384,7 +384,7 @@
   box-shadow: 0px 0px 25px red;
 }
 #connect_photoBox > .solved {
-  box-shadow: 0px 0px 25px green;
+  box-shadow: 0px 0px 25px #00e600;
 }
 #connect_photoBox > .photoFrame > img {
   max-height: 15.66666667vh;

@@ -13,9 +13,16 @@ angular.module('main')
   AppendImages($scope);
   ShowLifes($scope);
   $scope.$on('onRepeatLast', function (scope, element, attrs) {
-    AddDraggable();
+    AddDraggable($scope);
     AddDroppable();
   });
+ 
+  $scope.CorrectAnswer = function CorrectAnswer (imageId) {
+    DisplayFrameAsSolved($('#' + imageId).parent());
+    //ChangeStyleOfSolvedWordDiv($("#"+imageId).closest("div"), word);
+    //ChangeDraggingOptionsForWordDiv(word);
+    $scope.SetPoints($scope.points + 10);
+  }
 });
 function ShowLifes($scope) {
   for (i = 3; i > 0; i--) {
@@ -29,7 +36,7 @@ function AppendImages($scope) {
     $('#PhotoFrame' + i.toString()).append($scope.connectImages[i - 1]);
   }
 }
-function AddDraggable () {
+function AddDraggable ($scope) {
   $('.label_button').each( function () {
     $(this).draggable({
       start: function () {},
@@ -37,7 +44,10 @@ function AddDraggable () {
         IsOnImage($(this));
       },
       revert: function () {
-        console.log("rev");
+        if ( IsOnImage($(this)) && IsOnCorrectImage($(this), $scope) ) {
+          return true;
+        }
+        return false;
       },
       stop: function () {}
     });
@@ -87,4 +97,25 @@ function HighlightImageDiv(pic) {
 
 function UnHighlightImageDiv(pic) {
   pic.removeClass('active');
+}
+
+function IsOnCorrectImage(word, $scope) {
+  imageId = "";
+  $('.photoFrame').each(function () {
+    if (IsWordRightEdgeAfterImageLeftEdge(word, $(this)) &&
+					IsWordLeftEdgeBeforeImageRightEdge(word, $(this)) &&
+					IsWordTopEdgeAboveImageBottomEdge(word, $(this)) &&
+					IsWordBottomEdgeBelowImageTopEdge(word, $(this))) {
+      console.log($(this).children()[0].id);
+      imageId = $(this).children()[0].id;
+    }
+  });
+  if ( imageId == word.children('span:first').html() ) {
+    $scope.CorrectAnswer(imageId);
+    return true;
+  }
+}
+
+function DisplayFrameAsSolved (photoFrame) {
+  photoFrame.addClass('solved');
 }

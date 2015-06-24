@@ -6,6 +6,7 @@
 @exercise_connect_photoFrameWidth: @exercise_connect_labelWidth;
 @exercise_connect_photoFrameHeight: ( @exercise_connect_photoBoxHeight - 15vh ) / 3;
 @exercise_connect_photoFrameBorderColor: @exercise_whatIsIt_pointColor;
+@exercise_connect_photoFrameSolvedBorderColor: lighten(green, 20%);
 
 #connect_photoBox {
     height: @exercise_connect_photoBoxHeight;
@@ -33,7 +34,9 @@
 }
 
 #connect_photoBox > .solved {
-    box-shadow: 0px 0px 25px green;
+    //border: solid @exercise_connect_photoFrameSolvedBorderColor;
+    //border-width: 2px;
+    box-shadow: 0px 0px 25px @exercise_connect_photoFrameSolvedBorderColor;
 }
 
 #connect_photoBox > .photoFrame > img {
