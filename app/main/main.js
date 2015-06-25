@@ -59,11 +59,18 @@ angular.module('main', [
       controller: 'ConnectCtrl'
     })
     .state('root.Order the letters', {
-      displayName: 'Ordrer the letters',
+      displayName: 'Order the letters',
       url: 'orderTheLetters/',
       replace: true,
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
+    })
+    .state('root.Order the letters-Play:num', {
+      displayName: 'Order the letters',
+      url: 'orderTheLetters/play/:num',
+      replace: true,
+      templateUrl: 'main/templates/exercise.ordertheletters.play.html',
+      controller: 'OrderTheLettersCtrl'
     })
     .state('root.Type in', {
       displayName: 'Type in',

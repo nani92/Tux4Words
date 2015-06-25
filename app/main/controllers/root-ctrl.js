@@ -69,7 +69,6 @@ function shuffle(array) {
 
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
@@ -113,6 +112,10 @@ angular.module('main')
       $scope.connectImages = [];
       Connect_Start($scope, $state, categories);
     }
+    if (exercise === "Order the letters") {
+      OrderTheLetters_Start($scope, $state, categories);
+      //$state.go('root.Order the letters-Play:num', {num: wordIndex});
+    }
   }
   $scope.WhatIsIt_Next = function () {
     if ($scope.lifes >= 0) {
@@ -143,7 +146,7 @@ angular.module('main')
   }
   $scope.Connect_Next = function () {
     wordIndex++;
-    Connect($scope, $state, categories); 
+    Connect($scope, $state, categories);
   }
 });
 function WhatIsIt_Start ($scope, $state, categories) {
@@ -171,4 +174,15 @@ function Connect ($scope, $state, categories) {
      [images[0].attr('id'), images[1].attr('id'), images[2].attr('id')],
      categories.getAllWords(), 2));
   $state.go('root.Connect-Play:num', {num: wordIndex});
+}
+function OrderTheLetters_Start ($scope, $state, categories) {
+  $scope.lifes = 3;
+  wordIndex = 0;
+  $scope.points = 0;
+  OrderTheLetters($scope, $state, categories);
+}
+function OrderTheLetters ($scope, $state, categories) {
+  RandomWords(categories.getAllWords(), 1);
+  $scope.currentImage = images[0];
+  $state.go('root.Order the letters-Play:num', {num: wordIndex});
 }

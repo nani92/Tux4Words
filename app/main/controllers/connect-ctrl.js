@@ -144,13 +144,13 @@ function DisplayLabelAsSolved (imageId) {
 }
 
 function WrongAnswer (imageId, word, $scope) {
-  DisplayFrameAsWrong($("#" + imageId).parent()); 
+  DisplayFrameAsWrong($("#" + imageId).parent());
   $scope.SetLifes( $scope.lifes - 1);
   if ($scope.lifes >= 0 ) {
     ShowLifes($scope);
   }
   else {
-     $scope.LostGame();
+    $scope.LostGame();
   }
 }
 function DisplayFrameAsWrong (photoFrame) {
