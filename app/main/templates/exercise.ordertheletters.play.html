@@ -6,40 +6,17 @@
         <div id="photoFrame">
             <div id="imageContainer">
             </div>
-            <div id="lettersFrames">
-                <div class='letter_frame'>
-                    <span>1</span>
-                </div>
-                <div class='letter_frame'>
-                    <span>1</span>
-                </div>
-                <div class='letter_frame'>
-                    <span>2</span>
-                </div>
-                <div class='letter_frame'>
-                    <span>1</span>
+            <div id="lettersFrames" ng-model="frames">
+                <div class='letter_frame' ng-repeat="frame in frames"  on-last-repeat>
+                    <span>{{frame}}</span>
                 </div>
             </div>
         </div>
         
     </div>
-    <!--<div id="order_letters" ng-model="letters">
-        <div class="label_button" ng-repeat="label in labels" ng-click="Chosen(label)">
-            <span>{{label}}</span>
-        </div>
-    </div>-->
     <div id="order_letters" ng-model="letters">
-        <div class='letter_button'>
-            <span>w</span>
-        </div>
-        <div class='letter_button'>
-            <span>o</span>
-        </div>
-        <div class='letter_button'>
-            <span>c</span>
-        </div>
-        <div class='letter_button'>
-            <span>a</span>
+        <div class="letter_button" ng-repeat="letter in letters"  on-last-repeat>
+            <span>{{letter}}</span>
         </div>
     </div>
     <div id="exercise_footer">

@@ -184,5 +184,10 @@ function OrderTheLetters_Start ($scope, $state, categories) {
 function OrderTheLetters ($scope, $state, categories) {
   RandomWords(categories.getAllWords(), 1);
   $scope.currentImage = images[0];
+  $scope.letters = shuffle(images[0].attr('id').split(''));
+  $scope.frames = [];
+  $.each($scope.letters, function (key, value) {
+    $scope.frames.push(key);
+  });
   $state.go('root.Order the letters-Play:num', {num: wordIndex});
 }
