@@ -9,6 +9,7 @@
 @exercise_order_pointShadowColor: @buttonBorderColor;
 @exercise_order_letterInsidePhotoFrameHeight: 10vh;
 @exercise_order_LetterBorderColor: #4096ee - #222;
+@exercise_order_photoFrameBorderColor: @exercise_order_LetterBorderColor + #111;
 
 #order_photoBox {
     height: @exercise_order_photoBoxHeight;
@@ -31,24 +32,44 @@
             max-width: @exercise_order_photoFrameWidth - 2vw;
         }
     }
-    #lettersFrames {
+    
+}
+
+#order_photoBox > #photoFrame > #lettersFrames {
+    display: inline-block;
+    width: @exercise_order_photoFrameWidth;
+    height: @exercise_order_letterInsidePhotoFrameHeight;
+    float: right;
+    
+    .letter_frame {
+        height: @exercise_order_letterInsidePhotoFrameHeight - 2vh;
+        width: @exercise_order_letterWidth;
         display: inline-block;
-        width: @exercise_order_photoFrameWidth;
-        height: @exercise_order_letterInsidePhotoFrameHeight;
-        float: right;
-        .letter_frame {
-            height: @exercise_order_letterInsidePhotoFrameHeight - 2vh;
-            width: @exercise_order_letterWidth;
-            .Button;
-            display: inline-block;
-            margin-top: 3vh;
-            text-align: center;
-            span {
-               font-size: @exercise_order_letterInsidePhotoFrameHeight - 5vh;       
-            }
+        margin-top: 3vh;
+        text-align: center;
+        .Round(5px);
+        .LetterGradient;
+        box-shadow: 2px 2px 2px gray;
+        border: solid @buttonBorderColor;
+        span {
+            font-size: @exercise_order_letterInsidePhotoFrameHeight - 5vh;
+            opacity: 0;
+        }
+    }
+    
+    .active {
+        box-shadow: 0px 0px 25px @exercise_order_photoFrameBorderColor;
+        border-color: @exercise_order_LetterBorderColor;
+    }
+    
+    .solved {
+        .Button;
+        span {
+            opacity: 1;
         }
     }
 }
+
 
 #order_letters {
     height: @exercise_order_lettersHeight;
