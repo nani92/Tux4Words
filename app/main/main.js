@@ -78,6 +78,13 @@ angular.module('main', [
       replace: true,
       templateUrl: 'main/templates/exercises.mainScreen.html',
       controller: 'ExerciseCtrl'
+    })
+    .state('root.Type in-Play:num', {
+      displayName: 'Type in',
+      url: 'typeIn/play:num',
+      replace: true,
+      templateUrl: 'main/templates/exercise.typein.play.html',
+      controller: 'TypeInCtrl'
     });
 })
 .service('categories', function () {

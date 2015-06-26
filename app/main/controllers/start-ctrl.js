@@ -12,6 +12,7 @@ angular.module('main')
   $scope.basicOptions = ['Play', 'Categories'];
   $scope.exerciseOptions = ['What is it?', 'Connect', 'Order the letters', 'Type in'];
   $scope.MoveTo = function (option, name) {
+    console.log("move");
     if (name === "Play") {
       $scope.StartPlay();
       return;

@@ -77,7 +77,7 @@ function shuffle(array) {
   return array;
 }
 
-var wordsPerSession = 12;
+var wordsPerSession = 3;
 var wordIndex;
 var isSessionStarted = false;
 angular.module('main')
@@ -85,8 +85,8 @@ angular.module('main')
   console.log("RootCtrl");
   ReadJSONPaths(categories);
   $scope.RandomWords = RandomWords;
-  $scope.isLastWord = false;
   $scope.StartPlay = function () {
+    $scope.isLastWord = false;
     $scope.isSessionStarted = true;
     RandomWords(categories.getAllWords(), wordsPerSession);
     wordIndex = 0;
@@ -114,7 +114,9 @@ angular.module('main')
     }
     if (exercise === "Order the letters") {
       OrderTheLetters_Start($scope, $state, categories);
-      //$state.go('root.Order the letters-Play:num', {num: wordIndex});
+    }
+    if (exercise === "Type in") {
+      $state.go('root.Type in-Play:num', {num:0});
     }
   }
   $scope.WhatIsIt_Next = function () {
@@ -191,7 +193,8 @@ function OrderTheLetters_Start ($scope, $state, categories) {
 function OrderTheLetters ($scope, $state, categories) {
   RandomWords(categories.getAllWords(), 1);
   $scope.currentImage = images[0];
-  $scope.letters = shuffle(images[0].attr('id').split(''));
+  //$scope.letters = shuffle(images[0].attr('id').split(''));
+  $scope.letters = "abad".split('');
   $scope.frames = [];
   $.each($scope.letters, function (key, value) {
     $scope.frames.push(key);

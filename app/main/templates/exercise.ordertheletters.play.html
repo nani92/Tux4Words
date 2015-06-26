@@ -15,7 +15,7 @@
         
     </div>
     <div id="order_letters" ng-model="letters">
-        <div class="letter_button" ng-repeat="letter in letters"  on-last-repeat>
+        <div class="letter_button" ng-repeat="letter in letters track by $index"  on-last-repeat>
             <span>{{letter}}</span>
         </div>
     </div>
