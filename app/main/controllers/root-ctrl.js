@@ -64,17 +64,24 @@ function DoesLabelExists(word, labels) {
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex ;
-
   while (0 !== currentIndex) {
-
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-
   return array;
+}
+
+function RandomLetter (letters) {
+  var letter_set = "qwertyuiopasdfghjklzxcvbnm";
+  var i = Math.floor(Math.random() * letter_set.length);
+  while (DoesLabelExists(letter_set.substring(i, i + 1), letters)) {
+    i = Math.floor(Math.random() * letter_set.length);
+  }
+  letters.push(letter_set.substring(i, i + 1));
+  return letters;
 }
 
 var wordsPerSession = 3;
@@ -117,7 +124,7 @@ angular.module('main')
       OrderTheLetters_Start($scope, $state, categories);
     }
     if (exercise === "Type in") {
-      $state.go('root.Type in-Play:num', {num:0});
+      TypeIn_Start($scope, $state, categories);
     }
   }
   $scope.WhatIsIt_Next = function () {
@@ -142,7 +149,6 @@ angular.module('main')
     $scope.points = inPoints;
   }
   $scope.SetLifes = function (inLifes) {
-    console.log("Less lifes with " + inLifes);
     $scope.lifes = inLifes;
   }
   $scope.Connect_Next = function () {
@@ -156,6 +162,15 @@ angular.module('main')
     }
     else {
       $state.go('root.Order the letters');
+    }
+  }
+  $scope.TypeIn_Next = function () {
+    if ( $scope.lifes >= 0 ) {
+      wordIndex++;
+      TypeIn($scope, $state, categories);
+    }
+    else {
+      $state.go('root.Type in');
     }
   }
 });
@@ -200,4 +215,27 @@ function OrderTheLetters ($scope, $state, categories) {
     $scope.frames.push(key);
   });
   $state.go('root.Order the letters-Play:num', {num: wordIndex});
+}
+function TypeIn_Start ($scope, $state, categories) {
+  $scope.lifes = 3;
+  wordIndex = 0;
+  $scope.points = 0;
+  TypeIn($scope, $state, categories);
+}
+function TypeIn ($scope, $state, categories) {
+  RandomWords(categories.getAllWords(), 1);
+  $scope.currentImage = images[0];
+  keys = images[0].attr('id').split('');
+  while (keys.length < 7) {
+    keys = RandomLetter(keys);
+  }
+  $scope.keys = shuffle(keys);
+  $state.go('root.Type in-Play:num', {num: wordIndex});
+}
+function ShowLifes($scope) {
+  for (i = 3; i > 0; i--) {
+    if ($scope.lifes < i ) {
+      $('#' + i.toString() + 'life').attr('class', 'dead');
+    }
+  }
 }

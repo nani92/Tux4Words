@@ -1,20 +1,28 @@
 angular.module('main')
 .controller('TypeInCtrl', function (categories, $scope, $state) {
   $scope.title = $state.current.displayName;
-  $('#imageContainer').preppend($scope.currentImage);
-  for (i = 3; i > 0; i--) {
-    if ($scope.lifes < i ) {
-      $('#' + i.toString() + 'life').attr('class', 'dead');
+  $('#imageContainer').prepend($scope.currentImage);
+  ShowLifes($scope);
+  $scope.input = "";
+  desiredLength = $scope.currentImage.attr("id").length;
+  $scope.Pressed = function (key) {
+    $scope.input = $scope.input + key;
+    if ( $scope.input.length == desiredLength ) {
+      setTimeout(function () {
+        if (IsAnswerCorrect()) {
+          $scope.SetPoints($scope.points + 10);
+        }
+        else {
+          $scope.SetLifes($scope.lifes - 1);
+        }
+        $scope.TypeIn_Next();
+      }, 200);
     }
   }
-  $scope.Chosen = function (label) {
-    if (label === $scope.currentImage.attr('id')) {
-      $scope.SetPoints($scope.points + 10);
-      $scope.WhatIsIt_Next();
+  function IsAnswerCorrect() {
+    if ( $scope.input === $scope.currentImage.attr("id") ) {
+      return true;
     }
-    else {
-      $scope.SetLifes($scope.lifes - 1);
-      $scope.ShowProperBoard();
-    }
+    return false;
   }
 });

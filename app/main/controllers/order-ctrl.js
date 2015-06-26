@@ -11,7 +11,7 @@ angular.module('main')
 .controller('OrderTheLettersCtrl', function (categories, $scope, $state) {
   $scope.title = $state.current.displayName;
   $('#imageContainer').prepend($scope.currentImage);
-  DisplayLifes($scope);
+  ShowLifes($scope);
   $scope.$on('onRepeatLast', function (scope, element, attrs) {
     AddDraggable();
     AddDroppable();
@@ -49,14 +49,6 @@ angular.module('main')
     });
   }
 });
-
-function DisplayLifes ($scope) {
-  for (i = 3; i > 0; i--) {
-    if ($scope.lifes < i ) {
-      $('#' + i.toString() + 'life').attr('class', 'dead');
-    }
-  }
-}
 
 function IsOnFrame(letter) {
   droppedOnFrame = false;

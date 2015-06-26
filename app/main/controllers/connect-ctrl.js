@@ -30,13 +30,6 @@ angular.module('main')
     $state.go('root.Connect');
   }
 });
-function ShowLifes($scope) {
-  for (i = 3; i > 0; i--) {
-    if ($scope.lifes < i ) {
-      $('#' + i.toString() + 'life').attr('class', 'dead');
-    }
-  }
-}
 function AppendImages($scope) {
   for ( i = 1 ; i <= 3 ; i++) {
     $('#PhotoFrame' + i.toString()).append($scope.connectImages[i - 1]);
