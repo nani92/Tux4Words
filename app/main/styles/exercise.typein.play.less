@@ -1,0 +1,63 @@
+@exercise_typeIn_keysHeight: 25vh;
+@exercise_typeIn_keysFontHeight: 7vh;
+@exercise_typeIn_photoBoxHeight: 100vh - @footerHeight - @headerHeight - @exercise_typeIn_keysHeight - 2vh;
+@exercise_typeIn_photoFrameHeight: @exercise_typeIn_photoBoxHeight;
+@exercise_typeIn_keyWidth: 15vw;
+@exercise_typeIn_keyMarginHorizontal: 3vw;
+@exercise_typeIn_photoFrameWidth: 80vw;
+@exercise_typeIn_tuxDivWidth: 20vw;
+@exercise_typeIn_pointColor: #fdc733;
+@exercise_typeIn_pointShadowColor: @buttonBorderColor;
+@exercise_typeIn_inputHeight: 10vh;
+@exercise_typeIn_imgContainerHeight: @exercise_typeIn_photoFrameHeight - @exercise_typeIn_inputHeight;
+
+#typein_photoBox {
+    height: @exercise_typeIn_photoBoxHeight;
+    width: 100vw;
+    text-align: center;
+}
+
+#typein_photoBox > #photoFrame{
+    height: @exercise_typeIn_photoFrameHeight;
+    width: @exercise_typeIn_photoFrameWidth;
+    display: inline-block;
+    background-color: white;
+    box-shadow: 4px 4px 10px gray;
+    #imageContainer{
+        width: @exercise_typeIn_photoFrameWidth;
+        height: @exercise_typeIn_imgContainerHeight;
+        img {
+            max-width: @exercise_typeIn_photoFrameWidth;
+            max-height: @exercise_typeIn_imgContainerHeight;
+        }
+    }
+}
+
+#typein_keys {
+    height: @exercise_typeIn_keysHeight;
+    text-align: center;
+}
+
+#typein_keys > .key_button {
+    height: auto;
+    width: @exercise_typeIn_keyWidth;
+    .Button;
+    display: inline-block;
+    margin-top: 3vh;
+    margin-left: @exercise_typeIn_keyMarginHorizontal;
+    margin-right: @exercise_typeIn_keyMarginHorizontal;
+    text-align: center;
+}
+
+#typein_keys > .key_button > span {
+    font-size: @exercise_typeIn_keysFontHeight;   
+}
+
+#typein_input {
+    background-color: red;
+    width: @exercise_typeIn_photoFrameWidth;
+    height: @exercise_typeIn_inputHeight;
+    span {
+        font-size: @exercise_typeIn_inputHeight - 2vh;
+    }
+}

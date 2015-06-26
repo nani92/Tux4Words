@@ -2,12 +2,30 @@
     <div id="header">
         <span class="title_ex" id="{{exerciseTitleId}}">{{title}}</span>
     </div>
-    <div id="whatisit_photoBox">
-        <div id="photoFrame"></div>
+    <div id="typein_photoBox">
+        <div id="photoFrame">
+            <div id="imageContainer"></div>
+            <div id="typein_input"><span>ddd</span></div>
+        </div>
     </div>
-    <div id="whatisit_labels" ng-model="labels">
-        <div class="label_button" ng-repeat="label in labels" ng-click="Chosen(label)">
-            <span>{{label}}</span>
+    <div id="typein_keys" ng-model="keys">
+        <!--<div class="key_button" ng-repeat="key in keys">
+            <span>{{key}}</span>
+        </div>-->
+        <div class="key_button">
+            <span>a</span>
+        </div>
+        <div class="key_button">
+            <span>a</span>
+        </div>
+        <div class="key_button">
+            <span>a</span>
+        </div>
+        <div class="key_button">
+            <span>a</span>
+        </div>
+        <div class="key_button">
+            <span>a</span>
         </div>
     </div>
     <div id="exercise_footer">
