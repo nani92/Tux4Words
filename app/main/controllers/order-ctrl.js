@@ -26,13 +26,17 @@ angular.module('main')
         revert: function () {
           if (IsOnFrame($(this)) ) {
             DroppedOnFrame($(this));
+            if (IsSolved()) {
+              if (IsAnswerCorrect()) {
+                $scope.SetPoints($scope.points + 10);
+                $scope.Order_Next();
+              }
+            }
             return false;
           }
           return true;
         },
-        stop: function () {
-          //ClearDisplayingAsWrongOrActive();
-        }
+        stop: function () {}
       });
     });
   }
@@ -92,12 +96,35 @@ function DroppedOnFrame (letter) {
   var frame;
   $('.letter_frame').each(function () {
     if ($(this).hasClass('active')) {
-      frame = $(this); 
+      frame = $(this);
       return;
-    } 
+    }
   });
   frame.removeClass('active');
   frame.addClass('solved');
   letter.detach();
   frame.children('span:first').html(letter.children('span:first').html());
+}
+
+function IsSolved() {
+  solved = true;
+  $('.letter_frame').each( function () {
+    if (!$(this).hasClass('solved')) {
+      solved = false;
+    }
+  });
+  return solved;
+}
+
+function IsAnswerCorrect() {
+  answer = "";
+  $('.letter_frame').each( function () {
+    answer += $(this).children('span:first').html();
+  });
+  if (answer === ($('#imageContainer').children('img')[0]).id) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }

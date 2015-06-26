@@ -128,11 +128,9 @@ angular.module('main')
   }
   var exerciseState;
   $scope.ShowProperBoard = function () {
-    console.log("show proper");
     exerciseState = $state.$current;
     $scope.isLastWord = true;
     $state.go('root.Play:num', {num: 0});
-    console.log("SHOWED");
   }
   $scope.BackToExercise = function () {
     $scope.WhatIsIt_Next();
@@ -147,6 +145,15 @@ angular.module('main')
   $scope.Connect_Next = function () {
     wordIndex++;
     Connect($scope, $state, categories);
+  }
+  $scope.Order_Next = function () {
+    if ( $scope.lifes >= 0 ) {
+      wordIndex++;
+      OrderTheLetters($scope, $state, categories);
+    }
+    else {
+      $state.go('root.Order the letters');
+    }
   }
 });
 function WhatIsIt_Start ($scope, $state, categories) {
