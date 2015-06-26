@@ -285,7 +285,7 @@
   top: 0;
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait), only screen and (min-width:600px) and (orientation: portrait) {
-  #header > #ex_orderTheLetters {
+  #header > #orderTheLetters {
     font-size: 13vw;
   }
 }

@@ -8,16 +8,13 @@ angular.module('main')
   this.ENV = Config.ENV;
   this.BUILD = Config.BUILD;
 
-  console.log('Hello from your Controller: StartCtrl in module main:. This is your controller:', this);
-  // TODO: do your controller thing
   $scope.basicOptions = ['Play', 'Categories', 'Play Test', 'Leaderboards'];
   $scope.MoveTo = function (name) {
     if (name === 'Play') {
-      $scope.StartExercise($scope.title);
+      $scope.StartExercise($scope.title, $scope.titleId);
     }
   };
   $scope.title = $state.current.displayName;
-  var id = ($state.current.url).substring(1);
-  id = id.substring($.inArray('/', id) + 1);
-  $scope.id = id;
+  var id = $state.current.url;
+  $scope.titleId = (id).substring(0, id.length - 1);
 });

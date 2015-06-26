@@ -104,7 +104,8 @@ angular.module('main')
   $scope.EndSession = function () {
     $scope.isSessionStarted = false;
   }
-  $scope.StartExercise = function (exercise) {
+  $scope.StartExercise = function (exercise, titleId) {
+    $scope.exerciseTitleId = titleId;
     if (exercise === "What is it?") {
       WhatIsIt_Start($scope, $state, categories);
     }
@@ -193,8 +194,7 @@ function OrderTheLetters_Start ($scope, $state, categories) {
 function OrderTheLetters ($scope, $state, categories) {
   RandomWords(categories.getAllWords(), 1);
   $scope.currentImage = images[0];
-  //$scope.letters = shuffle(images[0].attr('id').split(''));
-  $scope.letters = "abad".split('');
+  $scope.letters = shuffle(images[0].attr('id').split(''));
   $scope.frames = [];
   $.each($scope.letters, function (key, value) {
     $scope.frames.push(key);
