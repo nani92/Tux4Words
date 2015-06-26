@@ -29,8 +29,11 @@ angular.module('main')
             if (IsSolved()) {
               if (IsAnswerCorrect()) {
                 $scope.SetPoints($scope.points + 10);
-                $scope.Order_Next();
               }
+              else {
+                $scope.SetLifes( $scope.lifes - 1);
+              }
+              $scope.Order_Next();
             }
             return false;
           }
