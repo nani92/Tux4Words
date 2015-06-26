@@ -182,7 +182,7 @@ angular.module('main')
     $state.go('root.Type in-Play:num', {num: wordIndex});
   }
   /*************************************************************/
-  /*                     Helpingers                            */
+  /*                        Helpers                            */
   /*************************************************************/
   var wordsPerSession = 3;
   var wordIndex;
