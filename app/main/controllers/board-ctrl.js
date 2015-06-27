@@ -6,19 +6,24 @@ angular.module('main')
     $('#photoFrame').append($scope.currentImage);
     $('#photoFrame').append('<span id=d' + $scope.currentImage.attr('id').length + ' >' + $scope.currentImage.attr('id'));
     if ($scope.isLastWord) {
+      $('#nextContainer').children('div:first').detach();
       if ($scope.isSessionStarted) {
-        $('#nextContainer').children('div:first').detach();
-        $('#nextContainer').append($compile('<div id="buttonNext" ng-click="BackToMenu()"></div>')($scope));
-        $('#buttonNext').append('<span id="finish"> Finish</span>');
+        FinishButtonForLastBoardInSession();
       }
       else {
-        $('#nextContainer').children('div:first').detach();
-        $('#nextContainer').append($compile('<div id="buttonNext" ng-click="BackToExercise()"></div>')($scope));
-        $('#buttonNext').append('<span id="finish"> Finish</span>');
+        FinishButtonForCorrectAnswerBoard ()
       }
     }
     $scope.BackToMenu = function () {
-      $scope.EndSession();
+      $scope.isSessionStarted = false;
       $state.go('root.main');
+    }
+    function FinishButtonForLastBoardInSession () {
+      $('#nextContainer').append($compile('<div id="buttonNext" ng-click="BackToMenu()"></div>')($scope));
+      $('#buttonNext').append('<span id="finish"> Finish</span>');
+    }
+    function FinishButtonForCorrectAnswerBoard () {
+      $('#nextContainer').append($compile('<div id="buttonNext" ng-click="BackToExercise()"></div>')($scope));
+      $('#buttonNext').append('<span id="finish"> Finish</span>');
     }
   });

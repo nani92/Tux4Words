@@ -43,9 +43,6 @@ angular.module('main')
     }
     $state.go('root.Play:num', {num: wordIndex});
   }
-  $scope.EndSession = function () {
-    $scope.isSessionStarted = false;
-  }
   /*************************************************************/
   /*                   Exercises                               */
   /*************************************************************/
