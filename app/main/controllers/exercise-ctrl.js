@@ -2,12 +2,6 @@
 
 angular.module('main')
 .controller('ExerciseCtrl', function (Start, Config, $scope, $state, categories, $location, $window) {
-
-  // bind data from service
-  this.someData = Start.someData;
-  this.ENV = Config.ENV;
-  this.BUILD = Config.BUILD;
-
   $scope.basicOptions = ['Play', 'Categories', 'Play Test', 'Leaderboards'];
   $scope.MoveTo = function (name) {
     if (name === 'Play') {
