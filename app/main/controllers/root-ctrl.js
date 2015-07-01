@@ -1,5 +1,8 @@
 angular.module('main')
 .controller('RootCtrl', function ($scope, categories, $state) {
+  document.addEventListener('deviceready', function (event) {
+    AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+  });
   var rootPath = 'main/assets/json/categories/';
   ReadJSONPaths(categories);
   $scope.RandomWords = RandomWords;
@@ -255,4 +258,10 @@ function ShowLifes($scope) {
       $('#' + i.toString() + 'life').attr('class', 'dead');
     }
   }
+}
+function successFunction() {
+  console.log("It worked!");
+}
+function errorFunction(error) {
+  console.log(error);
 }
