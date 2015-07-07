@@ -85,6 +85,12 @@ angular.module('main', [
       replace: true,
       templateUrl: 'main/templates/exercise.typein.play.html',
       controller: 'TypeInCtrl'
+    })
+    .state('root.history', {
+      url: 'history',
+      replace: true,
+      templateUrl: 'main/templates/history.html',
+      controller: 'HistoryCtrl'
     });
 })
 .service('categories', function () {

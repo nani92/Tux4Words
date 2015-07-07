@@ -10,4 +10,7 @@ angular.module('main')
     }
     $state.go("root." + name);
   };
+  $scope.ShowHistory = function () {
+    $state.go("root.history");
+  }
 });
