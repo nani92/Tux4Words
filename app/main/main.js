@@ -95,6 +95,7 @@ angular.module('main', [
 })
 .service('categories', function () {
   var categories = [];
+  var wordStatus = [];
   return {
     getCategories: function () {
       var names = [];
@@ -144,6 +145,25 @@ angular.module('main', [
         $.merge(words, category.words);
       });
       return words;
+    },
+    setWordsStatuts: function(inWordStatus) {
+      wordStatus = inWordStatus;
+    },
+    getAllLearnedWords: function() {
+      var words = [];
+      $.each(wordStatus, function(i, word) {
+        words.push(Object.keys(word)[0]); 
+      });
+      return words;
+    },
+    getStatusForWord: function(word) {
+      return wordStatus[word];
+    },
+    addStatusForWord: function(inWord) {
+     // wordStatus.push({inWord.toString(): [false, false, false, true, true]});
+    },
+    changeStatusForWord: function (inWord, inStatus) {
+      wordStatus[inWord] = inStatus; 
     }
   };
 });

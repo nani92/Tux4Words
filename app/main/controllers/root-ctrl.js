@@ -3,14 +3,15 @@ angular.module('main')
   document.addEventListener('deviceready', function (event) {
     AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
-  var rootPath = 'main/assets/json/categories/';
+  var rootPath = 'main/assets/json/';
   ReadJSONPaths(categories);
+  ReadWordsStatus();
   $scope.RandomWords = RandomWords;
   /*************************************************************/
   /*             Reading in App Functions                      */
   /*************************************************************/
   function ReadJSONPaths() {
-    var jsonURL =  rootPath + 'files.json';
+    var jsonURL =  rootPath + 'categories/files.json';
     $.getJSON(jsonURL, function (json) {
       $.each(json.paths, function (i, path) {
         ReadWords(path, categories);
@@ -18,13 +19,20 @@ angular.module('main')
     });
   }
   function ReadWords(path) {
-    var jsonURL = rootPath + path;
+    var jsonURL = rootPath + 'categories/' + path;
     $.getJSON(jsonURL, function (json) {
       var id = categories.getCategoryId(json.category);
       if (id == -1) {
         id = categories.addCategory(json.category);
       }
       categories.addWordsToCategoryById(id, json.words);
+    });
+  }
+  function ReadWordsStatus () {
+    var jsonURL = rootPath + "wordStatus.json";
+    $.getJSON(jsonURL, function (json) {
+      console.log(json.wordState);
+      categories.setWordsStatuts(json.wordState);
     });
   }
   /*************************************************************/
