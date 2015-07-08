@@ -44,15 +44,20 @@ angular.module('main')
     RandomWords(categories.getAllWords(), wordsPerSession);
     wordIndex = 0;
     $scope.currentImage = images[wordIndex];
+    MarkWordAsLearned();
     $state.go("root.Play:num", {num: wordIndex});
   };
   $scope.ShowNextBoard = function () {
     wordIndex++;
+    MarkWordAsLearned();
     $scope.currentImage = images[wordIndex];
     if (wordIndex == wordsPerSession - 1) {
       $scope.isLastWord = true;
     }
     $state.go('root.Play:num', {num: wordIndex});
+  }
+  function MarkWordAsLearned() {
+    categories.addStatusForWord($scope.currentImage.attr('id'));
   }
   /*************************************************************/
   /*                   Exercises                               */
