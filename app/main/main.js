@@ -133,7 +133,6 @@ angular.module('main', [
       categories[inId].words = inWords;
     },
     addWordsToCategoryById: function (inId, inWords) {
-      console.log(inId);
       $.merge(categories[inId].words, inWords);
     },
     getWordsFromCategoryById: function (inId) {
@@ -160,7 +159,9 @@ angular.module('main', [
       return wordStatus[word];
     },
     addStatusForWord: function(inWord) {
-     // wordStatus.push({inWord.toString(): [false, false, false, true, true]});
+      var tmp = {};
+      tmp[inWord] = [false, false, false, true, true];
+      wordStatus.push(tmp);
     },
     changeStatusForWord: function (inWord, inStatus) {
       wordStatus[inWord] = inStatus; 
