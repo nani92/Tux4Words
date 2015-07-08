@@ -97,7 +97,6 @@ angular.module('main', [
   var categories = [];
   var wordStatus = [];
   var allWords = [];
-  
   function isWordLearned (inWord) {
     isLearned = false;
     $.each(wordStatus, function (i, word) {
@@ -163,15 +162,15 @@ angular.module('main', [
     getAllLearnedWords: function () {
       var words = [];
       $.each(wordStatus, function (i, word) {
-        words.push(Object.keys(word)[0]); 
+        words.push(Object.keys(word)[0]);
       });
       return words;
     },
     getAllNotLearnedWords: function () {
       notLearnedWordsIDs = [];
       console.log(allWords.length + "wszytskie");
-      $.each(allWords, function(i, word) {
-        if(!isWordLearned(word)) {
+      $.each(allWords, function (i, word) {
+        if (!isWordLearned(word)) {
           notLearnedWordsIDs.push(i);
         }
       });
@@ -180,14 +179,14 @@ angular.module('main', [
     getStatusForWord: function (word) {
       return wordStatus[word];
     },
-    addStatusForWord: function(inWord) {
+    addStatusForWord: function (inWord) {
       var tmp = {};
       tmp[inWord] = [false, false, false, true, true];
       wordStatus.push(tmp);
       console.log(wordStatus);
     },
     changeStatusForWord: function (inWord, inStatus) {
-      wordStatus[inWord] = inStatus; 
+      wordStatus[inWord] = inStatus;
     }
   };
 });

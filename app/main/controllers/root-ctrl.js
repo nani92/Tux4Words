@@ -45,9 +45,14 @@ angular.module('main')
     $scope.isSessionStarted = true;
     words = categories.getAllWords();
     wordsPerSession = Math.min(wordsPerSession, categories.getAllNotLearnedWords().length);
-    RandomNotLearnedWords(words, wordsPerSession);
-    wordIndex = 0;
-    $scope.ShowNextBoard();
+    if (wordsPerSession == 0 ) {
+      alert("There is no words to learn");
+    }
+    else {
+      RandomNotLearnedWords(words, wordsPerSession);
+      wordIndex = 0;
+      $scope.ShowNextBoard();
+    }
   };
   $scope.ShowNextBoard = function () {
     console.log(images[wordIndex]);
