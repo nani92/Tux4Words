@@ -159,25 +159,33 @@ angular.module('main', [
     setWordsStatuts: function (inWordStatus) {
       wordStatus = inWordStatus;
     },
-    getAllLearnedWords: function () {
+    getListOfLearnedWords: function () {
       var words = [];
       $.each(wordStatus, function (i, word) {
         words.push(Object.keys(word)[0]);
       });
       return words;
     },
-    getAllNotLearnedWords: function () {
-      notLearnedWordsIDs = [];
-      console.log(allWords.length + "wszytskie");
-      $.each(allWords, function (i, word) {
-        if (!isWordLearned(word)) {
-          notLearnedWordsIDs.push(i);
+    getAllLearnedForWords: function (inWords) {
+      learned = [];
+      $.each(inWords, function (i, word) {
+        if (isWordLearned(word)) {
+          learned.push(word);
         }
       });
-      return notLearnedWordsIDs;
+      return learned;
     },
     getStatusForWord: function (word) {
       return wordStatus[word];
+    },
+    getAllNotLearnedForWords: function (inWords) {
+      notLearned = [];
+      $.each(inWords, function (i, word) {
+        if (!isWordLearned(word)) {
+          notLearned.push(word);
+        }
+      });
+      return notLearned;
     },
     addStatusForWord: function (inWord) {
       var tmp = {};
@@ -187,6 +195,7 @@ angular.module('main', [
     },
     changeStatusForWord: function (inWord, inStatus) {
       wordStatus[inWord] = inStatus;
-    }
+    },
+    isWordLearned: isWordLearned
   };
 });
