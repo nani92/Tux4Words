@@ -1,8 +1,10 @@
 angular.module('main')
 .controller('RootCtrl', function ($scope, categories, $state) {
+  console.log("root");
   document.addEventListener('deviceready', function (event) {
     AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
+  console.log("root");
   var rootPath = 'main/assets/json/';
   ReadJSONPaths(categories);
   ReadWordsStatus();
@@ -41,20 +43,21 @@ angular.module('main')
   $scope.StartPlay = function () {
     $scope.isLastWord = false;
     $scope.isSessionStarted = true;
-    RandomWords(categories.getAllWords(), wordsPerSession);
+    words = categories.getAllWords();
+    wordsPerSession = Math.min(wordsPerSession, categories.getAllNotLearnedWords().length);
+    RandomNotLearnedWords(words, wordsPerSession);
     wordIndex = 0;
-    $scope.currentImage = images[wordIndex];
-    MarkWordAsLearned();
-    $state.go("root.Play:num", {num: wordIndex});
+    $scope.ShowNextBoard();
   };
   $scope.ShowNextBoard = function () {
-    wordIndex++;
-    MarkWordAsLearned();
+    console.log(images[wordIndex]);
     $scope.currentImage = images[wordIndex];
+    MarkWordAsLearned();
     if (wordIndex == wordsPerSession - 1) {
       $scope.isLastWord = true;
     }
     $state.go('root.Play:num', {num: wordIndex});
+    wordIndex++;
   }
   function MarkWordAsLearned() {
     categories.addStatusForWord($scope.currentImage.attr('id'));
@@ -211,6 +214,25 @@ angular.module('main')
       }
       tmpWords.push(words[i].word);
       $.preloadImage(words[i].imgPath, words[i].word);
+      n--;
+    }
+  }
+  function RandomNotLearnedWords(words, number) {
+    images = [];
+    tmpWords = [];
+    notLearnedWords = categories.getAllNotLearnedWords();
+    console.log(notLearnedWords);
+    console.log(words);
+    var n = number;
+    console.log(number);
+    while (n > 0) {
+      var i = Math.floor(Math.random() * notLearnedWords.length);
+      while (DoesLabelExists(words[notLearnedWords[i]].word, tmpWords )) {
+        i = Math.floor(Math.random() * notLearnedWords.length);
+      }
+      console.log(i + " > " + notLearnedWords[i] + " > " + words[notLearnedWords[i]].word);
+      tmpWords.push(words[notLearnedWords[i]].word);
+      $.preloadImage(words[notLearnedWords[i]].imgPath, words[notLearnedWords[i]].word);
       n--;
     }
   }

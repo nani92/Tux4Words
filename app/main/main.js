@@ -96,6 +96,17 @@ angular.module('main', [
 .service('categories', function () {
   var categories = [];
   var wordStatus = [];
+  var allWords = [];
+  
+  function isWordLearned (inWord) {
+    isLearned = false;
+    $.each(wordStatus, function (i, word) {
+      if (Object.keys(word)[0] === inWord.word) {
+        isLearned = true;
+      }
+    });
+    return isLearned;
+  }
   return {
     getCategories: function () {
       var names = [];
@@ -139,23 +150,34 @@ angular.module('main', [
       return categories[inId].words;
     },
     getAllWords: function () {
-      var words = [];
-      $.each(categories, function (i, category) {
-        $.merge(words, category.words);
-      });
-      return words;
+      if (allWords.length == 0) {
+        $.each(categories, function (i, category) {
+          $.merge(allWords, category.words);
+        });
+      }
+      return allWords;
     },
-    setWordsStatuts: function(inWordStatus) {
+    setWordsStatuts: function (inWordStatus) {
       wordStatus = inWordStatus;
     },
-    getAllLearnedWords: function() {
+    getAllLearnedWords: function () {
       var words = [];
-      $.each(wordStatus, function(i, word) {
+      $.each(wordStatus, function (i, word) {
         words.push(Object.keys(word)[0]); 
       });
       return words;
     },
-    getStatusForWord: function(word) {
+    getAllNotLearnedWords: function () {
+      notLearnedWordsIDs = [];
+      console.log(allWords.length + "wszytskie");
+      $.each(allWords, function(i, word) {
+        if(!isWordLearned(word)) {
+          notLearnedWordsIDs.push(i);
+        }
+      });
+      return notLearnedWordsIDs;
+    },
+    getStatusForWord: function (word) {
       return wordStatus[word];
     },
     addStatusForWord: function(inWord) {
