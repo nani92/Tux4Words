@@ -71,6 +71,7 @@ angular.module('main')
   /*                   Exercises                               */
   /*************************************************************/
   $scope.StartExercise = function (exercise, titleId) {
+    $scope.isSessionStarted = false;
     $scope.exerciseTitleId = titleId;
     if (exercise === "What is it?") {
       WhatIsIt_Start();
