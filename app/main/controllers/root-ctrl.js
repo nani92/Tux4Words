@@ -3,11 +3,13 @@ angular.module('main')
   document.addEventListener('deviceready', function (event) {
     AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
+  var enableExercise = false;
   var numberOfNotLearnedWords = 12;
   var rootPath = 'main/assets/json/';
   ReadJSONPaths(categories);
   ReadWordsStatus();
-  $scope.RandomWords = RandomWords;
+  $scope.RandomWords = RandomNewWords;
+  ShouldEnableExercises();
   /*************************************************************/
   /*             Reading in App Functions                      */
   /*************************************************************/
@@ -32,7 +34,6 @@ angular.module('main')
   function ReadWordsStatus () {
     var jsonURL = rootPath + "wordStatus.json";
     $.getJSON(jsonURL, function (json) {
-      console.log(json.wordState);
       categories.setWordsStatuts(json.wordState);
     });
   }
@@ -49,15 +50,15 @@ angular.module('main')
       alert("There is no words to learn");
     }
     else {
-      RandomWords(categories.getAllNotLearnedForWords(words), wordsPerSession);
+      RandomNewWords(categories.getAllNotLearnedForWords(words), wordsPerSession);
       wordIndex = 0;
       $scope.ShowNextBoard();
     }
   };
   $scope.ShowNextBoard = function () {
-    console.log(images[wordIndex]);
     $scope.currentImage = images[wordIndex];
     MarkWordAsLearned();
+    ShouldEnableExercises();
     if (wordIndex == wordsPerSession - 1) {
       $scope.isLastWord = true;
     }
@@ -73,6 +74,10 @@ angular.module('main')
   $scope.StartExercise = function (exercise, titleId) {
     $scope.isSessionStarted = false;
     $scope.exerciseTitleId = titleId;
+    if ( enableExercise == false ) {
+      alert("Cannot display exercise. You have to learn new words first");
+      return;
+    }
     if (exercise === "What is it?") {
       WhatIsIt_Start();
     }
@@ -106,9 +111,9 @@ angular.module('main')
   /*                   What is it?                             */
   /*************************************************************/
   $scope.WhatIsIt_Next = function () {
-    if ($scope.lifes >= 0) {
+    if ($scope.lifes >= 0 && wordIndex < images.length - 1) {
       wordIndex++;
-      WhatIsIt($scope, $state, categories);
+      WhatIsIt();
     }
     else {
       $state.go('root.What is it?');
@@ -118,19 +123,14 @@ angular.module('main')
     $scope.lifes = 3;
     wordIndex = 0;
     $scope.points = 0;
+    learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
+    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerSession));
     WhatIsIt();
   }
   function WhatIsIt () {
-    learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
-    if (learnedWords.length > 0 ) {
-      RandomWords(learnedWords, 1);
-      $scope.currentImage = images[0];
-      $scope.labels = Shuffle(GetLabels([images[0].attr('id')], categories.getAllWords(), 2));
-      $state.go('root.What is it?-Play:num', {num: wordIndex});
-    }
-    else {
-      alert("Cannot display exercise. You have to learn new words first"); 
-    }
+    $scope.currentImage = images[wordIndex];
+    $scope.labels = Shuffle(GetLabels([images[wordIndex].attr('id')], categories.getAllWords(), 2));
+    $state.go('root.What is it?-Play:num', {num: wordIndex});
   }
   /*************************************************************/
   /*                   Connect                                 */
@@ -148,7 +148,7 @@ angular.module('main')
   function Connect () {
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
     if (learnedWords.length > 2) {
-      RandomWords(learnedWords, 3);
+      RandomNewWords(learnedWords, 3);
       $scope.connectImages = images;
       $scope.labels = Shuffle(GetLabels(
          [images[0].attr('id'), images[1].attr('id'), images[2].attr('id')],
@@ -156,7 +156,7 @@ angular.module('main')
       $state.go('root.Connect-Play:num', {num: wordIndex});
     }
     else {
-      alert("Cannot display exercise. You have to learn new words first"); 
+      alert("Cannot display exercise. You have to learn new words first");
     }
   }
   /*************************************************************/
@@ -180,7 +180,7 @@ angular.module('main')
   function OrderTheLetters () {
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
     if (learnedWords.length > 0) {
-      RandomWords(learnedWords, 1);
+      RandomNewWords(learnedWords, 1);
       $scope.currentImage = images[0];
       $scope.letters = Shuffle(images[0].attr('id').split(''));
       $scope.frames = [];
@@ -190,7 +190,7 @@ angular.module('main')
       $state.go('root.Order the letters-Play:num', {num: wordIndex});
     }
     else {
-      alert("Cannot display exercise. You have to learn new words first"); 
+      alert("Cannot display exercise. You have to learn new words first");
     }
   }
   /*************************************************************/
@@ -214,7 +214,7 @@ angular.module('main')
   function TypeIn () {
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
     if (learnedWords.length > 0 ) {
-      RandomWords(learnedWords, 1);
+      RandomNewWords(learnedWords, 1);
       $scope.currentImage = images[0];
       keys = images[0].attr('id').split('');
       while (keys.length < 7) {
@@ -224,7 +224,7 @@ angular.module('main')
       $state.go('root.Type in-Play:num', {num: wordIndex});
     }
     else {
-      alert("Cannot display exercise. You have to learn new words first"); 
+      alert("Cannot display exercise. You have to learn new words first");
     }
   }
   /*************************************************************/
@@ -233,10 +233,15 @@ angular.module('main')
   var wordsPerSession = 3;
   var wordIndex;
   var isSessionStarted = false;
-  function RandomWords(words, number) {
+  function RandomNewWords(words, number) {
     images = [];
+    RandomWords(words, number);
+  }
+  function RandomWords(words, number) {
     tmpWords = [];
     var n = number;
+    console.log( words);
+    console.log(number);
     while (n > 0) {
       var i = Math.floor(Math.random() * words.length);
       while (DoesLabelExists(words[i].word, tmpWords )) {
@@ -246,6 +251,15 @@ angular.module('main')
       $.preloadImage(words[i].imgPath, words[i].word);
       n--;
     }
+  }
+  function GetWordsForExercises(words, number) {
+    statusWords = categories.getLearnedWordsByStatus(words);
+    numbers = CountHowManyWhichWords(statusWords, number);
+    images = [];
+    RandomWords(statusWords.begin, numbers.begin);
+    RandomWords(statusWords.good, numbers.good);
+    RandomWords(statusWords.wrong, numbers.wrong);
+    images = Shuffle(images);
   }
   function RandomLearnedWords(words, number) {
     images = [];
@@ -280,6 +294,11 @@ angular.module('main')
   var images = [];
   $.preloadImage = function () {
     images.push( $("<img />").attr("src", arguments[0]).attr("id", arguments[1]));
+  }
+  function ShouldEnableExercises() {
+    if ( categories.getAllLearnedForWords(categories.getAllWords()).length > 3) {
+      enableExercise = true;
+    }
   }
   function GetLabels (inLabels, words, number) {
     var labels = inLabels;
@@ -324,6 +343,32 @@ angular.module('main')
     }
     letters.push(letter_set.substring(i, i + 1));
     return letters;
+  }
+  function CountHowManyWhichWords (statusWords, totalNumber) {
+    numbers = BaseNumbersOfWords(statusWords, totalNumber);
+    var diff = totalNumber - (numbers.begin + numbers.good + numbers.wrong);
+    while ( diff > 0 ) {
+      if ( diff > 0 && numbers.begin < statusWords.begin.length ) {
+        diff--;
+        numbers.begin++;
+      }
+      if ( diff > 0 && numbers.wrong < statusWords.wrong.length ) {
+        diff--;
+        numbers.wrong++;
+      }
+      if ( diff > 0 && numbers.good < statusWords.good.length ) {
+        diff--;
+        numbers.good++;
+      }
+    }
+    return numbers;
+  }
+  function BaseNumbersOfWords (statusWords, totalNumber) {
+    numbers = {};
+    numbers.begin = Math.min(Math.ceil(totalNumber / 4), statusWords.begin.length);
+    numbers.good = Math.min(Math.ceil(totalNumber / 4), statusWords.good.length);
+    numbers.wrong = Math.min(totalNumber - numbers.begin - numbers.good, statusWords.wrong.length);
+    return numbers;
   }
 });
 

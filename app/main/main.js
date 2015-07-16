@@ -95,7 +95,7 @@ angular.module('main', [
 })
 .service('categories', function () {
   var categories = [];
-  var wordStatus = [];
+  var wordStatus = {};
   var allWords = [];
   function isWordLearned (inWord) {
     isLearned = false;
@@ -105,6 +105,42 @@ angular.module('main', [
       }
     });
     return isLearned;
+  }
+  function AreArraysTheSame(arr, arr2) {
+    same = true;
+    if ( arr.length != arr2.length ) {
+      return false;
+    }
+    $.each(arr, function (i, word) {
+      if (arr[i] != arr2[i]) {
+        same = false;
+      }
+    });
+    return same;
+  }
+  function CheckStatus (inWord) {
+    var id;
+    $.each(wordStatus, function ( i, word) {
+      if (Object.keys(word)[0] === inWord) {
+        console.log(i);
+        id = i;
+      }
+    });
+    state = wordStatus[id][inWord];
+    if (AreArraysTheSame(state, [false, false, false, true, true]) ||
+        AreArraysTheSame(state, [false, false, true, true, true])) {
+      return "begin";
+    } else if (AreArraysTheSame(state, [false, true, true, true, true]) ||
+              AreArraysTheSame(state, [true, true, true, true, true]) ||
+              AreArraysTheSame(state, [true, true, true, false, true]) ||
+              AreArraysTheSame(state, [true, true, false, true, true]) ||
+              AreArraysTheSame(state, [true, false, true, true, true]) ||
+              AreArraysTheSame(state, [true, false, true, false, true]) ||
+              AreArraysTheSame(state, [false, true, false, true, true])) {
+      return "good";
+    } else {
+      return "wrong";
+    }
   }
   return {
     getCategories: function () {
@@ -195,6 +231,24 @@ angular.module('main', [
     },
     changeStatusForWord: function (inWord, inStatus) {
       wordStatus[inWord] = inStatus;
+    },
+    increaseStatusOfWord: function (inWord) {
+      wordStatus[inWord].pop(0);
+      wordStatus[inWord].push(true);
+    },
+    decreaseStatusOfWord: function (inWord) {
+      wordStatus[inWord].pop(0);
+      wordStatus[inWord].push(false);
+    },
+    getLearnedWordsByStatus: function (inWords) {
+      outWords = {};
+      outWords.begin = [];
+      outWords.good = [];
+      outWords.wrong = [];
+      $.each(inWords, function (i, word) {
+        outWords[CheckStatus(word.word)].push(word);
+      });
+      return outWords;
     },
     isWordLearned: isWordLearned
   };
