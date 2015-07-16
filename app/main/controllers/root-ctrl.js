@@ -205,7 +205,7 @@ angular.module('main')
   /*                     Type in                               */
   /*************************************************************/
   $scope.TypeIn_Next = function () {
-    if ( $scope.lifes >= 0 ) {
+    if ( $scope.lifes >= 0 && wordIndex < $scope.tasks.length - 1 ) {
       wordIndex++;
       TypeIn();
     }
@@ -217,23 +217,19 @@ angular.module('main')
     $scope.lifes = 3;
     wordIndex = 0;
     $scope.points = 0;
+    learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
+    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerSession));
+    $scope.tasks = GetTasksTable();
     TypeIn($scope, $state, categories);
   }
   function TypeIn () {
-    learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
-    if (learnedWords.length > 0 ) {
-      RandomNewWords(learnedWords, 1);
-      $scope.currentImage = images[0];
-      keys = images[0].attr('id').split('');
-      while (keys.length < 7) {
-        keys = RandomLetter(keys);
-      }
-      $scope.keys = Shuffle(keys);
-      $state.go('root.Type in-Play:num', {num: wordIndex});
+    $scope.currentImage = images[$scope.tasks[wordIndex]];
+    keys = images[$scope.tasks[wordIndex]].attr('id').split('');
+    while (keys.length < 7) {
+      keys = RandomLetter(keys);
     }
-    else {
-      alert("Cannot display exercise. You have to learn new words first");
-    }
+    $scope.keys = Shuffle(keys);
+    $state.go('root.Type in-Play:num', {num: wordIndex});
   }
   /*************************************************************/
   /*                        Helpers                            */
