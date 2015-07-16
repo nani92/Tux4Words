@@ -31,9 +31,12 @@ angular.module('main')
             DroppedOnFrame($(this));
             if (IsSolved()) {
               if (IsAnswerCorrect()) {
+                categories.increaseStatusOfWord($scope.currentImage.attr('id'));
                 $scope.SetPoints($scope.points + 10);
               }
               else {
+                categories.decreaseStatusOfWord($scope.currentImage.attr('id'));
+                $scope.AddToCurrentTasks();
                 $scope.SetLifes( $scope.lifes - 1);
               }
               $scope.Order_Next();

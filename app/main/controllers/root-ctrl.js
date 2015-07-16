@@ -174,7 +174,7 @@ angular.module('main')
   /*                   Order the letters                       */
   /*************************************************************/
   $scope.Order_Next = function () {
-    if ( $scope.lifes >= 0 ) {
+    if ( $scope.lifes >= 0  && wordIndex < $scope.tasks.length - 1) {
       wordIndex++;
       OrderTheLetters();
     }
@@ -186,23 +186,20 @@ angular.module('main')
     $scope.lifes = 3;
     wordIndex = 0;
     $scope.points = 0;
+    learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
+    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerSession));
+    $scope.tasks = GetTasksTable();
     OrderTheLetters();
+    
   }
   function OrderTheLetters () {
-    learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
-    if (learnedWords.length > 0) {
-      RandomNewWords(learnedWords, 1);
-      $scope.currentImage = images[0];
-      $scope.letters = Shuffle(images[0].attr('id').split(''));
-      $scope.frames = [];
-      $.each($scope.letters, function (key, value) {
-        $scope.frames.push(key);
-      });
-      $state.go('root.Order the letters-Play:num', {num: wordIndex});
-    }
-    else {
-      alert("Cannot display exercise. You have to learn new words first");
-    }
+    $scope.currentImage = images[$scope.tasks[wordIndex]];
+    $scope.letters = Shuffle(images[$scope.tasks[wordIndex]].attr('id').split(''));
+    $scope.frames = [];
+    $.each($scope.letters, function (key, value) {
+      $scope.frames.push(key);
+    });
+    $state.go('root.Order the letters-Play:num', {num: wordIndex});
   }
   /*************************************************************/
   /*                     Type in                               */
