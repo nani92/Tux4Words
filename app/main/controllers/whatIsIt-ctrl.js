@@ -5,10 +5,12 @@ angular.module('main')
   ShowLifes($scope);
   $scope.Chosen = function (label) {
     if (label === $scope.currentImage.attr('id')) {
+      categories.increaseStatusOfWord(label);
       $scope.SetPoints($scope.points + 10);
       $scope.WhatIsIt_Next();
     }
     else {
+      categories.decreaseStatusOfWord($scope.currentImage.attr('id'));
       $scope.SetLifes($scope.lifes - 1);
       $scope.ShowProperBoard();
     }

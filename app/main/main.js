@@ -122,7 +122,6 @@ angular.module('main', [
     var id;
     $.each(wordStatus, function ( i, word) {
       if (Object.keys(word)[0] === inWord) {
-        console.log(i);
         id = i;
       }
     });
@@ -233,12 +232,22 @@ angular.module('main', [
       wordStatus[inWord] = inStatus;
     },
     increaseStatusOfWord: function (inWord) {
-      wordStatus[inWord].pop(0);
-      wordStatus[inWord].push(true);
+      $.each(wordStatus, function ( i, word) {
+        if (Object.keys(word)[0] === inWord) {
+          id = i;
+        }
+      });
+      wordStatus[id][inWord].shift();
+      wordStatus[id][inWord].push(true);
     },
     decreaseStatusOfWord: function (inWord) {
-      wordStatus[inWord].pop(0);
-      wordStatus[inWord].push(false);
+      $.each(wordStatus, function ( i, word) {
+        if (Object.keys(word)[0] === inWord) {
+          id = i;
+        }
+      });
+      wordStatus[id][inWord].shift();
+      wordStatus[id][inWord].push(false);
     },
     getLearnedWordsByStatus: function (inWords) {
       outWords = {};

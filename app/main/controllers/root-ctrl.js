@@ -240,8 +240,6 @@ angular.module('main')
   function RandomWords(words, number) {
     tmpWords = [];
     var n = number;
-    console.log( words);
-    console.log(number);
     while (n > 0) {
       var i = Math.floor(Math.random() * words.length);
       while (DoesLabelExists(words[i].word, tmpWords )) {
@@ -254,6 +252,7 @@ angular.module('main')
   }
   function GetWordsForExercises(words, number) {
     statusWords = categories.getLearnedWordsByStatus(words);
+    console.log(statusWords);
     numbers = CountHowManyWhichWords(statusWords, number);
     images = [];
     RandomWords(statusWords.begin, numbers.begin);
