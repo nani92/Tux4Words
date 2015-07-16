@@ -107,11 +107,21 @@ angular.module('main')
   $scope.SetLifes = function (inLifes) {
     $scope.lifes = inLifes;
   }
+  function GetTasksTable () {
+    tasks = [];
+    for ( i = 0; i < images.length; i++) {
+      tasks.push(i);
+    }
+    return tasks;
+  }
+  $scope.AddToCurrentTasks = function () {
+    tasks.push(tasks[wordIndex]);
+  }
   /*************************************************************/
   /*                   What is it?                             */
   /*************************************************************/
   $scope.WhatIsIt_Next = function () {
-    if ($scope.lifes >= 0 && wordIndex < images.length - 1) {
+    if ($scope.lifes >= 0 && wordIndex < $scope.tasks.length - 1) {
       wordIndex++;
       WhatIsIt();
     }
@@ -125,11 +135,12 @@ angular.module('main')
     $scope.points = 0;
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
     GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerSession));
+    $scope.tasks = GetTasksTable();
     WhatIsIt();
   }
   function WhatIsIt () {
-    $scope.currentImage = images[wordIndex];
-    $scope.labels = Shuffle(GetLabels([images[wordIndex].attr('id')], categories.getAllWords(), 2));
+    $scope.currentImage = images[$scope.tasks[wordIndex]];
+    $scope.labels = Shuffle(GetLabels([images[$scope.tasks[wordIndex]].attr('id')], categories.getAllWords(), 2));
     $state.go('root.What is it?-Play:num', {num: wordIndex});
   }
   /*************************************************************/

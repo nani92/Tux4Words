@@ -11,6 +11,7 @@ angular.module('main')
     }
     else {
       categories.decreaseStatusOfWord($scope.currentImage.attr('id'));
+      $scope.AddToCurrentTasks();
       $scope.SetLifes($scope.lifes - 1);
       $scope.ShowProperBoard();
     }
