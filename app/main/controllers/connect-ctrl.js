@@ -9,6 +9,7 @@ angular.module('main')
   };
 })
 .controller('ConnectCtrl', function (categories, $scope, $state) {
+  console.log("CONNECT CTRL");
   $scope.title = $state.current.displayName;
   AppendImages($scope);
   ShowLifes($scope);
@@ -21,6 +22,7 @@ angular.module('main')
     DisplayLabelAsSolved(imageId);
     $scope.$apply ( function () {
       $scope.SetPoints($scope.points + 10);
+      categories.increaseStatusOfWord(imageId);
     });
     if (HowManySolved() == 3) {
       $scope.Connect_Next();
@@ -45,6 +47,7 @@ angular.module('main')
           IsOnImage($(this));
         },
         revert: function () {
+          console.log("REVERT?");
           if (IsOnImage($(this)) && IsOnCorrectImage($(this)) ) {
             return false;
           }
@@ -167,6 +170,8 @@ angular.module('main')
   }
   function WrongAnswer (imageId, word) {
     DisplayFrameAsWrong($("#" + imageId).parent());
+    categories.decreaseStatusOfWord(imageId);
+    $scope.AddToCurrentTasks(GetNumberOfParentFrame(imageId));
     $scope.SetLifes( $scope.lifes - 1);
     if ($scope.lifes >= 0 ) {
       ShowLifes($scope);
@@ -174,5 +179,13 @@ angular.module('main')
     else {
       $scope.LostGame();
     }
+  }
+  function GetNumberOfParentFrame(imageId) {
+    frame = $("#" + imageId).parent();
+    id = frame.attr('id');
+    console.log(id);
+    number = parseInt(id.slice(id.length - 1));
+    console.log(number);
+    return number - 1;
   }
 });

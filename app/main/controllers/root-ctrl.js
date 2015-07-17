@@ -114,8 +114,10 @@ angular.module('main')
     }
     return tasks;
   }
-  $scope.AddToCurrentTasks = function () {
-    tasks.push(tasks[wordIndex]);
+  $scope.AddToCurrentTasks = function (connectId) {
+    connectId = connectId || 0;
+    console.log(wordIndex + connectId);
+    tasks.push(tasks[wordIndex + connectId]);
   }
   /*************************************************************/
   /*                   What is it?                             */
@@ -147,27 +149,79 @@ angular.module('main')
   /*                   Connect                                 */
   /*************************************************************/
   $scope.Connect_Next = function () {
-    wordIndex++;
-    Connect($scope, $state, categories);
+    if ( $scope.lifes >= 0 && wordIndex + 3 < $scope.tasks.length) {
+      wordIndex+=3;
+      RemoveDuplicatesConnectTasks();
+      if ( wordIndex + 2 < $scope.tasks.length ) {
+      } else {
+        if ( wordIndex + 1 >= $scope.tasks.length ) {
+          MultiplyOneConnectTask();
+        }
+        MultiplyOneConnectTask();
+      }
+      Connect();
+    }
+    else {
+      $state.go('root.Connect');
+    }
   }
   function Connect_Start () {
     $scope.lifes = 3;
     wordIndex = 0;
     $scope.points = 0;
+    learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
+    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerSession));
+    $scope.tasks = GetTasksTable();
     Connect();
   }
   function Connect () {
-    learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
-    if (learnedWords.length > 2) {
-      RandomNewWords(learnedWords, 3);
-      $scope.connectImages = images;
-      $scope.labels = Shuffle(GetLabels(
-         [images[0].attr('id'), images[1].attr('id'), images[2].attr('id')],
-         categories.getAllWords(), 2));
-      $state.go('root.Connect-Play:num', {num: wordIndex});
+    $scope.connectImages = GetConnectImages();
+    console.log(images);
+    console.log($scope.connectImages);
+    $scope.labels = Shuffle(GetLabels(
+      [$scope.connectImages[0].attr('id'), $scope.connectImages[1].attr('id'), $scope.connectImages[2].attr('id')],
+      categories.getAllWords(), 2));
+    $state.go('root.Connect-Play:num', {num: wordIndex});
+  }
+  function GetConnectImages () {
+    connectImages = [];
+    console.log($scope.tasks);
+    for ( i = 0; i < 3 ; i++) {
+      console.log(wordIndex + i);
+      connectImages.push(images[$scope.tasks[wordIndex + i]]);
     }
-    else {
-      alert("Cannot display exercise. You have to learn new words first");
+    return connectImages;
+  }
+  function MultiplyOneConnectTask() {
+    var needToAdd = true;
+    i = 0;
+    while (needToAdd && i < $scope.tasks.length) {
+      console.log(i);
+      if ($scope.tasks.length > wordIndex + 1) {
+        if ( $scope.tasks[i] != $scope.tasks[wordIndex] && $scope.tasks[i] != $scope.tasks[wordIndex + 1]) {
+          $scope.tasks.push($scope.tasks[i]);
+          needToAdd = false;
+        }
+      }
+      else {
+        if ( $scope.tasks[i] != $scope.tasks[wordIndex] ) {
+          $scope.tasks.push($scope.tasks[i]);
+          needToAdd = false;
+        }
+      }
+      i++;
+    }
+  }
+  function RemoveDuplicatesConnectTasks() {
+    if ( $scope.tasks.length > wordIndex + 2 ) {
+      if ($scope.tasks[wordIndex + 2] === $scope.tasks[wordIndex] || $scope.tasks[wordIndex + 2] === $scope.tasks[wordIndex + 1]) {
+        $scope.tasks.splice(wordIndex + 2, 1);
+      }
+    }
+    if ( $scope.tasks.length > wordIndex + 1 ) {
+      if ($scope.tasks[wordIndex + 1] === $scope.tasks[wordIndex]) {
+        $scope.tasks.splice(wordIndex + 1, 1);
+      }
     }
   }
   /*************************************************************/
