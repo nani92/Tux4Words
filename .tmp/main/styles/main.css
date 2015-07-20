@@ -673,6 +673,23 @@
 #typein_input span {
   font-size: 8vh;
 }
+#scroll-wrapper {
+  overflow: scroll;
+}
+#history_list {
+  height: 75vh;
+  infinite-scroll-parent: true;
+}
+#history_list > ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+#history_list > ul li {
+  display: block;
+  font-size: 20vh;
+  width: 100%;
+  height: auto;
+}
 html,
 body,
 #uiView {

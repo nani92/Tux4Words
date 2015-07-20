@@ -12,7 +12,8 @@
     "angular-localForage": "~1.2.2",
     "jquery": "~2.1.4",
     "jquery-ui": "~1.11.4",
-    "jquery-ui-touch-punch": "*"
+    "jquery-ui-touch-punch": "*",
+    "ngInfiniteScroll": "~1.2.1"
   },
   "devDependencies": {},
   "resolutions": {

@@ -150,7 +150,7 @@ angular.module('main')
   /*************************************************************/
   $scope.Connect_Next = function () {
     if ( $scope.lifes >= 0 && wordIndex + 3 < $scope.tasks.length) {
-      wordIndex+=3;
+      wordIndex += 3;
       RemoveDuplicatesConnectTasks();
       if ( wordIndex + 2 < $scope.tasks.length ) {
       } else {
@@ -244,7 +244,6 @@ angular.module('main')
     GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerSession));
     $scope.tasks = GetTasksTable();
     OrderTheLetters();
-    
   }
   function OrderTheLetters () {
     $scope.currentImage = images[$scope.tasks[wordIndex]];
