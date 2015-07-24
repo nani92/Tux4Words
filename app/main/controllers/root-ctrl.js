@@ -119,6 +119,9 @@ angular.module('main')
     console.log(wordIndex + connectId);
     tasks.push(tasks[wordIndex + connectId]);
   }
+  $scope.GoHome = function () {
+    $state.go('root.main');
+  }
   /*************************************************************/
   /*                   What is it?                             */
   /*************************************************************/

@@ -302,6 +302,17 @@
   width: 100vw;
   text-align: center;
 }
+#exerciseMainScreen_tux > span {
+  position: relative;
+  display: inline-block;
+  font-size: 5vh;
+  color: #1e90ff;
+  text-shadow: 1px 2px gray;
+}
+#exerciseMainScreen_tux > #home {
+  left: 23vw;
+  top: 5vh;
+}
 #whatisit_photoBox {
   height: 53vh;
   width: 100vw;
@@ -677,7 +688,7 @@
   overflow: scroll;
 }
 #history_list {
-  height: 75vh;
+  height: 70vh;
   infinite-scroll-parent: true;
 }
 #history_list > ul {
@@ -689,6 +700,36 @@
   font-size: 20vh;
   width: 100%;
   height: auto;
+}
+#history_footer {
+  height: auto;
+  text-align: center;
+}
+#history_footer span {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: #7abcff;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #4096ee 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffdc10), color-stop(44%, #f5bb50), color-stop(100%, #4096ee));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* W3C */
+  box-shadow: 2px 2px 2px gray;
+  border: solid #f2ac56;
+  position: relative;
+  display: inline-block;
+  font-size: 10vh;
+  color: #1e90ff;
+  text-shadow: 1px 2px gray;
 }
 html,
 body,

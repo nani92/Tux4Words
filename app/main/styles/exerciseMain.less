@@ -7,6 +7,8 @@
 @exercise_tuxContainerWidth: 100vw;
 @exercise_menuContainerHeight: 100vh - @exercise_tuxContainerHeight - @exercise_headerHeight;
 @exercise_menuContainerWidth: @exercise_tuxContainerWidth;
+@iconHomeLeft: 23vw;
+@iconHomeTop: 5vh;
 
 #header>.title_ex{
     top: 0;
@@ -28,4 +30,13 @@
     height: @exercise_menuContainerHeight;
     width: @exercise_menuContainerWidth;
     text-align: center;
+}
+
+#exerciseMainScreen_tux > span{
+    .Icon(@iconFontSize);
+}
+
+#exerciseMainScreen_tux > #home{
+    left: @iconHomeLeft;
+    top: @iconHomeTop;
 }

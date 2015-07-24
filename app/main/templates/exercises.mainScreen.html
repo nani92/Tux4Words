@@ -2,13 +2,13 @@
     <div id="header">
         <span class="title_ex" id="{{titleId}}">{{title}}</span>
     </div>
-    <div id="exerciseMainScreen_tux"></div>
+    <div id="exerciseMainScreen_tux">
+        <span id="home" class="icomatic icon" ng-click="GoHome()">home</span>
+    </div>
     <div id="exerciseScreen_menu" ng-model="basicOptions">
-        <!--<div id="basic" ng-model="basicOptions">-->
-            <div class="menuButton" ng-repeat="basicOption in basicOptions" ng-click="MoveTo(basicOption)">
-                <span ng-model="basicOption" >{{basicOption}}</span>
-            </div>
-        <!--</div>-->
+        <div class="menuButton" ng-repeat="basicOption in basicOptions" ng-click="MoveTo(basicOption)">
+            <span ng-model="basicOption" >{{basicOption}}</span>
+        </div>
         <br />
     </div>
 </div>

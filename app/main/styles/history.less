@@ -1,10 +1,11 @@
 @history_elementHeight: 20vh;
-@history_listHeight: 100vh - @headerHeight;
+@history_listHeight: 100vh - @headerHeight - @history_goHomeFooterHeight;
+@history_goHomeFooterHeight: 15vh;
 #scroll-wrapper {
     overflow: scroll;
 }
 #history_list {
-    height: @history_listHeight - 10vh;
+    height: @history_listHeight;
     infinite-scroll-parent: true;
 }
 #history_list > ul{
@@ -15,5 +16,13 @@
         font-size: @history_elementHeight;
         width: @fullWidth;
         height: auto;
+    }
+}
+#history_footer {
+    height: auto;
+    text-align: center;
+    span {
+        .Button;
+        .Icon(@history_goHomeFooterHeight - 5vh);
     }
 }
