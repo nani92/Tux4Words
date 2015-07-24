@@ -8,6 +8,38 @@
         {
             "word": "two",
             "imgPath": "main/assets/images/words/two.gif"
+        },
+        {
+            "word": "three",
+            "imgPath": "main/assets/images/words/three.png"
+        },
+        {
+            "word": "four",
+            "imgPath": "main/assets/images/words/four.png"
+        },
+        {
+            "word": "five",
+            "imgPath": "main/assets/images/words/five.jpg"
+        },
+        {
+            "word": "six",
+            "imgPath": "main/assets/images/words/six.png"
+        },
+        {
+            "word": "seven",
+            "imgPath": "main/assets/images/words/seven.png"
+        },
+        {
+            "word": "eight",
+            "imgPath": "main/assets/images/words/eight.png"
+        },
+        {
+            "word": "nine",
+            "imgPath": "main/assets/images/words/nine.png"
+        },
+        {
+            "word": "ten",
+            "imgPath": "main/assets/images/words/ten.jpg"
         }
     ]
 }
