@@ -6,6 +6,11 @@ angular.module('main')
   $scope.$on('onRepeatLast', function (scope, element, attrs) {
     AddDraggableForLetterButton();
     AddDroppableForLetterFrame();
+    if ($('.letter_frame').length > 4) {
+      $('.letter_frame').each(function(key, value) {
+        $(value).css("width", "12vw");
+      });
+    }
   });
   /*********************************************************/
   /*                 PREPARING EXERCISE                    */
