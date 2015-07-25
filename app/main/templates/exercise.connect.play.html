@@ -3,10 +3,7 @@
         <span class="title_ex" id="{{exerciseTitleId}}">{{title}}</span>
     </div>
     <div id="connect_labels" ng-model="labels">
-        <!--<div class="label_button" ng-repeat="label in labels" ng-click="Chosen(label)">
-            <span>{{label}}</span>
-        </div>-->
-        <div id="label_{{label}}" class="label_button" ng-repeat="label in labels  track by $index" on-last-repeat>
+        <div id="label_{{label}}" class="label_button" ng-repeat="label in labels track by $index" on-last-repeat>
             <span>{{label}}</span>
         </div>
     </div>

@@ -6,7 +6,7 @@
         <div id="photoFrame"></div>
     </div>
     <div id="whatisit_labels" ng-model="labels">
-        <div class="label_button" ng-repeat="label in labels" ng-click="Chosen(label)">
+        <div class="label_button" ng-repeat="label in labels" ng-click="Chosen(label)" on-last-repeat>
             <span>{{label}}</span>
         </div>
     </div>

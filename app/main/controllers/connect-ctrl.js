@@ -1,19 +1,11 @@
 angular.module('main')
-.directive('onLastRepeat', function () {
-  return function (scope, element, attrs) {
-    if (scope.$last) {
-      setTimeout(function () {
-      scope.$emit('onRepeatLast', element, attrs);
-    }, 1);
-    }
-  };
-})
 .controller('ConnectCtrl', function (categories, $scope, $state) {
   console.log("CONNECT CTRL");
   $scope.title = $state.current.displayName;
   AppendImages($scope);
   ShowLifes($scope);
   $scope.$on('onRepeatLast', function (scope, element, attrs) {
+   console.log("ON LAST");
     AddDraggableForLabels();
     AddDroppableForFrames();
   });

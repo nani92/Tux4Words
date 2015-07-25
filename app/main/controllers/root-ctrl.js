@@ -1,4 +1,13 @@
 angular.module('main')
+.directive('onLastRepeat', function () {
+  return function (scope, element, attrs) {
+    if (scope.$last) {
+      setTimeout(function () {
+      scope.$emit('onRepeatLast', element, attrs);
+    }, 1);
+    }
+  };
+})
 .controller('RootCtrl', function ($scope, categories, $state) {
   document.addEventListener('deviceready', function (event) {
     AndroidFullScreen.immersiveMode(successFunction, errorFunction);

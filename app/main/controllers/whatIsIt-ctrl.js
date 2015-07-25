@@ -16,4 +16,28 @@ angular.module('main')
       $scope.ShowProperBoard();
     }
   }
+  $scope.$on('onRepeatLast', function (scope, element, attrs) {
+    console.log("onRepeat");
+    console.log(element);
+    FitWordsToLabel();
+  });
+  
+  function FitWordsToLabel() {
+    $('.label_button').each(function (key, value) {
+      textWidth = $(value.children[0]).width();
+      if ( textWidth > $(value).width() ) {
+        divHeight = $(value).css("height");
+        while (textWidth > $(value).width() ) {
+          decreaseFont($(value.children[0]));
+          textWidth = $(value.children[0]).width();
+        }
+        $(value).css("height", divHeight);
+      }
+    });
+  }
+  
+  function decreaseFont(elementSpan) {
+    oldFontSize = parseInt(elementSpan.css("font-size"));
+    elementSpan.css({"font-size": (oldFontSize - 10) + "px"});
+  }
 });

@@ -356,6 +356,7 @@
   margin-left: 3vw;
   margin-right: 3vw;
   text-align: center;
+  position: relative;
 }
 #whatisit_labels > .label_button > span {
   font-size: 8vh;
