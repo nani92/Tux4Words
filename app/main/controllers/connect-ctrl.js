@@ -5,7 +5,6 @@ angular.module('main')
   AppendImages($scope);
   ShowLifes($scope);
   $scope.$on('onRepeatLast', function (scope, element, attrs) {
-   console.log("ON LAST");
     AddDraggableForLabels();
     AddDroppableForFrames();
   });

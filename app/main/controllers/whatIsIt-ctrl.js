@@ -21,7 +21,6 @@ angular.module('main')
     console.log(element);
     FitWordsToLabel();
   });
-  
   function FitWordsToLabel() {
     $('.label_button').each(function (key, value) {
       textWidth = $(value.children[0]).width();
@@ -35,7 +34,6 @@ angular.module('main')
       }
     });
   }
-  
   function decreaseFont(elementSpan) {
     oldFontSize = parseInt(elementSpan.css("font-size"));
     elementSpan.css({"font-size": (oldFontSize - 10) + "px"});

@@ -7,7 +7,7 @@ angular.module('main')
     AddDraggableForLetterButton();
     AddDroppableForLetterFrame();
     if ($('.letter_frame').length > 4) {
-      $('.letter_frame').each(function(key, value) {
+      $('.letter_frame').each(function (key, value) {
         $(value).css("width", "12vw");
       });
     }
@@ -61,7 +61,12 @@ angular.module('main')
                       IsletterTopEdgeAboveFrameBottomEdge(letter, $(this)) &&
                       IsletterBottomEdgeBelowFrameTopEdge(letter, $(this))) {
         droppedOnFrame = true;
-        HighlightLetterFrame($(this));
+        if($(this).hasClass('ui-droppable')) {
+          HighlightLetterFrame($(this));
+        }
+        else {
+          droppedOnFrame = false;
+        }
       }
       else {
         UnHighlightLetterFrame($(this));
@@ -107,6 +112,7 @@ angular.module('main')
     });
     frame.removeClass('active');
     frame.addClass('solved');
+    frame.removeClass('ui-droppable');
     letter.detach();
     frame.children('span:first').html(letter.children('span:first').html());
   }
