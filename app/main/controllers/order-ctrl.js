@@ -33,13 +33,15 @@ angular.module('main')
             if (IsAnswerCorrect()) {
               categories.increaseStatusOfWord($scope.currentImage.attr('id'));
               $scope.SetPoints($scope.points + 10);
+              $scope.Order_Next();
             }
             else {
               categories.decreaseStatusOfWord($scope.currentImage.attr('id'));
               $scope.AddToCurrentTasks();
               $scope.SetLifes( $scope.lifes - 1);
+              $scope.ShowProperBoard();
             }
-            $scope.Order_Next();
+            
           }
           return false;
         }

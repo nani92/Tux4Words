@@ -102,12 +102,21 @@ angular.module('main')
   }
   var exerciseState;
   $scope.ShowProperBoard = function () {
-    exerciseState = $state.$current;
+    exerciseState = $state.$current.name;
     $scope.isLastWord = true;
-    $state.go('root.Play:num', {num: 0});
+    $state.go('root.Play:num', {num: wordIndex});
   }
   $scope.BackToExercise = function () {
-    $scope.WhatIsIt_Next();
+    if (exerciseState.indexOf("What is it?") >= 0) {
+      $scope.WhatIsIt_Next();
+    }
+    else if (exerciseState.indexOf("Order the letters") >= 0) {
+      $scope.Order_Next();
+    } 
+    else if (exerciseState.indexOf("Type in") >= 0) {
+      $scope.TypeIn_Next();
+    } 
+    
   }
   $scope.SetPoints = function (inPoints) {
     $scope.points = inPoints;

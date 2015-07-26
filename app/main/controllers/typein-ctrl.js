@@ -12,13 +12,14 @@ angular.module('main')
         if (IsAnswerCorrect()) {
           $scope.SetPoints($scope.points + 10);
           categories.increaseStatusOfWord($scope.currentImage.attr('id'));
+          $scope.TypeIn_Next();
         }
         else {
           $scope.SetLifes($scope.lifes - 1);
           categories.decreaseStatusOfWord($scope.currentImage.attr('id'));
           $scope.AddToCurrentTasks();
+          $scope.ShowProperBoard();
         }
-        $scope.TypeIn_Next();
       }, 200);
     }
   }
