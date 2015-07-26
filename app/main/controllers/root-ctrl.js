@@ -290,6 +290,7 @@ angular.module('main')
   function TypeIn () {
     $scope.currentImage = images[$scope.tasks[wordIndex]];
     keys = images[$scope.tasks[wordIndex]].attr('id').split('');
+    keys = RemoveDuplicatesInArray(keys);
     while (keys.length < 7) {
       keys = RandomLetter(keys);
     }
@@ -437,6 +438,16 @@ angular.module('main')
     numbers.good = Math.min(Math.ceil(totalNumber / 4), statusWords.good.length);
     numbers.wrong = Math.min(totalNumber - numbers.begin - numbers.good, statusWords.wrong.length);
     return numbers;
+  }
+  
+  function RemoveDuplicatesInArray(array) {
+    var newArray = [];
+    $.each(array, function (key, value) {
+      if($.inArray(value, newArray) === -1) {
+        newArray.push(value);
+      }
+    });
+    return newArray;
   }
 });
 
