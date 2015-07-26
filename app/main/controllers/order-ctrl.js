@@ -4,8 +4,8 @@ angular.module('main')
   $('#imageContainer').prepend($scope.currentImage);
   ShowLifes($scope);
   $scope.$on('onRepeatLast', function (scope, element, attrs) {
-    AddDraggableForLetterButton();
-    AddDroppableForLetterFrame();
+    AddDraggableForLetterButtons();
+    AddDroppableForLetterFrames();
     if ($('.letter_frame').length > 4) {
       $('.letter_frame').each(function (key, value) {
         $(value).css("width", "12vw");
@@ -15,40 +15,52 @@ angular.module('main')
   /*********************************************************/
   /*                 PREPARING EXERCISE                    */
   /*********************************************************/
-  function AddDraggableForLetterButton () {
+  function AddDraggableForLetterButtons () {
     $('.letter_button').each( function () {
-      $(this).draggable({
-        start: function () {},
-        drag: function () {
-          IsOnFrame($(this));
-        },
-        revert: function () {
-          if (IsOnFrame($(this)) ) {
-            DroppedOnFrame($(this));
-            if (IsSolved()) {
-              if (IsAnswerCorrect()) {
-                categories.increaseStatusOfWord($scope.currentImage.attr('id'));
-                $scope.SetPoints($scope.points + 10);
-              }
-              else {
-                categories.decreaseStatusOfWord($scope.currentImage.attr('id'));
-                $scope.AddToCurrentTasks();
-                $scope.SetLifes( $scope.lifes - 1);
-              }
-              $scope.Order_Next();
-            }
-            return false;
-          }
-          return true;
-        },
-        stop: function () {}
-      });
+      AddDraggable($(this));
     });
   }
-  function AddDroppableForLetterFrame () {
+  function AddDraggable (letter) {
+    letter.draggable({
+      start: function () {},
+      drag: function () {
+        IsOnFrame(letter);
+      },
+      revert: function () {
+        if (IsOnFrame(letter) ) {
+          DroppedOnFrame(letter);
+          if (IsSolved()) {
+            if (IsAnswerCorrect()) {
+              categories.increaseStatusOfWord($scope.currentImage.attr('id'));
+              $scope.SetPoints($scope.points + 10);
+            }
+            else {
+              categories.decreaseStatusOfWord($scope.currentImage.attr('id'));
+              $scope.AddToCurrentTasks();
+              $scope.SetLifes( $scope.lifes - 1);
+            }
+            $scope.Order_Next();
+          }
+          return false;
+        }
+        return true;
+      },
+      stop: function () {}
+      });
+  }
+  function AddDroppableForLetterFrames () {
     $('.letter_frame').each(function () {
       $(this).droppable();
     });
+  }
+  $scope.RemoveAnswer = function (event) {
+    frameDiv = $(event.currentTarget);
+    if (frameDiv.hasClass('solved')) {
+      AddLetter(frameDiv.children("span:first").html());
+      frameDiv.children("span:first").html("0");
+      frameDiv.removeClass('solved');
+      frameDiv.addClass('ui-droppable');
+    }
   }
   /*********************************************************/
   /*                 COLLIDING                             */
@@ -138,5 +150,18 @@ angular.module('main')
     else {
       return false;
     }
+  }
+  
+  function AddLetter (letter) {
+    var divCont = $("#order_letters");
+    letterDiv = CreateLetterDiv(letter);
+    AddDraggable(letterDiv);
+    divCont.append(letterDiv);
+    
+  }
+  
+  function CreateLetterDiv (letter) {
+    return $('<div class="letter_button"><span>' 
+             + letter + '</span></div>');
   }
 });

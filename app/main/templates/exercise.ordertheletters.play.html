@@ -7,7 +7,7 @@
             <div id="imageContainer">
             </div>
             <div id="lettersFrames" ng-model="frames">
-                <div class='letter_frame' ng-repeat="frame in frames"  on-last-repeat>
+                <div class="letter_frame" ng-repeat="frame in frames"  on-last-repeat ng-click="RemoveAnswer($event)">
                     <span>{{frame}}</span>
                 </div>
             </div>
