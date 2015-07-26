@@ -732,6 +732,53 @@
   color: #1e90ff;
   text-shadow: 1px 2px gray;
 }
+#scroll-wrapper {
+  overflow: scroll;
+}
+#leader_list {
+  height: 70vh;
+  infinite-scroll-parent: true;
+}
+#leader_list > ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+#leader_list > ul li {
+  display: block;
+  font-size: 10vh;
+  width: 100%;
+  height: auto;
+}
+#leader_footer {
+  height: auto;
+  text-align: center;
+}
+#leader_footer span {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: #7abcff;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #4096ee 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffdc10), color-stop(44%, #f5bb50), color-stop(100%, #4096ee));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #ffdc10 0%, #fdc733 44%, #f5bb50 100%);
+  /* W3C */
+  box-shadow: 2px 2px 2px gray;
+  border: solid #f2ac56;
+  position: relative;
+  display: inline-block;
+  font-size: 10vh;
+  color: #1e90ff;
+  text-shadow: 1px 2px gray;
+}
 html,
 body,
 #uiView {

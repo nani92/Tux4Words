@@ -1,0 +1,28 @@
+@leader_elementHeight: 10vh;
+@leader_listHeight: 100vh - @headerHeight - @leader_goHomeFooterHeight;
+@leader_goHomeFooterHeight: 15vh;
+#scroll-wrapper {
+    overflow: scroll;
+}
+#leader_list {
+    height: @leader_listHeight;
+    infinite-scroll-parent: true;
+}
+#leader_list > ul{
+    margin-left: 0;
+    padding-left: 0;
+    li {
+        display: block;
+        font-size: @leader_elementHeight;
+        width: @fullWidth;
+        height: auto;
+    }
+}
+#leader_footer {
+    height: auto;
+    text-align: center;
+    span {
+        .Button;
+        .Icon(@leader_goHomeFooterHeight - 5vh);
+    }
+}

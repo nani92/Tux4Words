@@ -17,8 +17,6 @@ angular.module('main')
     }
   }
   $scope.$on('onRepeatLast', function (scope, element, attrs) {
-    console.log("onRepeat");
-    console.log(element);
     FitWordsToLabel();
   });
   function FitWordsToLabel() {

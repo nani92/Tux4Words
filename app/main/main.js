@@ -92,6 +92,12 @@ angular.module('main', [
       replace: true,
       templateUrl: 'main/templates/history.html',
       controller: 'HistoryCtrl'
+    })
+    .state('root.Leaderboards', {
+      url: 'leaderboards',
+      replace: true,
+      templateUrl: 'main/templates/leaderboard.html',
+      controller: 'LeaderboardCtrl'
     });
 })
 .service('categories', function () {
@@ -261,4 +267,49 @@ angular.module('main', [
     },
     isWordLearned: isWordLearned
   };
+})
+.service('leaders', function () {
+  var whatIsIt = [],
+      connect = [],
+      orderTheLetters = [],
+      typeIn = [];
+  return {
+    setWhatIsItLeaders: function (inWhatIsIt) {
+      console.log(inWhatIsIt);
+      whatIsIt = inWhatIsIt;
+    },
+    setConnectLeaders: function (inConnect) {
+      connect = inConnect;
+    },
+    setOrderTheLettersLeaders: function (inOrderTheLetters) {
+      orderTheLetters = inOrderTheLetters;
+    },
+    setTypeInLeaders: function (inTypeIn) {
+      typeIn = inTypeIn;
+    },
+    getWhatIsItLeaders: function () {
+      return whatIsIt;
+    },
+    getConnectLeaders: function () {
+      return connect;
+    },
+    getOrderTheLettersLeaders: function () {
+      return orderTheLetters;
+    },
+    getTypeInLeaders: function () {
+      return typeIn;
+    },
+    addWhatIsItResult: function (inResult) {
+      if (whatIsIt.length == 0) {
+        whatIsIt.push(inResult);
+      }
+      for ( i = 0; i < whatIsIt.length ; i++) {
+        if ( inResult.points > whatIsIt[i].points ) {
+          whatIsIt.splice(i, 0, inResult);
+          break;
+        }
+      }
+      
+    }
+  }
 });

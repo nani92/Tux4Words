@@ -7,6 +7,9 @@ angular.module('main')
     if (name === 'Play') {
       $scope.StartExercise($scope.title, $scope.titleId);
     }
+    else if (name === 'Leaderboards') {
+      $state.go('root.Leaderboards');
+    }
   };
   $scope.title = $state.current.displayName;
   var id = $state.current.url;

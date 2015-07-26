@@ -8,7 +8,7 @@ angular.module('main')
     }
   };
 })
-.controller('RootCtrl', function ($scope, categories, $state) {
+.controller('RootCtrl', function ($scope, categories, $state, leaders) {
   document.addEventListener('deviceready', function (event) {
     AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
@@ -17,6 +17,7 @@ angular.module('main')
   var rootPath = 'main/assets/json/';
   ReadJSONPaths(categories);
   ReadWordsStatus();
+  ReadLeaderBoards();
   $scope.RandomWords = RandomNewWords;
   ShouldEnableExercises();
   /*************************************************************/
@@ -44,6 +45,14 @@ angular.module('main')
     var jsonURL = rootPath + "wordStatus.json";
     $.getJSON(jsonURL, function (json) {
       categories.setWordsStatuts(json.wordState);
+    });
+  }
+  function ReadLeaderBoards () {
+    console.log("LB");
+    var jsonURL = rootPath + 'leaderboards/whatisit.json';
+    $.getJSON(jsonURL, function (json) {
+      console.log("LLB");
+      leaders.setWhatIsItLeaders(json.rank);
     });
   }
   /*************************************************************/

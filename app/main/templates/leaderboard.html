@@ -1,0 +1,15 @@
+<div id="container" >
+    <div id="header"><br>
+        <span>Leaderboard</span>
+    </div>
+    <div id="scroll-wrapper">
+        <div id="leader_list" ng-model="leaders" infinite-scroll="loadMore()">
+            <ul>
+                <li ng-repeat="leader in leaders">{{leader.name}}</li>
+            </ul>
+        </div>
+    </div>
+    <div id="leader_footer">
+        <span id="history_home" class="icomatic icon" ng-click="GoHome()">home</span>
+    </div>
+</div>
