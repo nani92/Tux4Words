@@ -227,7 +227,6 @@ angular.module('main', [
       var tmp = {};
       tmp[inWord] = [false, false, false, true, true];
       wordStatus.push(tmp);
-      console.log(wordStatus);
     },
     changeStatusForWord: function (inWord, inStatus) {
       wordStatus[inWord] = inStatus;

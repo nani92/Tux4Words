@@ -54,8 +54,7 @@ angular.module('main')
     $scope.isSessionStarted = true;
     words = categories.getAllWords();
     numberOfNotLearnedWords = categories.getAllNotLearnedForWords(words).length;
-    wordsPerSession = Math.min(wordsPerSession, numberOfNotLearnedWords);
-    if (wordsPerSession == 0 ) {
+    if ( Math.min(wordsPerSession, numberOfNotLearnedWords) == 0 ) {
       alert("There is no words to learn");
     }
     else {
@@ -125,7 +124,6 @@ angular.module('main')
   }
   $scope.AddToCurrentTasks = function (connectId) {
     connectId = connectId || 0;
-    console.log(wordIndex + connectId);
     tasks.push(tasks[wordIndex + connectId]);
   }
   $scope.GoHome = function () {
@@ -188,8 +186,6 @@ angular.module('main')
   }
   function Connect () {
     $scope.connectImages = GetConnectImages();
-    console.log(images);
-    console.log($scope.connectImages);
     $scope.labels = Shuffle(GetLabels(
       [$scope.connectImages[0].attr('id'), $scope.connectImages[1].attr('id'), $scope.connectImages[2].attr('id')],
       categories.getAllWords(), 2));
@@ -197,9 +193,7 @@ angular.module('main')
   }
   function GetConnectImages () {
     connectImages = [];
-    console.log($scope.tasks);
     for ( i = 0; i < 3 ; i++) {
-      console.log(wordIndex + i);
       connectImages.push(images[$scope.tasks[wordIndex + i]]);
     }
     return connectImages;
@@ -208,7 +202,6 @@ angular.module('main')
     var needToAdd = true;
     i = 0;
     while (needToAdd && i < $scope.tasks.length) {
-      console.log(i);
       if ($scope.tasks.length > wordIndex + 1) {
         if ( $scope.tasks[i] != $scope.tasks[wordIndex] && $scope.tasks[i] != $scope.tasks[wordIndex + 1]) {
           $scope.tasks.push($scope.tasks[i]);
@@ -322,7 +315,6 @@ angular.module('main')
   }
   function GetWordsForExercises(words, number) {
     statusWords = categories.getLearnedWordsByStatus(words);
-    console.log(statusWords);
     numbers = CountHowManyWhichWords(statusWords, number);
     images = [];
     RandomWords(statusWords.begin, numbers.begin);
