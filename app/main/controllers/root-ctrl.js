@@ -146,7 +146,7 @@ angular.module('main')
     wordIndex = 0;
     $scope.points = 0;
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
-    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerSession));
+    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerExerciseSession));
     $scope.tasks = GetTasksTable();
     WhatIsIt();
   }
@@ -180,7 +180,7 @@ angular.module('main')
     wordIndex = 0;
     $scope.points = 0;
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
-    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerSession));
+    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerExerciseSession));
     $scope.tasks = GetTasksTable();
     Connect();
   }
@@ -246,7 +246,7 @@ angular.module('main')
     wordIndex = 0;
     $scope.points = 0;
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
-    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerSession));
+    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerExerciseSession));
     $scope.tasks = GetTasksTable();
     OrderTheLetters();
   }
@@ -276,7 +276,7 @@ angular.module('main')
     wordIndex = 0;
     $scope.points = 0;
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
-    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerSession));
+    GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerExerciseSession));
     $scope.tasks = GetTasksTable();
     TypeIn($scope, $state, categories);
   }
@@ -294,6 +294,7 @@ angular.module('main')
   /*                        Helpers                            */
   /*************************************************************/
   var wordsPerSession = 3;
+  var wordsPerExerciseSession = 12;
   var wordIndex;
   var isSessionStarted = false;
   function RandomNewWords(words, number) {
