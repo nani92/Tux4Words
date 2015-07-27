@@ -16,5 +16,5 @@ The purpose of this application is to teach the youngest children reading and wr
 <p>Now You are able to run application.</p>
 <h2>Web browser</h2>
 <p>In order to run application in your web browser run <code>gulp watch</code> in your console.</p>
-<h2>Android</h2>g
+<h2>Android</h2>
 <p>To build application for android with phonegap run <code>gulp build</code> and then <code>gulp --cordova "run android"</code></p>
