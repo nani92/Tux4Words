@@ -11,7 +11,10 @@ The purpose of this application is to teach the youngest children reading and wr
 </ul>
 <p>I used a<a href="https://github.com/mwaylabs/generator-m">generator-m </a>.</p>
 <h1>Running</h1>
+<p>First You need to clone repo using command <code>git clone https://github.com/nani92/Tux4Words.git</code></p>
+<p>Then go to the project directory <code>cd Tux4Words</code> and run <code>npm install</code> and <code>bower install</code>.</p>
+<p>Now You are able to run application</p>
 <h2>Web browser</h2>
 <p>In order to run application in your web browser run <code>gulp watch</code> in your console.</p>
-<h2>Android</h2>
+<h2>Android</h2>g
 <p>To build application for android with phonegap run <code>gulp build</code> and then <code>gulp --cordova "run android"</code></p>
