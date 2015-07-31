@@ -27,6 +27,5 @@ angular.module('main')
     if ($scope.exerciseState.indexOf("Type in") >= 0) {
       allLeaders = leaders.getTypeInLeaders();
     }
-    
   }
 });

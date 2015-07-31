@@ -151,8 +151,7 @@ angular.module('main')
   $scope.GoHome = function () {
     $state.go('root.main');
   }
-  
-  var userName ="";
+  var userName = "";
   function EndExercise () {
     DisplayFinishingPrompt();
     AddResult(GetResultObject());

@@ -309,7 +309,7 @@ angular.module('main', [
           break;
         }
       }
-      whatIsIt.slice(0,10);
+      whatIsIt.slice(0, 10);
     },
     addConnectResult: function (inResult) {
       if (connect.length == 0) {
@@ -321,7 +321,7 @@ angular.module('main', [
           break;
         }
       }
-      connect.slice(0,10);
+      connect.slice(0, 10);
     },
     addOrderTheLettersResult: function (inResult) {
       if (orderTheLetters.length == 0) {
@@ -333,7 +333,7 @@ angular.module('main', [
           break;
         }
       }
-      orderTheLetters.slice(0,10);
+      orderTheLetters.slice(0, 10);
     },
     addTypeInResult: function (inResult) {
       if (typeIn.length == 0) {
@@ -345,10 +345,7 @@ angular.module('main', [
           break;
         }
       }
-      typeIn.slice(0,10);
+      typeIn.slice(0, 10);
     }
-
-
-
   }
 });
