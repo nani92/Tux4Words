@@ -7,12 +7,28 @@ angular.module('main')
     if (IsLearningCategory()) {
       $scope.StartCategory(category);
     }
+    else {
+      ExerciseCategory(category);
+    }
   }
-  
   function IsLearningCategory () {
     if ($scope.exerciseState === "") {
       return true;
     }
     return false;
+  }
+  function ExerciseCategory (inCategory) {
+    if ($scope.exerciseState.indexOf("What is it?") >= 0) {
+      $scope.StartCategory_WhatIsIt(inCategory);
+    }
+    else if ($scope.exerciseState.indexOf("Connect") >= 0) {
+      $scope.StartCategory_Connect(inCategory);
+    }
+    else if ($scope.exerciseState.indexOf("Order the letters") >= 0) {
+      $scope.StartCategory_OrderTheLetters(inCategory);
+    }
+    else if ($scope.exerciseState.indexOf("Type in") >= 0) {
+      $scope.StartCategory_TypeIn(inCategory);
+    }
   }
 });

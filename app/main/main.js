@@ -188,6 +188,16 @@ angular.module('main', [
     getWordsFromCategoryById: function (inId) {
       return categories[inId].words;
     },
+    getLearnedWordsFromCategoryById: function (inId) {
+      words = [];
+      categoryWords = categories[inId].words;
+      $.each(categoryWords, function (i, word) {
+        if (isWordLearned(word)) {
+          words.push(word);
+        }
+      });
+      return words;
+    },
     getAllWords: function () {
       if (allWords.length == 0) {
         $.each(categories, function (i, category) {

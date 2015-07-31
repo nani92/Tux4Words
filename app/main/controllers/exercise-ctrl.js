@@ -11,6 +11,9 @@ angular.module('main')
     else if (name === 'Leaderboards') {
       $state.go('root.Leaderboards');
     }
+    else if (name === 'Categories') {
+      $state.go('root.Categories');
+    }
   };
   $scope.title = $state.current.displayName;
   var id = $state.current.url;

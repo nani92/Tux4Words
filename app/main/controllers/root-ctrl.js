@@ -107,7 +107,7 @@ angular.module('main')
     $scope.isSessionStarted = false;
     $scope.exerciseTitleId = titleId;
     if ( enableExercise == false ) {
-      alert("Cannot display exercise. You have to learn new words first");
+      alert("Cannot display exercise. You have to learn new words first.");
       return;
     }
     if (exercise === "What is it?") {
@@ -178,15 +178,20 @@ angular.module('main')
     if ($scope.exerciseState.indexOf("What is it?") >= 0) {
       leaders.addWhatIsItResult(inResult);
     }
-    if ($scope.exerciseState.indexOf("Connect") >= 0) {
+    else if ($scope.exerciseState.indexOf("Connect") >= 0) {
       leaders.addConnectResult(inResult);
     }
-    if ($scope.exerciseState.indexOf("Order the letters") >= 0) {
+    else if ($scope.exerciseState.indexOf("Order the letters") >= 0) {
       leaders.addOrderTheLettersResult(inResult);
     }
-    if ($scope.exerciseState.indexOf("Type in") >= 0) {
+    else if ($scope.exerciseState.indexOf("Type in") >= 0) {
       leaders.addTypeInResult(inResult);
     }
+  }
+  function InitExercise() {
+    $scope.lifes = 3;
+    wordIndex = 0;
+    $scope.points = 0;
   }
   /*************************************************************/
   /*                   What is it?                             */
@@ -202,10 +207,11 @@ angular.module('main')
     }
   }
   function WhatIsIt_Start () {
-    $scope.lifes = 3;
-    wordIndex = 0;
-    $scope.points = 0;
+    InitExercise();
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
+    WhatIsIt_StartWithWords(learnedWords);
+  }
+  function WhatIsIt_StartWithWords (learnedWords) {
     GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerExerciseSession));
     $scope.tasks = GetTasksTable();
     WhatIsIt();
@@ -237,10 +243,11 @@ angular.module('main')
     }
   }
   function Connect_Start () {
-    $scope.lifes = 3;
-    wordIndex = 0;
-    $scope.points = 0;
+    InitExercise();
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
+    Connect_StartWithWords(learnedWords);
+  }
+  function Connect_StartWithWords (learnedWords) {
     GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerExerciseSession));
     $scope.tasks = GetTasksTable();
     Connect();
@@ -304,10 +311,11 @@ angular.module('main')
     }
   }
   function OrderTheLetters_Start () {
-    $scope.lifes = 3;
-    wordIndex = 0;
-    $scope.points = 0;
+    InitExercise();
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
+    OrderTheLetters_StartWithWords(learnedWords);
+  }
+  function OrderTheLetters_StartWithWords (learnedWords) {
     GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerExerciseSession));
     $scope.tasks = GetTasksTable();
     OrderTheLetters();
@@ -335,10 +343,11 @@ angular.module('main')
     }
   }
   function TypeIn_Start () {
-    $scope.lifes = 3;
-    wordIndex = 0;
-    $scope.points = 0;
+    InitExercise();
     learnedWords = categories.getAllLearnedForWords(categories.getAllWords());
+    TypeIn_StartWithWords(learnedWords);
+  }
+  function TypeIn_StartWithWords (learnedWords) {
     GetWordsForExercises(learnedWords, Math.min(learnedWords.length, wordsPerExerciseSession));
     $scope.tasks = GetTasksTable();
     TypeIn($scope, $state, categories);
@@ -361,7 +370,58 @@ angular.module('main')
     $scope.isSessionStarted = true;
     words = categories.getWordsFromCategoryById(categories.getCategoryId(inCategory));
     LearnWithWords(words);
-  };
+  }; 
+  $scope.StartCategory_WhatIsIt = function (inCategory) {
+    console.log(inCategory);
+    InitExercise();
+    words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    if ( IsPossibleToExerciseThisCategory(words)) {
+      console.log("IS POSSI");
+      WhatIsIt_StartWithWords(words);
+    }
+    else {
+      DisplayInfoAboutUnableCategory(inCategory);
+    }
+  }
+  $scope.StartCategory_Connect = function (inCategory) {
+    InitExercise();
+    words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    if ( IsPossibleToExerciseThisCategory(words)) {
+      Connect_StartWithWords(words);
+    }
+    else {
+      DisplayInfoAboutUnableCategory(inCategory);
+    }
+  }
+  $scope.StartCategory_OrderTheLetters = function (inCategory) {
+    InitExercise();
+    words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    if ( IsPossibleToExerciseThisCategory(words)) {
+      OrderTheLetters_StartWithWords(words);
+    }
+    else {
+      DisplayInfoAboutUnableCategory(inCategory);
+    }
+  }
+  $scope.StartCategory_TypeIn = function (inCategory) {
+    InitExercise();
+    words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    if ( IsPossibleToExerciseThisCategory(words)) {
+      TypeIn_StartWithWords(words);
+    }
+    else {
+      DisplayInfoAboutUnableCategory(inCategory);
+    }
+  }
+  function IsPossibleToExerciseThisCategory (words) {
+    if (words.length > 2) {
+      return true;
+    }
+    return false;
+  }
+  function DisplayInfoAboutUnableCategory (category) {
+    alert("Cannot display exercise for " + category +". You have to learn new words first.");
+  }
   /*************************************************************/
   /*                        Helpers                            */
   /*************************************************************/
