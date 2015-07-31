@@ -98,6 +98,12 @@ angular.module('main', [
       replace: true,
       templateUrl: 'main/templates/leaderboard.html',
       controller: 'LeaderboardCtrl'
+    })
+    .state('root.Categories', {
+      url: 'categories',
+      replace: true,
+      templateUrl: 'main/templates/categories.html',
+      controller: 'CategoriesCtrl'
     });
 })
 .service('categories', function () {

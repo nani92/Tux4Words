@@ -1,0 +1,15 @@
+<div id="container" >
+    <div id="header"><br>
+        <span>Categories</span>
+    </div>
+    <div id="scroll-wrapper">
+        <div id="category_list" ng-model="categories">
+            <ul>
+                <li ng-repeat="category in categories">{{category}}</li>
+            </ul>
+        </div>
+    </div>
+    <div id="category_footer">
+        <span id="category_home" class="icomatic icon" ng-click="GoHome()">home</span>
+    </div>
+</div>

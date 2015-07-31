@@ -1,0 +1,28 @@
+@category_elementHeight: 20vh;
+@category_listHeight: 100vh - @headerHeight - @category_goHomeFooterHeight;
+@category_goHomeFooterHeight: 15vh;
+#scroll-wrapper {
+    overflow: scroll;
+}
+#category_list {
+    height: @category_listHeight;
+    infinite-scroll-parent: true;
+}
+#category_list > ul{
+    margin-left: 0;
+    padding-left: 0;
+    li {
+        display: block;
+        font-size: @category_elementHeight;
+        width: @fullWidth;
+        height: auto;
+    }
+}
+#category_footer {
+    height: auto;
+    text-align: center;
+    span {
+        .Button;
+        .Icon(@category_goHomeFooterHeight - 5vh);
+    }
+}
