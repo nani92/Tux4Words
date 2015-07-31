@@ -94,6 +94,9 @@ angular.module('main')
   /*************************************************************/
   /*                   Exercises                               */
   /*************************************************************/
+  $scope.SetExerciseState = function () {
+    $scope.exerciseState = $state.$current.name;
+  }
   $scope.StartExercise = function (exercise, titleId) {
     $scope.isSessionStarted = false;
     $scope.exerciseTitleId = titleId;
@@ -101,7 +104,6 @@ angular.module('main')
       alert("Cannot display exercise. You have to learn new words first");
       return;
     }
-    $scope.exerciseState = $state.$current.name;
     if (exercise === "What is it?") {
       WhatIsIt_Start();
     }
