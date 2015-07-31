@@ -41,14 +41,13 @@ angular.module('main')
               $scope.SetLifes( $scope.lifes - 1);
               $scope.ShowProperBoard();
             }
-            
           }
           return false;
         }
         return true;
       },
       stop: function () {}
-      });
+    });
   }
   function AddDroppableForLetterFrames () {
     $('.letter_frame').each(function () {
@@ -75,7 +74,7 @@ angular.module('main')
                       IsletterTopEdgeAboveFrameBottomEdge(letter, $(this)) &&
                       IsletterBottomEdgeBelowFrameTopEdge(letter, $(this))) {
         droppedOnFrame = true;
-        if($(this).hasClass('ui-droppable')) {
+        if ($(this).hasClass('ui-droppable')) {
           HighlightLetterFrame($(this));
         }
         else {
@@ -153,17 +152,14 @@ angular.module('main')
       return false;
     }
   }
-  
   function AddLetter (letter) {
     var divCont = $("#order_letters");
     letterDiv = CreateLetterDiv(letter);
     AddDraggable(letterDiv);
     divCont.append(letterDiv);
-    
   }
-  
   function CreateLetterDiv (letter) {
-    return $('<div class="letter_button"><span>' 
-             + letter + '</span></div>');
+    return $('<div class="letter_button"><span>' +
+             letter + '</span></div>');
   }
 });

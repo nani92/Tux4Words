@@ -5,7 +5,10 @@
     <div id="scroll-wrapper">
         <div id="leader_list" ng-model="leaders" infinite-scroll="loadMore()">
             <ul>
-                <li ng-repeat="leader in leaders">{{leader.name}}</li>
+                <li ng-repeat="leader in leaders">
+                    <span class="name">{{leader.name}}</span>
+                    <span class="points">{{leader.points}}</span>
+                </li>
             </ul>
         </div>
     </div>

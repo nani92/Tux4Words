@@ -742,12 +742,31 @@
 #leader_list > ul {
   margin-left: 0;
   padding-left: 0;
+  list-style-type: none;
 }
 #leader_list > ul li {
-  display: block;
+  display: table-row;
+  border-top-color: gray;
+  border-top-width: 5px;
+  border-top: solid;
+  border-bottom-color: white;
+  border-bottom-width: 5px;
+  border-bottom: solid;
   font-size: 10vh;
   width: 100%;
   height: auto;
+}
+#leader_list > ul li .name {
+  float: left;
+  display: table-cell;
+  width: 70vw;
+}
+#leader_list > ul li .points {
+  float: right;
+  color: #1e90ff;
+  text-shadow: 2px 2px gray;
+  display: table-cell;
+  width: 30vw;
 }
 #leader_footer {
   height: auto;

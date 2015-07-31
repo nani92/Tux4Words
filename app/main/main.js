@@ -309,7 +309,6 @@ angular.module('main', [
           break;
         }
       }
-      
     }
   }
 });

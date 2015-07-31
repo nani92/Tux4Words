@@ -3,6 +3,14 @@
     {
       "name" : "John",
       "points" : 200
+    },
+    {
+      "name": "Sarah",
+      "points": 90
+    },
+    {
+      "name": "Es",
+      "points": 20
     }
   ]
 }

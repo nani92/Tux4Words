@@ -121,11 +121,10 @@ angular.module('main')
     }
     else if (exerciseState.indexOf("Order the letters") >= 0) {
       $scope.Order_Next();
-    } 
+    }
     else if (exerciseState.indexOf("Type in") >= 0) {
       $scope.TypeIn_Next();
-    } 
-    
+    }
   }
   $scope.SetPoints = function (inPoints) {
     $scope.points = inPoints;
@@ -147,6 +146,22 @@ angular.module('main')
   $scope.GoHome = function () {
     $state.go('root.main');
   }
+  
+  var userName ="";
+  function EndExercise () {
+    DisplayFinishingPrompt();
+    leaders.addWhatIsItResult(GetResultObject());
+  }
+  function DisplayFinishingPrompt () {
+    userName = prompt("You scored " + $scope.points +
+                      " points. \nPlease enter Your name.", "name");
+  }
+  function GetResultObject () {
+    var result = {};
+    result.name = userName;
+    result.points = $scope.points;
+    return result;
+  }
   /*************************************************************/
   /*                   What is it?                             */
   /*************************************************************/
@@ -156,6 +171,7 @@ angular.module('main')
       WhatIsIt();
     }
     else {
+      EndExercise();
       $state.go('root.What is it?');
     }
   }
@@ -450,11 +466,10 @@ angular.module('main')
     numbers.wrong = Math.min(totalNumber - numbers.begin - numbers.good, statusWords.wrong.length);
     return numbers;
   }
-  
   function RemoveDuplicatesInArray(array) {
     var newArray = [];
     $.each(array, function (key, value) {
-      if($.inArray(value, newArray) === -1) {
+      if ($.inArray(value, newArray) === -1) {
         newArray.push(value);
       }
     });
