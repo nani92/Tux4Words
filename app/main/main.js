@@ -171,21 +171,13 @@ angular.module('main', [
       return categories.length - 1;
     },
     getCategoryId: function (inCategory) {
-      if (categories.length == 0) {
-        return -1;
-      }
-      var findCategory = $.grep(categories, function (category, i) {
-        console.log(category.name);
-        if (category.name == inCategory) {
-          return i;
+      var id = -1;
+      $.each(categories, function (key, value) {
+        if (value.name === inCategory) {
+          id = key;
         }
       });
-      if (findCategory.length == 0) {
-        return -1;
-      }
-      else {
-        return categories.indexOf(findCategory[0]);
-      }
+      return id;
     },
     setWordsToCategoryById: function (inId, inWords) {
       categories[inId].words = inWords;

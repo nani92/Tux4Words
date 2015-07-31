@@ -1,6 +1,7 @@
 //'use strict';
 angular.module('main')
 .controller('StartCtrl', function (Start, Config, $scope, $state, categories, $location, $window) {
+  $scope.ClearExerciseState();
   $scope.basicOptions = ['Play', 'Categories'];
   $scope.exerciseOptions = ['What is it?', 'Connect', 'Order the letters', 'Type in'];
   $scope.MoveTo = function (option, name) {

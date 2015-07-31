@@ -5,7 +5,7 @@
     <div id="scroll-wrapper">
         <div id="category_list" ng-model="categories">
             <ul>
-                <li ng-repeat="category in categories">
+                <li ng-repeat="category in categories" ng-click="GoToCategory(category)">
                     <span class="category">{{category}}</span>
                     <span class="next icomatic icon">nextlight</span>
                 </li>

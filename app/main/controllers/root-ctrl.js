@@ -68,6 +68,9 @@ angular.module('main')
     $scope.isLastWord = false;
     $scope.isSessionStarted = true;
     words = categories.getAllWords();
+    LearnWithWords(words);
+  };
+  function LearnWithWords (words){
     numberOfNotLearnedWords = categories.getAllNotLearnedForWords(words).length;
     if ( Math.min(wordsPerSession, numberOfNotLearnedWords) == 0 ) {
       alert("There is no words to learn");
@@ -77,7 +80,7 @@ angular.module('main')
       wordIndex = 0;
       $scope.ShowNextBoard();
     }
-  };
+  }
   $scope.ShowNextBoard = function () {
     $scope.currentImage = images[wordIndex];
     MarkWordAsLearned();
@@ -96,6 +99,9 @@ angular.module('main')
   /*************************************************************/
   $scope.SetExerciseState = function () {
     $scope.exerciseState = $state.$current.name;
+  }
+  $scope.ClearExerciseState = function () {
+    $scope.exerciseState = "";
   }
   $scope.StartExercise = function (exercise, titleId) {
     $scope.isSessionStarted = false;
@@ -347,6 +353,15 @@ angular.module('main')
     $scope.keys = Shuffle(keys);
     $state.go('root.Type in-Play:num', {num: wordIndex});
   }
+  /*************************************************************/
+  /*                     Categories                            */
+  /*************************************************************/
+  $scope.StartCategory = function (inCategory) {
+    $scope.isLastWord = false;
+    $scope.isSessionStarted = true;
+    words = categories.getWordsFromCategoryById(categories.getCategoryId(inCategory));
+    LearnWithWords(words);
+  };
   /*************************************************************/
   /*                        Helpers                            */
   /*************************************************************/
