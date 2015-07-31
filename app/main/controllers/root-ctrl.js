@@ -48,11 +48,17 @@ angular.module('main')
     });
   }
   function ReadLeaderBoards () {
-    console.log("LB");
-    var jsonURL = rootPath + 'leaderboards/whatisit.json';
-    $.getJSON(jsonURL, function (json) {
-      console.log("LLB");
+    $.getJSON(rootPath + 'leaderboards/whatisit.json', function (json) {
       leaders.setWhatIsItLeaders(json.rank);
+    });
+    $.getJSON(rootPath + 'leaderboards/connect.json', function (json) {
+      leaders.setConnectLeaders(json.rank);
+    });
+    $.getJSON(rootPath + 'leaderboards/order.json', function (json) {
+      leaders.setOrderTheLettersLeaders(json.rank);
+    });
+    $.getJSON(rootPath + 'leaderboards/typein.json', function (json) {
+      leaders.setTypeInLeaders(json.rank);
     });
   }
   /*************************************************************/
@@ -95,6 +101,7 @@ angular.module('main')
       alert("Cannot display exercise. You have to learn new words first");
       return;
     }
+    $scope.exerciseState = $state.$current.name;
     if (exercise === "What is it?") {
       WhatIsIt_Start();
     }
@@ -109,20 +116,18 @@ angular.module('main')
       TypeIn_Start();
     }
   }
-  var exerciseState;
   $scope.ShowProperBoard = function () {
-    exerciseState = $state.$current.name;
     $scope.isLastWord = true;
     $state.go('root.Play:num', {num: wordIndex});
   }
   $scope.BackToExercise = function () {
-    if (exerciseState.indexOf("What is it?") >= 0) {
+    if ($scope.exerciseState.indexOf("What is it?") >= 0) {
       $scope.WhatIsIt_Next();
     }
-    else if (exerciseState.indexOf("Order the letters") >= 0) {
+    else if ($scope.exerciseState.indexOf("Order the letters") >= 0) {
       $scope.Order_Next();
     }
-    else if (exerciseState.indexOf("Type in") >= 0) {
+    else if ($scope.exerciseState.indexOf("Type in") >= 0) {
       $scope.TypeIn_Next();
     }
   }
@@ -150,7 +155,7 @@ angular.module('main')
   var userName ="";
   function EndExercise () {
     DisplayFinishingPrompt();
-    leaders.addWhatIsItResult(GetResultObject());
+    AddResult(GetResultObject());
   }
   function DisplayFinishingPrompt () {
     userName = prompt("You scored " + $scope.points +
@@ -161,6 +166,20 @@ angular.module('main')
     result.name = userName;
     result.points = $scope.points;
     return result;
+  }
+  function AddResult (inResult) {
+    if ($scope.exerciseState.indexOf("What is it?") >= 0) {
+      leaders.addWhatIsItResult(inResult);
+    }
+    if ($scope.exerciseState.indexOf("Connect") >= 0) {
+      leaders.addConnectResult(inResult);
+    }
+    if ($scope.exerciseState.indexOf("Order the letters") >= 0) {
+      leaders.addOrderTheLettersResult(inResult);
+    }
+    if ($scope.exerciseState.indexOf("Type in") >= 0) {
+      leaders.addTypeInResult(inResult);
+    }
   }
   /*************************************************************/
   /*                   What is it?                             */
@@ -206,6 +225,7 @@ angular.module('main')
       Connect();
     }
     else {
+      EndExercise ();
       $state.go('root.Connect');
     }
   }
@@ -272,6 +292,7 @@ angular.module('main')
       OrderTheLetters();
     }
     else {
+      EndExercise ();
       $state.go('root.Order the letters');
     }
   }
@@ -302,6 +323,7 @@ angular.module('main')
       TypeIn();
     }
     else {
+      EndExercise ();
       $state.go('root.Type in');
     }
   }

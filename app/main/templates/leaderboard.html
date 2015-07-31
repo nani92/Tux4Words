@@ -3,7 +3,7 @@
         <span>Leaderboard</span>
     </div>
     <div id="scroll-wrapper">
-        <div id="leader_list" ng-model="leaders" infinite-scroll="loadMore()">
+        <div id="leader_list" ng-model="leaders">
             <ul>
                 <li ng-repeat="leader in leaders">
                     <span class="name">{{leader.name}}</span>

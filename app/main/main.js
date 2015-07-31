@@ -309,6 +309,46 @@ angular.module('main', [
           break;
         }
       }
+      whatIsIt.slice(0,10);
+    },
+    addConnectResult: function (inResult) {
+      if (connect.length == 0) {
+        connect.push(inResult);
+      }
+      for ( i = 0; i < connect.length ; i++) {
+        if ( inResult.points > connect[i].points ) {
+          connect.splice(i, 0, inResult);
+          break;
+        }
+      }
+      connect.slice(0,10);
+    },
+    addOrderTheLettersResult: function (inResult) {
+      if (orderTheLetters.length == 0) {
+        orderTheLetters.push(inResult);
+      }
+      for ( i = 0; i < orderTheLetters.length ; i++) {
+        if ( inResult.points > orderTheLetters[i].points ) {
+          orderTheLetters.splice(i, 0, inResult);
+          break;
+        }
+      }
+      orderTheLetters.slice(0,10);
+    },
+    addTypeInResult: function (inResult) {
+      if (typeIn.length == 0) {
+        typeIn.push(inResult);
+      }
+      for ( i = 0; i < typeIn.length ; i++) {
+        if ( inResult.points > typeIn[i].points ) {
+          typeIn.splice(i, 0, inResult);
+          break;
+        }
+      }
+      typeIn.slice(0,10);
     }
+
+
+
   }
 });

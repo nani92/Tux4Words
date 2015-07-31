@@ -1,0 +1,16 @@
+{
+  "rank" : [
+    {
+      "name" : "Johny",
+      "points" : 200
+    },
+    {
+      "name": "Sara",
+      "points": 90
+    },
+    {
+      "name": "Ets",
+      "points": 20
+    }
+  ]
+}
