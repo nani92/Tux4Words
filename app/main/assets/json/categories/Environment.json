@@ -1,0 +1,33 @@
+{
+    "category": "Nature",
+    "words": [
+        {
+            "word": "sun",
+            "imgPath": "main/assets/images/words/sun.jpg"
+        },
+        {
+            "word": "sky",
+            "imgPath": "main/assets/images/words/sky.jpg"
+        },
+        {
+            "word": "cloud",
+            "imgPath": "main/assets/images/words/cloud.jpg"
+        },
+        {
+            "word": "grass",
+            "imgPath": "main/assets/images/words/grass.jpg"
+        },
+        {
+            "word": "tree",
+            "imgPath": "main/assets/images/words/tree.png"
+        },
+        {
+            "word": "leaf",
+            "imgPath": "main/assets/images/words/leaf.png"
+        },
+        {
+            "word": "rain",
+            "imgPath": "main/assets/images/words/rain.jpg"
+        }
+    ]
+}

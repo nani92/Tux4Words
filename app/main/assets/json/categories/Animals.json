@@ -10,12 +10,28 @@
             "imgPath": "main/assets/images/words/dog.jpg"
         },
         {
-            "word": "sun",
-            "imgPath": "main/assets/images/words/sun.jpg"
-        },
-        {
             "word": "cow",
             "imgPath": "main/assets/images/words/cow.jpg"
+        },
+        {
+            "word": "bug",
+            "imgPath": "main/assets/images/words/bug.png"
+        },
+        {
+            "word": "duck",
+            "imgPath": "main/assets/images/words/duck.jpg"
+        },
+        {
+            "word": "horse",
+            "imgPath": "main/assets/images/words/horse.jpg"
+        },
+        {
+            "word": "fish",
+            "imgPath": "main/assets/images/words/fish.png"
+        },
+        {
+            "word": "bird",
+            "imgPath": "main/assets/images/words/bird.png"
         }
     ]
 }

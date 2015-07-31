@@ -1,6 +1,7 @@
 {
     "paths": [
         "Animals.json",
-        "Number.json"
+        "Number.json",
+        "Environment.json"
     ]
 }
