@@ -1,4 +1,4 @@
-@category_elementHeight: 20vh;
+@category_elementHeight: 10vh;
 @category_listHeight: 100vh - @headerHeight - @category_goHomeFooterHeight;
 @category_goHomeFooterHeight: 15vh;
 #scroll-wrapper {
@@ -12,11 +12,24 @@
     margin-left: 0;
     padding-left: 0;
     li {
+        border-top-width: thin;
+        border-top-style: solid;
+        border-top-color: gray;
+        border-bottom-width: thin;
+        border-bottom-style: solid;
+        border-bottom-color: white;
         display: block;
         font-size: @category_elementHeight;
         width: @fullWidth;
         height: auto;
+        
     }
+}
+
+#category_list > ul > li > .next {
+    float: right;
+    color: @iconColor;
+    
 }
 #category_footer {
     height: auto;
