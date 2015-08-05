@@ -11,11 +11,11 @@ angular.module('main')
         FinishButtonForLastBoardInSession();
       }
       else {
-        FinishButtonForCorrectAnswerBoard ()
+        FinishButtonForCorrectAnswerBoard();
       }
     }
     $scope.BackToMenu = function () {
-      $scope.isSessionStarted = false;
+      $scope.EndSession();
       $state.go('root.main');
     }
     function FinishButtonForLastBoardInSession () {

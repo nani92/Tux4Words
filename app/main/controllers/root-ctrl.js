@@ -70,7 +70,7 @@ angular.module('main')
     words = categories.getAllWords();
     LearnWithWords(words);
   };
-  function LearnWithWords (words){
+  function LearnWithWords (words) {
     numberOfNotLearnedWords = categories.getAllNotLearnedForWords(words).length;
     if ( Math.min(wordsPerSession, numberOfNotLearnedWords) == 0 ) {
       alert("There is no words to learn");
@@ -102,6 +102,9 @@ angular.module('main')
   }
   $scope.ClearExerciseState = function () {
     $scope.exerciseState = "";
+  }
+  $scope.EndSession = function () {
+    $scope.isSessionStarted = false;
   }
   $scope.StartExercise = function (exercise, titleId) {
     $scope.isSessionStarted = false;
@@ -370,13 +373,11 @@ angular.module('main')
     $scope.isSessionStarted = true;
     words = categories.getWordsFromCategoryById(categories.getCategoryId(inCategory));
     LearnWithWords(words);
-  }; 
+  };
   $scope.StartCategory_WhatIsIt = function (inCategory) {
-    console.log(inCategory);
     InitExercise();
     words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
     if ( IsPossibleToExerciseThisCategory(words)) {
-      console.log("IS POSSI");
       WhatIsIt_StartWithWords(words);
     }
     else {
@@ -420,7 +421,7 @@ angular.module('main')
     return false;
   }
   function DisplayInfoAboutUnableCategory (category) {
-    alert("Cannot display exercise for " + category +". You have to learn new words first.");
+    alert("Cannot display exercise for " + category + ". You have to learn new words first.");
   }
   /*************************************************************/
   /*                        Helpers                            */

@@ -3,6 +3,7 @@
 angular.module('main')
 .controller('ExerciseCtrl', function (Start, Config, $scope, $state, categories, $location, $window) {
   $scope.SetExerciseState();
+  console.log($scope.isSessionStarted);
   $scope.basicOptions = ['Play', 'Categories', 'Play Test', 'Leaderboards'];
   $scope.MoveTo = function (name) {
     if (name === 'Play') {

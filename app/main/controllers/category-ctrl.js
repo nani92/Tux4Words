@@ -2,8 +2,7 @@
 angular.module('main')
 .controller('CategoriesCtrl', function (Start, Config, $scope, $state, categories, $location, $window) {
   $scope.categories = categories.getCategories();
-  $scope.GoToCategory = function(category) {
-    console.log(category);
+  $scope.GoToCategory = function (category) {
     if (IsLearningCategory()) {
       $scope.StartCategory(category);
     }
