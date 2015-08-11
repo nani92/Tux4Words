@@ -8,7 +8,7 @@ angular.module('main')
     }
   };
 })
-.controller('RootCtrl', function ($scope, categories, $state, leaders) {
+.controller('RootCtrl', function ($scope, categories, $state, leaders, tests) {
   document.addEventListener('deviceready', function (event) {
     AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
@@ -415,6 +415,7 @@ angular.module('main')
     }
   }
   function IsPossibleToExerciseThisCategory (words) {
+    console.log(words);
     if (words.length > 2) {
       return true;
     }
@@ -426,15 +427,10 @@ angular.module('main')
   /*************************************************************/
   /*                     Playing test                          */
   /*************************************************************/
-  $scope.StartTest = function (inTest) {
-    $scope.isLastWord = false;
-    $scope.isSessionStarted = true;
-    words = categories.getWordsFromCategoryById(categories.getCategoryId(inCategory));
-    LearnWithWords(words);
-  };
   $scope.StartTest_WhatIsIt = function (inTest) {
     InitExercise();
-    words = []; categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    console.log(inTest);
+    words = inTest.words; 
     if ( IsPossibleToExerciseThisCategory(words)) {
       WhatIsIt_StartWithWords(words);
     }
@@ -444,7 +440,7 @@ angular.module('main')
   }
   $scope.StartTest_Connect = function (inTest) {
     InitExercise();
-    words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    words = inTest.words;
     if ( IsPossibleToExerciseThisCategory(words)) {
       Connect_StartWithWords(words);
     }
@@ -454,7 +450,7 @@ angular.module('main')
   }
   $scope.StartTest_OrderTheLetters = function (inTest) {
     InitExercise();
-    words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    words = inTest.words;
     if ( IsPossibleToExerciseThisCategory(words)) {
       OrderTheLetters_StartWithWords(words);
     }
@@ -464,22 +460,13 @@ angular.module('main')
   }
   $scope.StartTest_TypeIn = function (inTest) {
     InitExercise();
-    words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    words = inTest.words;
     if ( IsPossibleToExerciseThisCategory(words)) {
       TypeIn_StartWithWords(words);
     }
     else {
       DisplayInfoAboutUnableCategory(inTest);
     }
-  }
-  function IsPossibleToExerciseThisCategory (words) {
-    if (words.length > 2) {
-      return true;
-    }
-    return false;
-  }
-  function DisplayInfoAboutUnableCategory (category) {
-    alert("Cannot display exercise for " + category + ". You have to learn new words first.");
   }
   /*************************************************************/
   /*                        Helpers                            */

@@ -108,7 +108,7 @@ angular.module('main', [
     .state('root.PlayTest', {
       url: 'test',
       replace: true,
-      templateUrl: 'main/templates/test.html',
+      templateUrl: 'main/templates/playtest.html',
       controller: 'TestCtrl'
     });
 })
@@ -360,6 +360,17 @@ angular.module('main', [
         }
       }
       typeIn.slice(0, 10);
+    }
+  }
+})
+.service('tests', function () {
+  tests = [];
+  return {
+    addTest: function (inTest) {
+      tests.push(inTest);
+    },
+    getTestList: function () {
+      return tests;
     }
   }
 });

@@ -6,7 +6,7 @@
         <div id="test_list" ng-model="test">
             <ul>
                 <li ng-repeat="test in tests" ng-click="GoToTest(test)">
-                    <span class="category">{{test}}</span>
+                    <span class="category">{{test.name}}</span>
                     <span class="next icomatic icon">nextlight</span>
                 </li>
             </ul>

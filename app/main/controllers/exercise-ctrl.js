@@ -15,6 +15,9 @@ angular.module('main')
     else if (name === 'Categories') {
       $state.go('root.Categories');
     }
+    else if (name === 'Play Test') {
+      $state.go('root.PlayTest');
+    }
   };
   $scope.title = $state.current.displayName;
   var id = $state.current.url;
