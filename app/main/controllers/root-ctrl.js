@@ -424,6 +424,64 @@ angular.module('main')
     alert("Cannot display exercise for " + category + ". You have to learn new words first.");
   }
   /*************************************************************/
+  /*                     Playing test                          */
+  /*************************************************************/
+  $scope.StartTest = function (inTest) {
+    $scope.isLastWord = false;
+    $scope.isSessionStarted = true;
+    words = categories.getWordsFromCategoryById(categories.getCategoryId(inCategory));
+    LearnWithWords(words);
+  };
+  $scope.StartTest_WhatIsIt = function (inTest) {
+    InitExercise();
+    words = []; categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    if ( IsPossibleToExerciseThisCategory(words)) {
+      WhatIsIt_StartWithWords(words);
+    }
+    else {
+      DisplayInfoAboutUnableCategory(inTest);
+    }
+  }
+  $scope.StartTest_Connect = function (inTest) {
+    InitExercise();
+    words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    if ( IsPossibleToExerciseThisCategory(words)) {
+      Connect_StartWithWords(words);
+    }
+    else {
+      DisplayInfoAboutUnableCategory(inTest);
+    }
+  }
+  $scope.StartTest_OrderTheLetters = function (inTest) {
+    InitExercise();
+    words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    if ( IsPossibleToExerciseThisCategory(words)) {
+      OrderTheLetters_StartWithWords(words);
+    }
+    else {
+      DisplayInfoAboutUnableCategory(inTest);
+    }
+  }
+  $scope.StartTest_TypeIn = function (inTest) {
+    InitExercise();
+    words = categories.getLearnedWordsFromCategoryById(categories.getCategoryId(inCategory));
+    if ( IsPossibleToExerciseThisCategory(words)) {
+      TypeIn_StartWithWords(words);
+    }
+    else {
+      DisplayInfoAboutUnableCategory(inTest);
+    }
+  }
+  function IsPossibleToExerciseThisCategory (words) {
+    if (words.length > 2) {
+      return true;
+    }
+    return false;
+  }
+  function DisplayInfoAboutUnableCategory (category) {
+    alert("Cannot display exercise for " + category + ". You have to learn new words first.");
+  }
+  /*************************************************************/
   /*                        Helpers                            */
   /*************************************************************/
   var wordsPerSession = 3;
@@ -589,3 +647,16 @@ function successFunction() {
 function errorFunction(error) {
   console.log(error);
 }
+
+function win (writer) {
+  writer.onwrite = function (evt) {
+    console.log("write success");
+  };
+  writer.write("some sample text");
+};
+
+var fail = function (evt) {
+  console.log(error.code);
+};
+
+entry.createWriter(win, fail);

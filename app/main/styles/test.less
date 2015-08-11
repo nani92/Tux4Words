@@ -1,0 +1,41 @@
+@test_elementHeight: 10vh;
+@test_listHeight: 100vh - @headerHeight - @test_goHomeFooterHeight;
+@test_goHomeFooterHeight: 15vh;
+#scroll-wrapper {
+    overflow: scroll;
+}
+#test_list {
+    height: @test_listHeight;
+    infinite-scroll-parent: true;
+}
+#test_list > ul{
+    margin-left: 0;
+    padding-left: 0;
+    li {
+        border-top-width: thin;
+        border-top-style: solid;
+        border-top-color: gray;
+        border-bottom-width: thin;
+        border-bottom-style: solid;
+        border-bottom-color: white;
+        display: block;
+        font-size: @test_elementHeight;
+        width: @fullWidth;
+        height: auto;
+        
+    }
+}
+
+#test_list > ul > li > .next {
+    float: right;
+    color: @iconColor;
+    
+}
+#test_footer {
+    height: auto;
+    text-align: center;
+    span {
+        .Button;
+        .Icon(@test_goHomeFooterHeight - 5vh);
+    }
+}

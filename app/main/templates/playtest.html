@@ -1,0 +1,18 @@
+<div id="container" >
+    <div id="header"><br>
+        <span>Play Test</span>
+    </div>
+    <div id="scroll-wrapper">
+        <div id="test_list" ng-model="test">
+            <ul>
+                <li ng-repeat="test in tests" ng-click="GoToTest(test)">
+                    <span class="category">{{test}}</span>
+                    <span class="next icomatic icon">nextlight</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="test_footer">
+        <span id="test_home" class="icomatic icon" ng-click="GoHome()">home</span>
+    </div>
+</div>

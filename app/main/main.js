@@ -104,6 +104,12 @@ angular.module('main', [
       replace: true,
       templateUrl: 'main/templates/categories.html',
       controller: 'CategoriesCtrl'
+    })
+    .state('root.PlayTest', {
+      url: 'test',
+      replace: true,
+      templateUrl: 'main/templates/test.html',
+      controller: 'TestCtrl'
     });
 })
 .service('categories', function () {
