@@ -1,18 +1,12 @@
 //'use strict';
 angular.module('main')
-.controller('TestCtrl', function (Start, Config, $scope, $state, categories, $location, $window) {
-  testNew = {};
-  testNew.name = '+';
-  testNew.words = {};
-  testMy1 = {};
-  testMy1.name = 'My1';
-  testMy1.words = [];
-  wordDog = {};
-  wordDog.word = 'Dog';
-  wordDog.imgPath = "main/assets/images/words/dog.jpg";
-  testMy1.words.push(wordDog);
-  $scope.tests = [testNew, testMy1];
+.controller('TestCtrl', function (Start, Config, $scope, $state, categories, $location, $window, tests) {
+  $scope.tests = tests.getTestList();
   $scope.GoToTest = function (test) {
+    if (test.name === '+') {
+      $state.go('root.MakeTest');
+      return;
+    }
     ExerciseTest(test);
   }
   function ExerciseTest (inTest) {

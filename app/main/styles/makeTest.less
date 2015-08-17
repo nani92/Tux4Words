@@ -1,0 +1,46 @@
+@makeTest_elementHeight: 10vh;
+@makeTest_listHeight: 100vh - @headerHeight - @makeTest_goHomeFooterHeight;
+@makeTest_goHomeFooterHeight: 15vh;
+#scroll-wrapper {
+    overflow: scroll;
+}
+#makeTest_list {
+    height: @makeTest_listHeight;
+    infinite-scroll-parent: true;
+}
+#makeTest_category_list > ul{
+    margin-left: 0;
+    padding-left: 0;
+    li {
+        border-top-width: thin;
+        border-top-style: solid;
+        border-top-color: gray;
+        border-bottom-width: thin;
+        border-bottom-style: solid;
+        border-bottom-color: white;
+        display: block;
+        font-size: @makeTest_elementHeight;
+        width: @fullWidth;
+        height: auto;
+        
+    }
+}
+
+#makeTest_category_list > ul > li > .next {
+    float: right;
+    color: @iconColor;
+    
+}
+#makeTest_name {
+    height: auto;
+    font-size: @makeTest_elementHeight;
+    width: @fullWidth - 2vw;
+}
+#makeTest_footer {
+    height: auto;
+    text-align: center;
+    span {
+        .Button;
+        .Icon(@makeTest_goHomeFooterHeight - 5vh);
+    }
+}

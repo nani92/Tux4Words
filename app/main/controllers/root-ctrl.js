@@ -430,7 +430,7 @@ angular.module('main')
   $scope.StartTest_WhatIsIt = function (inTest) {
     InitExercise();
     console.log(inTest);
-    words = inTest.words; 
+    words = inTest.words;
     if ( IsPossibleToExerciseThisCategory(words)) {
       WhatIsIt_StartWithWords(words);
     }
@@ -645,5 +645,3 @@ function win (writer) {
 var fail = function (evt) {
   console.log(error.code);
 };
-
-entry.createWriter(win, fail);

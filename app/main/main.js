@@ -110,6 +110,12 @@ angular.module('main', [
       replace: true,
       templateUrl: 'main/templates/playtest.html',
       controller: 'TestCtrl'
+    })
+    .state('root.MakeTest', {
+      url: 'test',
+      replace: true,
+      templateUrl: 'main/templates/makeTest.html',
+      controller: 'MakeTestCtrl'
     });
 })
 .service('categories', function () {
@@ -365,6 +371,18 @@ angular.module('main', [
 })
 .service('tests', function () {
   tests = [];
+  testNew = {};
+  testNew.name = '+';
+  testNew.words = {};
+  testMy1 = {};
+  testMy1.name = 'My1';
+  testMy1.words = [];
+  wordDog = {};
+  wordDog.word = 'Dog';
+  wordDog.imgPath = "main/assets/images/words/dog.jpg";
+  testMy1.words.push(wordDog);
+  tests.push(testNew);
+  tests.push(testMy1);
   return {
     addTest: function (inTest) {
       tests.push(inTest);
