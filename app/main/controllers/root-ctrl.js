@@ -432,42 +432,50 @@ angular.module('main')
     InitExercise();
     console.log(inTest);
     words = inTest.words;
-    if ( IsPossibleToExerciseThisCategory(words)) {
+    if ( IsPossibleToStartThisTest(words)) {
       WhatIsIt_StartWithWords(words);
     }
     else {
-      DisplayInfoAboutUnableCategory(inTest);
+      DisplayInfoAboutUnableCategory(inTest.name);
     }
   }
   $scope.StartTest_Connect = function (inTest) {
     InitExercise();
     words = inTest.words;
-    if ( IsPossibleToExerciseThisCategory(words)) {
+    if ( IsPossibleToStartThisTest(words)) {
       Connect_StartWithWords(words);
     }
     else {
-      DisplayInfoAboutUnableCategory(inTest);
+      DisplayInfoAboutUnableCategory(inTest.name);
     }
   }
   $scope.StartTest_OrderTheLetters = function (inTest) {
     InitExercise();
     words = inTest.words;
-    if ( IsPossibleToExerciseThisCategory(words)) {
+    if ( IsPossibleToStartThisTest(words)) {
       OrderTheLetters_StartWithWords(words);
     }
     else {
-      DisplayInfoAboutUnableCategory(inTest);
+      DisplayInfoAboutUnableCategory(inTest.name);
     }
   }
   $scope.StartTest_TypeIn = function (inTest) {
     InitExercise();
     words = inTest.words;
-    if ( IsPossibleToExerciseThisCategory(words)) {
+    if ( IsPossibleToStartThisTest(words)) {
       TypeIn_StartWithWords(words);
     }
     else {
-      DisplayInfoAboutUnableCategory(inTest);
+      DisplayInfoAboutUnableCategory(inTest.name);
     }
+  }
+  
+  function IsPossibleToStartThisTest (words) {
+    learnedWords = categories.getAllLearnedForWords(words);
+    if (learnedWords.length > 2) {
+      return true;
+    }
+    return false;
   }
   /*************************************************************/
   /*                        Helpers                            */
