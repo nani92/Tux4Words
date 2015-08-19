@@ -99,6 +99,7 @@ angular.module('main')
   /*************************************************************/
   $scope.SetExerciseState = function () {
     $scope.exerciseState = $state.$current.name;
+    console.log("State " + $scope.exerciseState);
   }
   $scope.ClearExerciseState = function () {
     $scope.exerciseState = "";

@@ -10,24 +10,22 @@ angular.module('main')
       ExerciseCategory(category);
     }
   }
-  function IsLearningCategory () {
-    if ($scope.exerciseState === "") {
-      return true;
-    }
-    return false;
+  $scope.CreateTest = function () {
+    test = {};
+    test.name = document.getElementById("makeTest_name").value;
+    test.words = GetChosenWords();
+    tests.addTest(test);
+    $state.go('root.PlayTest');
   }
-  function ExerciseCategory (inCategory) {
-    if ($scope.exerciseState.indexOf("What is it?") >= 0) {
-      $scope.StartCategory_WhatIsIt(inCategory);
-    }
-    else if ($scope.exerciseState.indexOf("Connect") >= 0) {
-      $scope.StartCategory_Connect(inCategory);
-    }
-    else if ($scope.exerciseState.indexOf("Order the letters") >= 0) {
-      $scope.StartCategory_OrderTheLetters(inCategory);
-    }
-    else if ($scope.exerciseState.indexOf("Type in") >= 0) {
-      $scope.StartCategory_TypeIn(inCategory);
-    }
+  function GetChosenWords () {
+    words = [];
+    $(".category-checkBox").each( function (index, element) {
+      if (document.getElementById(element.id).checked) {
+        categoryName = (element.id).substring(3);
+        categoryId = categories.getCategoryId(categoryName);
+        words = words.concat(categories.getWordsFromCategoryById(categoryId));
+      }
+    });
+    return words;
   }
 });

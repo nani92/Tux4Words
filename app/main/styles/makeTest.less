@@ -25,7 +25,11 @@
         
     }
 }
-
+#makeTest_button {
+    .Button;
+    width: @fullWidth * 0.5;
+    display: inline-block;
+}
 #makeTest_category_list > ul > li > .next {
     float: right;
     color: @iconColor;
@@ -36,10 +40,17 @@
     font-size: @makeTest_elementHeight;
     width: @fullWidth - 2vw;
 }
+.category-checkBox {
+    height: @makeTest_elementHeight;
+    width: @makeTest_elementHeight;
+}
+.checkBox_container {
+    background-color: @backgroundTheDarkest;
+}
 #makeTest_footer {
     height: auto;
     text-align: center;
-    span {
+    #makeTest_home {
         .Button;
         .Icon(@makeTest_goHomeFooterHeight - 5vh);
     }

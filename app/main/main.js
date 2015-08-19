@@ -112,7 +112,7 @@ angular.module('main', [
       controller: 'TestCtrl'
     })
     .state('root.MakeTest', {
-      url: 'test',
+      url: 'makeTest',
       replace: true,
       templateUrl: 'main/templates/makeTest.html',
       controller: 'MakeTestCtrl'

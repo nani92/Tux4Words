@@ -2,6 +2,7 @@
 angular.module('main')
 .controller('TestCtrl', function (Start, Config, $scope, $state, categories, $location, $window, tests) {
   $scope.tests = tests.getTestList();
+  console.log($scope.tests);
   $scope.GoToTest = function (test) {
     if (test.name === '+') {
       $state.go('root.MakeTest');
@@ -10,6 +11,7 @@ angular.module('main')
     ExerciseTest(test);
   }
   function ExerciseTest (inTest) {
+    console.log($scope.exerciseState);
     if ($scope.exerciseState.indexOf("What is it?") >= 0) {
       $scope.StartTest_WhatIsIt(inTest);
     }

@@ -7,7 +7,7 @@
             <ul>
                 <li><input id="makeTest_name" value="name" type="text"></li>
                 <li ng-repeat="category in categories">
-                    <input type="checkbox">
+                    <input id="cb_{{category}}" class="category-checkBox" type="checkbox">
                     <span class="category" ng-click="GoToCategory(category)">{{category}}</span>
                     <span class="next icomatic icon">nextlight</span>
                 </li>
@@ -16,5 +16,8 @@
     </div>
     <div id="makeTest_footer">
         <span id="makeTest_home" class="icomatic icon" ng-click="GoHome()">home</span>
+        <div id="makeTest_button" ng-click="CreateTest()">
+            <span>CREATE TEST</span>
+        </div>
     </div>
 </div>
