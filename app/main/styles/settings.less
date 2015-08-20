@@ -1,0 +1,52 @@
+@import "devices";
+@import "button";
+@import "tuxBackg";
+
+@exercise_headerHeight: @headerHeight;
+@exercise_tuxContainerHeight: 50vh;
+@exercise_tuxContainerWidth: 100vw;
+@exercise_menuContainerHeight: 100vh - @exercise_tuxContainerHeight - @exercise_headerHeight;
+@exercise_menuContainerWidth: @exercise_tuxContainerWidth;
+@iconHomeLeft: 23vw;
+@iconHomeTop: 5vh;
+@settingsOptionFontSize: 5vh;
+
+#header>.title_ex{
+    top: 0;
+}
+
+#settingsScreen_tux{
+    height: @exercise_tuxContainerHeight;
+    width: @exercise_tuxContainerWidth;
+    .TuxBackg;
+}
+
+#settingsScreen_menu{
+    height: @exercise_menuContainerHeight;
+    width: @exercise_menuContainerWidth;
+    text-align: center;
+}
+
+#settingsScreen_tux > span{
+    .Icon(@iconFontSize);
+}
+
+#settingsScreen_tux > #home{
+    left: @iconHomeLeft;
+    top: @iconHomeTop;
+}
+
+#wordsPerSession_Input {
+    width: 15vw;
+    text-align: center;
+    float: right;
+    font-size: @settingsOptionFontSize;
+}
+
+#wordsPerSession_Span {
+    float: left;
+}
+
+#wordsPerSession_Container {
+    font-size: @settingsOptionFontSize;
+}

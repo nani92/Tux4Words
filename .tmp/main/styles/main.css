@@ -1004,6 +1004,45 @@
   color: #1e90ff;
   text-shadow: 1px 2px gray;
 }
+#header > .title_ex {
+  top: 0;
+}
+#settingsScreen_tux {
+  height: 50vh;
+  width: 100vw;
+  background-image: url("../assets/images/tux.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#settingsScreen_menu {
+  height: 35vh;
+  width: 100vw;
+  text-align: center;
+}
+#settingsScreen_tux > span {
+  position: relative;
+  display: inline-block;
+  font-size: 5vh;
+  color: #1e90ff;
+  text-shadow: 1px 2px gray;
+}
+#settingsScreen_tux > #home {
+  left: 23vw;
+  top: 5vh;
+}
+#wordsPerSession_Input {
+  width: 15vw;
+  text-align: center;
+  float: right;
+  font-size: 5vh;
+}
+#wordsPerSession_Span {
+  float: left;
+}
+#wordsPerSession_Container {
+  font-size: 5vh;
+}
 html,
 body,
 #uiView {

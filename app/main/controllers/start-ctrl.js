@@ -14,4 +14,7 @@ angular.module('main')
   $scope.ShowHistory = function () {
     $state.go("root.history");
   }
+  $scope.ShowSettings = function () {
+    $state.go("root.Settings");
+  }
 });

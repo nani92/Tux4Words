@@ -116,6 +116,12 @@ angular.module('main', [
       replace: true,
       templateUrl: 'main/templates/makeTest.html',
       controller: 'MakeTestCtrl'
+    })
+    .state('root.Settings', {
+      url: 'settings',
+      replace: true,
+      templateUrl: 'main/templates/SettingsScreen.html',
+      controller: 'SettingsCtrl'
     });
 })
 .service('categories', function () {
