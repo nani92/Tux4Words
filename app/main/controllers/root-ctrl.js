@@ -706,22 +706,33 @@ angular.module('main')
     }
     return false;
   }
+  function GotLeadersDirectorySuccessFun (jsonDir) {
+    function successFun(directoryEntry) {
+      for (i = 0; i < jsonDir.files[0].files.length; i++) {
+        directoryEntry.getFile(jsonDir.files[0].files[i].name, {create: true, exclusive: false}, function () {}, fail)
+      }
+    }
+    return successFun;
+  }
+  function GotJsonDirectorySuccessFun (jsonDir) {
+    function successFun(directoryEntry) {
+      directoryEntry.getDirectory(jsonDir.files[0].name, {create: true, exclusive: false}, GotLeadersDirectorySuccessFun(jsonDir), fail);
+      directoryEntry.getFile("wordStatus.json", {create: true, exclusive: false}, function () {
+        ReadWordsStatus();
+        ReadLeaderBoards();
+      }, fail);
+    }
+    return successFun;
+  }
+  function GotFileSystemSuccessFun (jsonDir) {
+    function successFun(fileSystem) {
+      fileSystem.getDirectory(jsonDir.name, {create: true, exclusive: false}, GotJsonDirectorySuccessFun(jsonDir), fail);
+    }
+    return successFun;
+  }
   function CreateAllDirsAndFiles() {
     jsonDir = GetJSONDirectoryObjectHelper();
-    window.resolveLocalFileSystemURI(cordova.file.externalDataDirectory, function (fileSystem) {
-      fileSystem.getDirectory(jsonDir.name, {create: true, exclusive: false}, function (directoryEntry) {
-        directoryEntry.getDirectory(jsonDir.files[0].name, {create: true, exclusive: false}, function (directoryEntry) {
-          for (i = 0; i < jsonDir.files[0].files.length; i++) {
-            directoryEntry.getFile(jsonDir.files[0].files[i].name, {create: true, exclusive: false}, function () {
-            }, fail)
-          }
-        }, fail);
-        directoryEntry.getFile("wordStatus.json", {create: true, exclusive: false}, function () {
-          ReadWordsStatus();
-          ReadLeaderBoards();
-        }, fail)
-      }, fail);
-    }, fail);
+    window.resolveLocalFileSystemURI(cordova.file.externalDataDirectory, GotFileSystemSuccessFun(jsonDir), fail);
   }
   function WriteFile(path, name, value) {
     console.log('WriteFile');
