@@ -226,6 +226,8 @@ angular.module('main', [
     },
     setWordsStatuts: function (inWordStatus) {
       wordStatus = inWordStatus;
+      console.log("inw");
+      console.log(inWordStatus);
     },
     getListOfLearnedWords: function () {
       var words = [];
@@ -291,7 +293,12 @@ angular.module('main', [
       });
       return outWords;
     },
-    isWordLearned: isWordLearned
+    isWordLearned: isWordLearned,
+    writeWordStatusToFile: function () {
+      jsonObj = {};
+      jsonObj.wordState = wordStatus;
+      return jsonObj;
+    }
   };
 })
 .service('leaders', function () {

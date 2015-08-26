@@ -14,13 +14,15 @@ angular.module('main')
     if (IsItFirstRun()) {
       CreateAllDirsAndFiles();
     }
+    else {
+      ReadWordsStatus();
+      ReadLeaderBoards();
+    }
   });
   var enableExercise = false;
   var numberOfNotLearnedWords = 12;
   var rootPath = 'main/assets/json/';
   ReadJSONPaths(categories);
-  ReadWordsStatus();
-  ReadLeaderBoards();
   $scope.RandomWords = RandomNewWords;
   ShouldEnableExercises();
   /*************************************************************/
@@ -45,9 +47,20 @@ angular.module('main')
     });
   }
   function ReadWordsStatus () {
-    var jsonURL = rootPath + "wordStatus.json";
+    var jsonURL = cordova.file.externalDataDirectory + 'json/' + "wordStatus.json";
+    console.log(jsonURL);
     $.getJSON(jsonURL, function (json) {
+      console.log("GOT JSON");
       categories.setWordsStatuts(json.wordState);
+    }).fail(function (jqXHR, status, error) {
+      if (status == 'parsererror') {
+        categories.setWordsStatuts([]);
+        console.log("not parsed");
+      }
+      else {
+        console.log("err ");
+        console.log(status);
+      };
     });
   }
   function ReadLeaderBoards () {
@@ -68,7 +81,6 @@ angular.module('main')
   /*                   Playing                                 */
   /*************************************************************/
   $scope.StartPlay = function () {
-    ReadFile();
     $scope.isLastWord = false;
     $scope.isSessionStarted = true;
     words = categories.getAllWords();
@@ -109,6 +121,8 @@ angular.module('main')
     $scope.exerciseState = "";
   }
   $scope.EndSession = function () {
+    console.log(categories.writeWordStatusToFile());
+    WriteFile('json/', 'wordStatus.json', categories.writeWordStatusToFile());
     $scope.isSessionStarted = false;
   }
   $scope.StartExercise = function (exercise, titleId) {
@@ -636,30 +650,80 @@ angular.module('main')
     });
     return newArray;
   }
-});
+  var run = 0;
+  /*************************************************************/
+  /*                 Writing a files                            */
+  /*************************************************************/
 
+  function GetJSONDirectoryObjectHelper () {
+    jsonDir = {};
+    jsonDir.name = "json";
+    jsonDir.isDir = true;
+    leaderDir = {};
+    leaderDir.name = "leaderboards";
+    leaderDir.isDir = true;
+    leaderDir.files = [GetFile("connect.json"), GetFile("order.json"), GetFile("typein.json"), GetFile("whatisit.json")];
+    jsonDir.files = [leaderDir, GetFile("wordStatus.json")];
+    return jsonDir;
+  }
+  function GetFile (name) {
+    file = {};
+    file.name = name;
+    file.isDir = false;
+    return file;
+  }
+  function IsItFirstRun() {
+    console.log("is it first");
+    console.log(window.localStorage.getItem('runtux' + run));
+    if (window.localStorage.getItem('runtux' + run) == null) {
+      window.localStorage.setItem('runtux' + run, '1');
+      return true;
+    }
+    return false;
+  }
+  function CreateAllDirsAndFiles() {
+    console.log("first run");
+    jsonDir = GetJSONDirectoryObjectHelper();
+    window.resolveLocalFileSystemURI(cordova.file.externalDataDirectory, function (fileSystem) {
+      fileSystem.getDirectory(jsonDir.name, {create: true, exclusive: false}, function (directoryEntry) {
+        directoryEntry.getDirectory(jsonDir.files[0].name, {create: true, exclusive: false}, function (directoryEntry) {
+          for (i = 0; i < jsonDir.files[0].files.length; i++) {
+            directoryEntry.getFile(jsonDir.files[0].files[i].name, {create: true, exclusive: false}, function () {
+              console.log("Created file ");
+            }, fail)
+          }
+        }, fail);
+        directoryEntry.getFile("wordStatus.json", {create: true, exclusive: false}, function () {
+          console.log("Created wordStatus.json");
+          ReadWordsStatus();
+          ReadLeaderBoards();
+        }, fail)
+      }, fail);
+    }, fail);
+  }
+  function WriteFile(path, name, value) {
+    window.resolveLocalFileSystemURI(cordova.file.externalDataDirectory + path, function (fileSystem) {
+      fileSystem.getFile(name, {create: true, exclusive: false}, function (fileEntry) {
+        fileEntry.createWriter(function (writer) {
+          console.log("GOT FW");
+          writer.seek(0);
+          writer.write(value);
+          writer.onwriteend = function (evt) {
+            console.log("writing succeded");
+          }
+        }, fail);
+      });
+    });
+  }
+});
 function ShowLifes($scope) {
   for (i = 3; i > 0; i--) {
     if ($scope.lifes < i ) {
       $('#' + i.toString() + 'life').attr('class', 'dead');
-    }
-  }
+    }  }
 }
-var run = 4;
-//Writing a file
-function IsItFirstRun() {
-  console.log("is it first");
-  console.log(window.localStorage.getItem('runned' + run));
-  if (window.localStorage.getItem('runned' + run) == null) {
-    window.localStorage.setItem('runned' + run, '1');
-    return true;
-  }
-  return false;
-}
-function CreateAllDirsAndFiles() {
-  console.log("first run");
-  window.resolveLocalFileSystemURI('file:///android_asset/www/main/assets/json', gotFS2, fail);
-}
+
+/*
 var srcDir;
 function gotFS2(fileSystem) {
   console.log("GOT FS");
@@ -672,6 +736,7 @@ function gotFS2(fileSystem) {
 function GotParent (parent) {
   console.log("got Parent");
   console.log(srcDir);
+  console.log(parent);
   var dstDir = cordova.file.externalDataDirectory;
   srcDir.copyTo(parent, dstDir, Copied, fail);
 }
@@ -732,10 +797,10 @@ function gotFileWriter(writer) {
         console.log("contents of file now 'some different text'");
       }
     };*/
-  };
+/*};
   console.log("WRITING");
   writer.write("some sample text");
-}
+}*/
 function readAsText(file) {
   var reader = new FileReader();
   reader.onloadend = function (evt) {
