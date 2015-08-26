@@ -379,6 +379,26 @@ angular.module('main', [
         }
       }
       typeIn.slice(0, 10);
+    },
+    writeWhatIsItWordStatusToFile: function () {
+      jsonObj = {};
+      jsonObj.rank = whatIsIt;
+      return jsonObj;
+    },
+    writeConnectWordStatusToFile: function () {
+      jsonObj = {};
+      jsonObj.rank = connect;
+      return jsonObj;
+    },
+    writeOrderTheLettersWordStatusToFile: function () {
+      jsonObj = {};
+      jsonObj.rank = orderTheLetters;
+      return jsonObj;
+    },
+    writeTypeInWordStatusToFile: function () {
+      jsonObj = {};
+      jsonObj.rank = typeIn;
+      return jsonObj;
     }
   }
 })

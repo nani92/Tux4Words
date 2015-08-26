@@ -48,33 +48,58 @@ angular.module('main')
   }
   function ReadWordsStatus () {
     var jsonURL = cordova.file.externalDataDirectory + 'json/' + "wordStatus.json";
-    console.log(jsonURL);
     $.getJSON(jsonURL, function (json) {
-      console.log("GOT JSON");
       categories.setWordsStatuts(json.wordState);
     }).fail(function (jqXHR, status, error) {
       if (status == 'parsererror') {
         categories.setWordsStatuts([]);
-        console.log("not parsed");
       }
       else {
-        console.log("err ");
         console.log(status);
       };
     });
   }
   function ReadLeaderBoards () {
-    $.getJSON(rootPath + 'leaderboards/whatisit.json', function (json) {
+    parentPath = cordova.file.externalDataDirectory + 'json/leaderboards/';
+    $.getJSON(parentPath + 'whatisit.json', function (json) {
       leaders.setWhatIsItLeaders(json.rank);
+    }).fail(function (jqXHR, status, error) {
+      if (status == 'parsererror') {
+        leaders.setWhatIsItLeaders([]);
+      }
+      else {
+        console.log(status);
+      };
     });
-    $.getJSON(rootPath + 'leaderboards/connect.json', function (json) {
+    $.getJSON(parentPath + 'connect.json', function (json) {
       leaders.setConnectLeaders(json.rank);
+    }).fail(function (jqXHR, status, error) {
+      if (status == 'parsererror') {
+        leaders.setConnectLeaders([]);
+      }
+      else {
+        console.log(status);
+      };
     });
-    $.getJSON(rootPath + 'leaderboards/order.json', function (json) {
+    $.getJSON(parentPath + 'order.json', function (json) {
       leaders.setOrderTheLettersLeaders(json.rank);
+    }).fail(function (jqXHR, status, error) {
+      if (status == 'parsererror') {
+        leaders.setOrderTheLettersLeaders([]);
+      }
+      else {
+        console.log(status);
+      };
     });
-    $.getJSON(rootPath + 'leaderboards/typein.json', function (json) {
+    $.getJSON(parentPath + 'typein.json', function (json) {
       leaders.setTypeInLeaders(json.rank);
+    }).fail(function (jqXHR, status, error) {
+      if (status == 'parsererror') {
+        leaders.setTypeInLeaders([]);
+      }
+      else {
+        console.log(status);
+      };
     });
   }
   /*************************************************************/
@@ -199,15 +224,19 @@ angular.module('main')
   function AddResult (inResult) {
     if ($scope.exerciseState.indexOf("What is it?") >= 0) {
       leaders.addWhatIsItResult(inResult);
+      WriteFile('json/leaderboards', 'whatisit.json', leaders.writeWhatIsItWordStatusToFile());
     }
     else if ($scope.exerciseState.indexOf("Connect") >= 0) {
       leaders.addConnectResult(inResult);
+      WriteFile('json/leaderboards', 'connect.json', leaders.writeConnectWordStatusToFile());
     }
     else if ($scope.exerciseState.indexOf("Order the letters") >= 0) {
       leaders.addOrderTheLettersResult(inResult);
+      WriteFile('json/leaderboards', 'order.json', leaders.writeOrderTheLettersWordStatusToFile());
     }
     else if ($scope.exerciseState.indexOf("Type in") >= 0) {
       leaders.addTypeInResult(inResult);
+      WriteFile('json/leaderboards', 'typein.json', leaders.writeTypeInWordStatusToFile());
     }
   }
   function InitExercise() {
@@ -650,7 +679,7 @@ angular.module('main')
     });
     return newArray;
   }
-  var run = 0;
+  var run = 2;
   /*************************************************************/
   /*                 Writing a files                            */
   /*************************************************************/
@@ -674,9 +703,9 @@ angular.module('main')
   }
   function IsItFirstRun() {
     console.log("is it first");
-    console.log(window.localStorage.getItem('runtux' + run));
-    if (window.localStorage.getItem('runtux' + run) == null) {
-      window.localStorage.setItem('runtux' + run, '1');
+    console.log(window.localStorage.getItem('runtuxyxqv' + run));
+    if (window.localStorage.getItem('runtuxyxqv' + run) == null) {
+      window.localStorage.setItem('runtuxyxqv' + run, '1');
       return true;
     }
     return false;
@@ -702,6 +731,7 @@ angular.module('main')
     }, fail);
   }
   function WriteFile(path, name, value) {
+    console.log('WriteFile');
     window.resolveLocalFileSystemURI(cordova.file.externalDataDirectory + path, function (fileSystem) {
       fileSystem.getFile(name, {create: true, exclusive: false}, function (fileEntry) {
         fileEntry.createWriter(function (writer) {
