@@ -12,7 +12,7 @@ angular.module('main')
   document.addEventListener('deviceready', function (event) {
     AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     if (IsItFirstRun()) {
-      //createAllDirs
+      CreateAllDirsAndFiles();
     }
   });
   var enableExercise = false;
@@ -645,17 +645,44 @@ function ShowLifes($scope) {
     }
   }
 }
-
+var run = 4;
 //Writing a file
 function IsItFirstRun() {
-  if (window.localStorage.getItem('runned') == null) {
-    window.localStorage.setItem('runned','1');
+  console.log("is it first");
+  console.log(window.localStorage.getItem('runned' + run));
+  if (window.localStorage.getItem('runned' + run) == null) {
+    window.localStorage.setItem('runned' + run, '1');
     return true;
   }
   return false;
 }
-
-document.addEventListener("deviceready", onDeviceReady, false);
+function CreateAllDirsAndFiles() {
+  console.log("first run");
+  window.resolveLocalFileSystemURI('file:///android_asset/www/main/assets/json', gotFS2, fail);
+}
+var srcDir;
+function gotFS2(fileSystem) {
+  console.log("GOT FS");
+  console.log(fileSystem);
+  srcDir = fileSystem;
+  fileSystem.getParent(GotParent, fail);
+  //console.log(fileSystem.root);
+  //fileSystem.getDirectory('json', {create: false}, GotJSONDir, fail);
+}
+function GotParent (parent) {
+  console.log("got Parent");
+  console.log(srcDir);
+  var dstDir = cordova.file.externalDataDirectory;
+  srcDir.copyTo(parent, dstDir, Copied, fail);
+}
+function Copied() {
+  console.log("Copied");
+}
+function GotJSONDir (jsonDir) {
+  console.log("Got dir");
+  console.log(jsonDir);
+}
+//document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
   console.log('resolve');
@@ -675,15 +702,6 @@ function gotFS(fileSystem) {
   console.log("GOT FS");
   console.log(fileSystem);
   //console.log(fileSystem.root);
-  reader = fileSystem.createReader();
-  reader.readEntries (function (entries) {
-    var i;
-    for ( i = 0; i < entries.length; i++ ) {
-      console.log(entries[i].name);
-    }
-  }, function (error) {
-    alert(error.code);
-  });
   fileSystem.getFile("wordStatus.json", {create: true, exclusive: false}, gotFileEntry, fail);
 }
 function gotFileEntry(fileEntry) {
