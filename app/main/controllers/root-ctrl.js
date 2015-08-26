@@ -679,11 +679,9 @@ angular.module('main')
     });
     return newArray;
   }
-  var run = 2;
   /*************************************************************/
   /*                 Writing a files                            */
   /*************************************************************/
-
   function GetJSONDirectoryObjectHelper () {
     jsonDir = {};
     jsonDir.name = "json";
@@ -702,28 +700,23 @@ angular.module('main')
     return file;
   }
   function IsItFirstRun() {
-    console.log("is it first");
-    console.log(window.localStorage.getItem('runtuxyxqv' + run));
-    if (window.localStorage.getItem('runtuxyxqv' + run) == null) {
-      window.localStorage.setItem('runtuxyxqv' + run, '1');
+    if (window.localStorage.getItem('TUX4WordsRuns') == null) {
+      window.localStorage.setItem('TUX4WordsRuns', '1');
       return true;
     }
     return false;
   }
   function CreateAllDirsAndFiles() {
-    console.log("first run");
     jsonDir = GetJSONDirectoryObjectHelper();
     window.resolveLocalFileSystemURI(cordova.file.externalDataDirectory, function (fileSystem) {
       fileSystem.getDirectory(jsonDir.name, {create: true, exclusive: false}, function (directoryEntry) {
         directoryEntry.getDirectory(jsonDir.files[0].name, {create: true, exclusive: false}, function (directoryEntry) {
           for (i = 0; i < jsonDir.files[0].files.length; i++) {
             directoryEntry.getFile(jsonDir.files[0].files[i].name, {create: true, exclusive: false}, function () {
-              console.log("Created file ");
             }, fail)
           }
         }, fail);
         directoryEntry.getFile("wordStatus.json", {create: true, exclusive: false}, function () {
-          console.log("Created wordStatus.json");
           ReadWordsStatus();
           ReadLeaderBoards();
         }, fail)
@@ -735,7 +728,6 @@ angular.module('main')
     window.resolveLocalFileSystemURI(cordova.file.externalDataDirectory + path, function (fileSystem) {
       fileSystem.getFile(name, {create: true, exclusive: false}, function (fileEntry) {
         fileEntry.createWriter(function (writer) {
-          console.log("GOT FW");
           writer.seek(0);
           writer.write(value);
           writer.onwriteend = function (evt) {
@@ -752,96 +744,7 @@ function ShowLifes($scope) {
       $('#' + i.toString() + 'life').attr('class', 'dead');
     }  }
 }
-
-/*
-var srcDir;
-function gotFS2(fileSystem) {
-  console.log("GOT FS");
-  console.log(fileSystem);
-  srcDir = fileSystem;
-  fileSystem.getParent(GotParent, fail);
-  //console.log(fileSystem.root);
-  //fileSystem.getDirectory('json', {create: false}, GotJSONDir, fail);
-}
-function GotParent (parent) {
-  console.log("got Parent");
-  console.log(srcDir);
-  console.log(parent);
-  var dstDir = cordova.file.externalDataDirectory;
-  srcDir.copyTo(parent, dstDir, Copied, fail);
-}
-function Copied() {
-  console.log("Copied");
-}
-function GotJSONDir (jsonDir) {
-  console.log("Got dir");
-  console.log(jsonDir);
-}
-//document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady() {
-  console.log('resolve');
-  WriteFile();
-}
-var read = 0;
-function WriteFile() {
-  window.resolveLocalFileSystemURI(cordova.file.externalDataDirectory, gotFS, fail);
-  //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-}
-function ReadFile() {
-  read = 1;
-  //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-  window.resolveLocalFileSystemURI(cordova.file.externalDataDirectory, gotFS, fail);
-}
-function gotFS(fileSystem) {
-  console.log("GOT FS");
-  console.log(fileSystem);
-  //console.log(fileSystem.root);
-  fileSystem.getFile("wordStatus.json", {create: true, exclusive: false}, gotFileEntry, fail);
-}
-function gotFileEntry(fileEntry) {
-  console.log("got FE");
-  if (read == 1) {
-    fileEntry.file(gotFile, fail);
-  }
-  else {
-    fileEntry.createWriter(gotFileWriter, fail);
-  }
-}
-function gotFile(file) {
-  readAsText(file);
-  read = 0;
-}
-function gotFileWriter(writer) {
-  console.log("gotFW");
-  console.log(writer);
-  writer.onwriteend = function (evt) {
-    console.log("contents of file now 'some sample text'");
-    console.log(evt);
-    /*writer.truncate(11);
-    writer.onwriteend = function (evt) {
-      console.log("contents of file now 'some sample'");
-      writer.seek(4);
-      writer.write(" different text");
-      writer.onwriteend = function (evt) {
-        console.log("contents of file now 'some different text'");
-      }
-    };*/
-/*};
-  console.log("WRITING");
-  writer.write("some sample text");
-}*/
-function readAsText(file) {
-  var reader = new FileReader();
-  reader.onloadend = function (evt) {
-    console.log("Read as text");
-    console.log(evt.target.result);
-  };
-  reader.readAsText(file);
-}
 function fail(error) {
-  console.log(error);
-  console.log("error");
   console.log(error.code);
 }
 function successFunction() {
