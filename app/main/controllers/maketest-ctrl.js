@@ -15,6 +15,7 @@ angular.module('main')
     test.name = document.getElementById("makeTest_name").value;
     test.words = GetChosenWords();
     tests.addTest(test);
+    $scope.WriteFile('json/', 'tests.json', tests.writeTestsToFile());
     $state.go('root.PlayTest');
   }
   function GetChosenWords () {

@@ -15,8 +15,7 @@ angular.module('main')
       CreateAllDirsAndFiles();
     }
     else {
-      ReadWordsStatus();
-      ReadLeaderBoards();
+      ReadIfFilesExist();
     }
   });
   var enableExercise = false;
@@ -35,6 +34,11 @@ angular.module('main')
         ReadWords(path, categories);
       });
     });
+  }
+  function ReadIfFilesExist() {
+    ReadWordsStatus();
+    ReadLeaderBoards();
+    ReadTests();
   }
   function ReadWords(path) {
     var jsonURL = rootPath + 'categories/' + path;
@@ -100,6 +104,12 @@ angular.module('main')
       else {
         console.log(status);
       };
+    });
+  }
+  function ReadTests () {
+    var jsonURL = cordova.file.externalDataDirectory + 'json/' + 'tests.json';
+    $.getJSON(jsonURL, function (json) {
+      tests.setTests(json.tests);
     });
   }
   /*************************************************************/
@@ -680,7 +690,7 @@ angular.module('main')
     return newArray;
   }
   /*************************************************************/
-  /*                 Writing a files                            */
+  /*                 Writing a files                           */
   /*************************************************************/
   function GetJSONDirectoryObjectHelper () {
     jsonDir = {};
@@ -690,7 +700,7 @@ angular.module('main')
     leaderDir.name = "leaderboards";
     leaderDir.isDir = true;
     leaderDir.files = [GetFile("connect.json"), GetFile("order.json"), GetFile("typein.json"), GetFile("whatisit.json")];
-    jsonDir.files = [leaderDir, GetFile("wordStatus.json")];
+    jsonDir.files = [leaderDir, GetFile("wordStatus.json"), GetFile("tests.json")];
     return jsonDir;
   }
   function GetFile (name) {
@@ -706,21 +716,25 @@ angular.module('main')
     }
     return false;
   }
+  function CreateFile(directoryEntry, name) {
+    directoryEntry.getFile(name, {create: true, exclusive: false}, function () {}, fail);
+  }
+  function CreateLeaderFile(directoryEntry, i) {
+    CreateFile(directoryEntry, jsonDir.files[0].files[i].name);
+  }
   function GotLeadersDirectorySuccessFun (jsonDir) {
     function successFun(directoryEntry) {
       for (i = 0; i < jsonDir.files[0].files.length; i++) {
-        directoryEntry.getFile(jsonDir.files[0].files[i].name, {create: true, exclusive: false}, function () {}, fail)
+        CreateLeaderFile(directoryEntry, i);
       }
     }
     return successFun;
   }
   function GotJsonDirectorySuccessFun (jsonDir) {
     function successFun(directoryEntry) {
+      CreateFile(directoryEntry, jsonDir.files[2].name);
       directoryEntry.getDirectory(jsonDir.files[0].name, {create: true, exclusive: false}, GotLeadersDirectorySuccessFun(jsonDir), fail);
-      directoryEntry.getFile("wordStatus.json", {create: true, exclusive: false}, function () {
-        ReadWordsStatus();
-        ReadLeaderBoards();
-      }, fail);
+      directoryEntry.getFile(jsonDir.files[1].name, {create: true, exclusive: false}, ReadIfFilesExist, fail);
     }
     return successFun;
   }
@@ -748,6 +762,7 @@ angular.module('main')
       });
     });
   }
+  $scope.WriteFile = WriteFile;
 });
 function ShowLifes($scope) {
   for (i = 3; i > 0; i--) {

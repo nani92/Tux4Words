@@ -407,21 +407,23 @@ angular.module('main', [
   testNew = {};
   testNew.name = '+';
   testNew.words = {};
-  testMy1 = {};
-  testMy1.name = 'My1';
-  testMy1.words = [];
-  wordDog = {};
-  wordDog.word = 'Dog';
-  wordDog.imgPath = "main/assets/images/words/dog.jpg";
-  testMy1.words.push(wordDog);
   tests.push(testNew);
-  tests.push(testMy1);
   return {
+    setTests: function (inTests) {
+      $.each(inTests, function (i, test) {
+        tests.push(test);
+      });
+    },
     addTest: function (inTest) {
       tests.push(inTest);
     },
     getTestList: function () {
       return tests;
+    },
+    writeTestsToFile: function () {
+      jsonObj = {};
+      jsonObj.tests = tests.slice(1);
+      return jsonObj;
     }
   }
 });
