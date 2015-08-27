@@ -488,7 +488,7 @@ angular.module('main')
   $scope.StartTest_WhatIsIt = function (inTest) {
     InitExercise();
     console.log(inTest);
-    words = inTest.words;
+    words = categories.getAllLearnedForWords(inTest.words);
     if ( IsPossibleToStartThisTest(words)) {
       WhatIsIt_StartWithWords(words);
     }
@@ -498,7 +498,7 @@ angular.module('main')
   }
   $scope.StartTest_Connect = function (inTest) {
     InitExercise();
-    words = inTest.words;
+    words = categories.getAllLearnedForWords(inTest.words);
     if ( IsPossibleToStartThisTest(words)) {
       Connect_StartWithWords(words);
     }
@@ -508,7 +508,7 @@ angular.module('main')
   }
   $scope.StartTest_OrderTheLetters = function (inTest) {
     InitExercise();
-    words = inTest.words;
+    words = categories.getAllLearnedForWords(inTest.words);
     if ( IsPossibleToStartThisTest(words)) {
       OrderTheLetters_StartWithWords(words);
     }
@@ -518,7 +518,7 @@ angular.module('main')
   }
   $scope.StartTest_TypeIn = function (inTest) {
     InitExercise();
-    words = inTest.words;
+    words = categories.getAllLearnedForWords(inTest.words);
     if ( IsPossibleToStartThisTest(words)) {
       TypeIn_StartWithWords(words);
     }
@@ -527,8 +527,7 @@ angular.module('main')
     }
   }
   function IsPossibleToStartThisTest (words) {
-    learnedWords = categories.getAllLearnedForWords(words);
-    if (learnedWords.length > 2) {
+    if (words.length > 2) {
       return true;
     }
     return false;
